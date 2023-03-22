@@ -2,6 +2,7 @@ package com.deustotickets.app;
 
 public class Concierto {
 	//Atributos:
+	private int id;
 	private String artista;	//En un futuro hay que meterlo como una clase
 	private String fecha;
 	private String lugar;
