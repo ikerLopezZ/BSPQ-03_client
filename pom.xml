@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.deustotickets.app</groupId>
-	<artifactId>BSPQ-03</artifactId>
+	<artifactId>BSPQ-03_client</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>BSPQ-03</name>
+	<name>BSPQ-03_client</name>
 	<url>http://maven.apache.org</url>
 	<dependencyManagement>
 		<dependencies>
@@ -97,8 +97,8 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>exec-maven-plugin</artifactId>
+						<groupId>com.deustotickets.app</groupId>
+						<artifactId>BSPQ-03_client</artifactId>
 						<version>1.2.1</version>
 						<executions>
 							<execution>
@@ -108,7 +108,7 @@
 							</execution>
 						</executions>
 						<configuration>
-							<mainClass>com.example.client.ClientApp</mainClass>
+							<mainClass>com.deustotickets.app.App</mainClass>
 						</configuration>
 					</plugin>
 				</plugins>
