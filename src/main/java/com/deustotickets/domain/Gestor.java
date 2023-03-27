@@ -1,4 +1,4 @@
-package com.deustotickets.app;
+package com.deustotickets.domain;
 
 public class Gestor extends Usuario{
 	private int id;
