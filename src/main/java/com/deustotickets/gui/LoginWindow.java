@@ -194,33 +194,19 @@ public class LoginWindow {
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tglbtnGoogle.isSelected()) {
-					if(MainProgram.loginController.login(textFieldEmail.getText(), String.valueOf(passwordFieldContrasenya.getPassword()), TipoUsuario.GOOGLE)) {
-						MainWindow mwin = new MainWindow();
-						mwin.initialize();
-					} else {
-						LoginWindow lwin = new LoginWindow();
-						lwin.initialize();
-					}
+					/**
+					 * INICIALIZAR VENTANA MAIN
+					 */
 					frmLogin.dispose();
-					
 				} else if(tglbtnFacebook.isSelected())  {
-					if(MainProgram.loginController.login(textFieldEmail.getText(), String.valueOf(passwordFieldContrasenya.getPassword()), TipoUsuario.FACEBOOK)) {
-						MainWindow mwin = new MainWindow();
-						mwin.initialize();
-					} else {
-						LoginWindow lwin = new LoginWindow();
-						lwin.initialize();
-					}
+					/**
+					 * INICIALIZAR VENTANA MAIN
+					 */
 					frmLogin.dispose();
-					
 				} else {
-					if(MainProgram.loginController.login(textFieldEmail.getText(), String.valueOf(passwordFieldContrasenya.getPassword()), TipoUsuario.STRAVA)) {
-						MainWindow mwin = new MainWindow();
-						mwin.initialize();
-					} else {
-						LoginWindow lwin = new LoginWindow();
-						lwin.initialize();
-					}
+					/**
+					 * INICIALIZAR VENTANA MAIN
+					 */
 					frmLogin.dispose();
 				}
 				

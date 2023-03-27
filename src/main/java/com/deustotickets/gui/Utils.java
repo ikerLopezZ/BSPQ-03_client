@@ -51,7 +51,7 @@ public class Utils {
 				CompoundBorder border = new CompoundBorder(line, empty);
 				field.setBorder(border);
 				field.setForeground(Color.GRAY);
-				if (field.getText().isBlank()) {
+				if (field.getText().length() == 0) {
 					field.setText(textoPorDefecto);
 				}
 				super.focusLost(e);
@@ -109,7 +109,7 @@ public class Utils {
 				CompoundBorder border = new CompoundBorder(line, empty);
 				field.setBorder(border);
 				field.setForeground(Color.GRAY);
-				if (String.valueOf(field.getPassword()).isBlank()) {
+				if (String.valueOf(field.getPassword()).length() == 0) {
 					field.setEchoChar((char) 0);
 					field.setText(textoPorDefecto);
 				} else {
