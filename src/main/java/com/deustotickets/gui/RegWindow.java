@@ -21,6 +21,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+
+import com.deustotickets.app.TipoUsuario;
+import com.deustotickets.app.Usuario;
+
 import javax.swing.JLabel;
 
 public class RegWindow {
@@ -193,57 +197,57 @@ public class RegWindow {
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tglbtnGoogle.isSelected()) {
-					UserDTO ug = new UserDTO();
+					Usuario ug = new Usuario();
 					ug.setNombreApellidos(textFieldNombreApellidos.getText());
 					ug.setEmail(textFieldEmail.getText());
 					ug.setPassword("");
-					ug.setPeso(Float.parseFloat(textFieldPeso.getText()));
-					ug.setAltura(Float.parseFloat(textFieldAltura.getText()));
-					ug.setFrecCardRep(Float.parseFloat(textFieldFrecCardRep.getText()));
-					ug.setFrecCardMax(Float.parseFloat(textFieldFrecCardMax.getText()));
-					ug.setTipo(TipoUsuario.GOOGLE);
-					if (MainProgram.registerController.register(ug)) {
-						LoginWindow.initialize();
-						frmRegister.dispose();
-					} else {
-						System.out.println("Error while registering new user");
-					}
+//					ug.setTipo(TipoUsuario.GOOGLE);
+//					if (MainProgram.registerController.register(ug)) {
+//						LoginWindow.initialize();
+//						frmRegister.dispose();
+//					} else {
+//						System.out.println("Error while registering new user");
+//					}
+
+					LoginWindow.initialize();
+					frmRegister.dispose();
+
 				} else if (tglbtnFacebook.isSelected()) {
-					UserDTO uf = new UserDTO();
+					Usuario uf = new Usuario();
 					uf.setNombreApellidos(textFieldNombreApellidos.getText());
 					uf.setEmail(textFieldEmail.getText());
 					uf.setPassword("");
-					uf.setPeso(Float.parseFloat(textFieldPeso.getText()));
-					uf.setAltura(Float.parseFloat(textFieldAltura.getText()));
-					uf.setFrecCardRep(Float.parseFloat(textFieldFrecCardRep.getText()));
-					uf.setFrecCardMax(Float.parseFloat(textFieldFrecCardMax.getText()));
-					uf.setTipo(TipoUsuario.FACEBOOK);
-					if (MainProgram.registerController.register(uf)) {
-						LoginWindow.initialize();
-						frmRegister.dispose();
-					} else {
-						System.out.println("Error while registering new user");
-					}
+//					uf.setTipo(TipoUsuario.FACEBOOK);
+//					if (MainProgram.registerController.register(uf)) {
+//						LoginWindow.initialize();
+//						frmRegister.dispose();
+//					} else {
+//						System.out.println("Error while registering new user");
+//					}
+
+					LoginWindow.initialize();
+					frmRegister.dispose();
+
 				} else {
-					UserDTO us = new UserDTO();
+					Usuario us = new Usuario();
 					us.setNombreApellidos(textFieldNombreApellidos.getText());
 					us.setEmail(textFieldEmail.getText());
 					us.setPassword(String.valueOf(passwordFieldContrasenya.getPassword()));
-					us.setPeso(Float.parseFloat(textFieldPeso.getText()));
-					us.setAltura(Float.parseFloat(textFieldAltura.getText()));
-					us.setFrecCardRep(Float.parseFloat(textFieldFrecCardRep.getText()));
-					us.setFrecCardMax(Float.parseFloat(textFieldFrecCardMax.getText()));
-					us.setTipo(TipoUsuario.STRAVA);
-					if (MainProgram.registerController.register(us)) {
-						LoginWindow.initialize();
-						frmRegister.dispose();
-					} else {
-						System.out.println("Error while registering new user");
-					}
+					us.setTipo(TipoUsuario.CLIENTE);
+//					if (MainProgram.registerController.register(us)) {
+//						LoginWindow.initialize();
+//						frmRegister.dispose();
+//					} else {
+//						System.out.println("Error while registering new user");
+//					}
+
+					LoginWindow.initialize();
+					frmRegister.dispose();
+
 				}
 			}
 		});
-		
+
 		btnRegistrarse.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent evt) {
 				btnRegistrarse.setBorder(line_2);

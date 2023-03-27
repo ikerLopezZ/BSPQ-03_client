@@ -1,15 +1,15 @@
-package com.deustotickets.app;
+package com.deustotickets.domain;
 
 public class Concierto {
 	//Atributos:
 	private int id;
-	private String artista;	//En un futuro hay que meterlo como una clase
+	private Artista artista;
 	private String fecha;
 	private String lugar;
 	private String aforo;
 	
 	//Constructor
-	public Concierto(String artista, String fecha, String lugar, String aforo) {
+	public Concierto(Artista artista, String fecha, String lugar, String aforo) {
 		super();
 		this.artista = artista;
 		this.fecha = fecha;
@@ -18,11 +18,11 @@ public class Concierto {
 	}
 
 	//Getters y setters
-	public String getArtista() {
+	public Artista getArtista() {
 		return artista;
 	}
 
-	public void setArtista(String artista) {
+	public void setArtista(Artista artista) {
 		this.artista = artista;
 	}
 
@@ -53,9 +53,6 @@ public class Concierto {
 	//toString
 	@Override
 	public String toString() {
-		return "Concierto [artista=" + artista + ", fecha=" + fecha + ", lugar=" + lugar + ", aforo=" + aforo + "]";
+		return "Concierto [artista=" + artista.toString() + ", fecha=" + fecha + ", lugar=" + lugar + ", aforo=" + aforo + "]";
 	}
-	
-	
-	
 }

@@ -1,4 +1,4 @@
-package com.deustotickets.app;
+package com.deustotickets.domain;
 
 public class Entrada {
 	//Atributos:
@@ -16,7 +16,6 @@ public class Entrada {
 		this.precio = precio;
 		this.nombre = nombre;
 	}
-	
 	
 	//Getters y setters
 	public int getId() {
