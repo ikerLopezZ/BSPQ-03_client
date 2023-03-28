@@ -4,12 +4,12 @@ public class Entrada {
 	//Atributos:
 	private int id;
 	private String artista;	//En un futuro hay que meterlo como una clase
-	private String precio;
+	private double precio;
 	private String nombre;
 	//Pensar si queremos hacer tipos de entrada (VIP, normal...)
 	
 	//Constructor
-	public Entrada(int id, String artista, String precio, String nombre) {
+	public Entrada(int id, String artista, double precio, String nombre) {
 		super();
 		this.id = id;
 		this.artista = artista;
@@ -31,10 +31,10 @@ public class Entrada {
 	public void setArtista(String artista) {
 		this.artista = artista;
 	}
-	public String getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(String precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 	public String getNombre() {

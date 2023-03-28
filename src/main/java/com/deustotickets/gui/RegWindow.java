@@ -22,8 +22,8 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
-import com.deustotickets.app.TipoUsuario;
-import com.deustotickets.app.Usuario;
+import com.deustotickets.domain.TipoUsuario;
+import com.deustotickets.domain.Usuario;
 
 import javax.swing.JLabel;
 

@@ -6,10 +6,10 @@ public class Concierto {
 	private Artista artista;
 	private String fecha;
 	private String lugar;
-	private String aforo;
+	private int aforo;
 	
 	//Constructor
-	public Concierto(Artista artista, String fecha, String lugar, String aforo) {
+	public Concierto(Artista artista, String fecha, String lugar, int aforo) {
 		super();
 		this.artista = artista;
 		this.fecha = fecha;
@@ -42,11 +42,11 @@ public class Concierto {
 		this.lugar = lugar;
 	}
 
-	public String getAforo() {
+	public int getAforo() {
 		return aforo;
 	}
 
-	public void setAforo(String aforo) {
+	public void setAforo(int aforo) {
 		this.aforo = aforo;
 	}
 
