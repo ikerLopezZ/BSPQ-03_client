@@ -12,9 +12,9 @@ public class Artista extends Usuario{
 		this.genero = genero;
 	}
 
-	public Artista(String nombre, String apellidos, String email, String contrasenya, TipoUsuario tipo,
+	public Artista(String nombreApellidos, String email, String contrasenya, TipoUsuario tipo,
 			TipoGenero genero) {
-		super(nombre, apellidos, email, contrasenya, tipo);
+		super(nombreApellidos, email, contrasenya, tipo);
 		this.genero = genero;
 	}
 

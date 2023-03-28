@@ -8,8 +8,9 @@ public class Usuario {
 	private TipoUsuario tipo;
 	
 	//Constructor:
-	public Usuario(String nombre, String apellidos, String email, String password, TipoUsuario tipo) {
+	public Usuario(String nombreApellidos, String email, String password, TipoUsuario tipo) {
 		super();
+		this.nombreApellidos = nombreApellidos;
 		this.email = email;
 		this.password = password;
 		this.tipo = tipo;
