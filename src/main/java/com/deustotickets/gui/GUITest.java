@@ -3,7 +3,7 @@ package com.deustotickets.gui;
 import javax.swing.UIManager;
 
 
-public class Test {
+public class GUITest {
 
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
@@ -11,7 +11,8 @@ public class Test {
 	        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); 
 	    } catch(Exception ignored) {
 	    }
-		LoginWindow win = new LoginWindow();
+//		LoginWindow win = new LoginWindow();
+		MainWindow win = new MainWindow();
 		win.initialize();
 	}
 }

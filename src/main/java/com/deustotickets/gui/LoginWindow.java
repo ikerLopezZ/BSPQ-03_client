@@ -35,7 +35,8 @@ public class LoginWindow {
 	private static JPasswordField passwordFieldContrasenya;
 	private static Border line_1 = BorderFactory.createLineBorder(new Color(194, 194, 194), 2);
 	private static Border line_2 = BorderFactory.createLineBorder(new Color(227, 30, 36), 2);
-	private static ImageIcon logo = new ImageIcon("images/deustotickets_logo_1.png");
+	private static ImageIcon logo_1 = new ImageIcon("images/deustotickets_logo.png");
+	private static ImageIcon logo_2 = new ImageIcon("images/deustotickets_logo_1.png");
 	private static ImageIcon logoGoogle = new ImageIcon("images/logoGoogle.png");
 	private static ImageIcon logoFacebook = new ImageIcon("images/logoFacebook.png");
 
@@ -45,11 +46,11 @@ public class LoginWindow {
 	 */
 	public static void initialize() {
 		frmLogin = new JFrame();
-		frmLogin.setTitle("Strava - Inicio de sesion");
+		frmLogin.setTitle("DeustoTickets - Inicio de sesion");
 		frmLogin.setBounds(100, 100, 400, 600);
 		frmLogin.setResizable(false);
 		frmLogin.setLocationRelativeTo(null);
-		frmLogin.setIconImage(logo.getImage());
+		frmLogin.setIconImage(logo_1.getImage());
 		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -65,9 +66,9 @@ public class LoginWindow {
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(logo);
+		lblNewLabel.setIcon(logo_2);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(97, 11, 188, 130);
+		lblNewLabel.setBounds(127, 11, 130, 130);
 		panel_1.add(lblNewLabel);
 		
 		JPanel panel_2 = new JPanel();
@@ -125,14 +126,16 @@ public class LoginWindow {
 		panel.add(panel_3);
 		panel_3.setLayout(null);
 		
+//		textFieldEmail = new JTextField("Email");
 		textFieldEmail = new JTextField();
 		textFieldEmail = Utils.modifyTextField(textFieldEmail, "Email");
 		textFieldEmail.setBounds(92, 24, 200, 25);
 		panel_3.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
+//		passwordFieldContrasenya = new JPasswordField("Contrasenya");
 		passwordFieldContrasenya = new JPasswordField();
-		passwordFieldContrasenya = Utils.modifyPasswordField(passwordFieldContrasenya, "Cntrasenya");
+		passwordFieldContrasenya = Utils.modifyPasswordField(passwordFieldContrasenya, "Contrasenya");
 		passwordFieldContrasenya.setBounds(92, 60, 200, 25);
 		panel_3.add(passwordFieldContrasenya);
 		
@@ -143,7 +146,7 @@ public class LoginWindow {
 		
 		JButton btnIniciarSesion = new JButton("Iniciar sesion");
 		btnIniciarSesion.setBounds(92, 120, 200, 40);
-		btnIniciarSesion.setBackground(new Color(254, 237, 230));
+		btnIniciarSesion.setBackground(new Color(250, 209, 211));
 		btnIniciarSesion.setFocusPainted(false);
 		btnIniciarSesion.setOpaque(false);
 		btnIniciarSesion.setContentAreaFilled(false);
@@ -157,7 +160,7 @@ public class LoginWindow {
 		
 		JButton btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.setBounds(91, 221, 200, 40);
-		btnRegistrarse.setBackground(new Color(254, 237, 230));
+		btnRegistrarse.setBackground(new Color(250, 209, 211));
 		btnRegistrarse.setFocusPainted(false);
 		btnRegistrarse.setOpaque(false);
 		btnRegistrarse.setContentAreaFilled(false);

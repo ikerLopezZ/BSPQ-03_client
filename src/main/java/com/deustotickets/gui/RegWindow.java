@@ -26,19 +26,16 @@ import com.deustotickets.domain.TipoUsuario;
 import com.deustotickets.domain.Usuario;
 
 import javax.swing.JLabel;
+import javax.swing.JCheckBox;
 
 public class RegWindow {
 	public static JFrame frmRegister;
 	private static JTextField textFieldNombreApellidos;
 	private static JTextField textFieldEmail;
 	private static JPasswordField passwordFieldContrasenya;
-	private static JTextField textFieldPeso;
-	private static JTextField textFieldAltura;
-	private static JTextField textFieldFrecCardRep;
-	private static JTextField textFieldFrecCardMax;
 	private static Border line_1 = BorderFactory.createLineBorder(new Color(194, 194, 194), 2);
 	private static Border line_2 = BorderFactory.createLineBorder(new Color(227, 30, 36), 2);
-	private static ImageIcon logo_1 = new ImageIcon("images/deustotickets_logo_1.png");
+	private static ImageIcon logo_1 = new ImageIcon("images/deustotickets_logo.png");
 	private static ImageIcon logo_2 = new ImageIcon("images/deustotickets_logo_2.png");
 	private static ImageIcon logoGoogle = new ImageIcon("images/logoGoogle.png");
 	private static ImageIcon logoFacebook = new ImageIcon("images/logoFacebook.png");
@@ -50,7 +47,7 @@ public class RegWindow {
 	 */
 	public static void initialize() {
 		frmRegister = new JFrame();
-		frmRegister.setTitle("Strava - Registro");
+		frmRegister.setTitle("DeustoTickets - Registro");
 		frmRegister.setBounds(100, 100, 400, 600);
 		frmRegister.setResizable(false);
 		frmRegister.setLocationRelativeTo(null);
@@ -112,12 +109,12 @@ public class RegWindow {
 					tglbtnGoogle.setOpaque(true);
 					tglbtnFacebook.setBackground(new Color(66, 103, 178));
 					tglbtnFacebook.setSelected(false);
-					passwordFieldContrasenya.setEditable(false);
-					passwordFieldContrasenya.setFocusable(false);
+//					passwordFieldContrasenya.setEditable(false);
+//					passwordFieldContrasenya.setFocusable(false);
 				} else {
 					tglbtnGoogle.setOpaque(false);
-					passwordFieldContrasenya.setEditable(true);
-					passwordFieldContrasenya.setFocusable(true);
+//					passwordFieldContrasenya.setEditable(true);
+//					passwordFieldContrasenya.setFocusable(true);
 				}
 			}
 		});
@@ -128,55 +125,53 @@ public class RegWindow {
 		panel_2.setLayout(null);
 		panel.add(panel_2);
 
+//		textFieldNombreApellidos = new JTextField("Nombre y apellidos");
 		textFieldNombreApellidos = new JTextField();
 		textFieldNombreApellidos = Utils.modifyTextField(textFieldNombreApellidos, "Nombre y apellidos");
 		textFieldNombreApellidos.setBounds(92, 11, 200, 25);
 		panel_2.add(textFieldNombreApellidos);
 		textFieldNombreApellidos.setColumns(10);
 
+//		textFieldEmail = new JTextField("Email");
 		textFieldEmail = new JTextField();
 		textFieldEmail = Utils.modifyTextField(textFieldEmail, "Email");
 		textFieldEmail.setBounds(92, 47, 200, 25);
 		panel_2.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 
+//		passwordFieldContrasenya = new JPasswordField("Contrasenya");
 		passwordFieldContrasenya = new JPasswordField();
-		passwordFieldContrasenya = Utils.modifyPasswordField(passwordFieldContrasenya, "Cntrasenya");
+		passwordFieldContrasenya = Utils.modifyPasswordField(passwordFieldContrasenya, "Contrasenya");
 		passwordFieldContrasenya.setBounds(92, 83, 200, 25);
 		panel_2.add(passwordFieldContrasenya);
-
-//		textFieldPeso = new JTextField();
-//		textFieldPeso = Utils.modifyTextField(textFieldPeso, "Peso");
-//		textFieldPeso.setBounds(92, 119, 200, 25);
-//		panel_2.add(textFieldPeso);
-//		textFieldPeso.setColumns(10);
-//
-//		textFieldAltura = new JTextField();
-//		textFieldAltura = Utils.modifyTextField(textFieldAltura, "Altura");
-//		textFieldAltura.setBounds(92, 155, 200, 25);
-//		panel_2.add(textFieldAltura);
-//		textFieldAltura.setColumns(10);
-//
-//		textFieldFrecCardRep = new JTextField();
-//		textFieldFrecCardRep = Utils.modifyTextField(textFieldFrecCardRep, "Frecuencia cardiaca (reposo)");
-//		textFieldFrecCardRep.setBounds(92, 191, 200, 25);
-//		panel_2.add(textFieldFrecCardRep);
-//		textFieldFrecCardRep.setColumns(10);
-//
-//		textFieldFrecCardMax = new JTextField();
-//		textFieldFrecCardMax = Utils.modifyTextField(textFieldFrecCardMax, "Frecuencia cardiaca (maxima)");
-//		textFieldFrecCardMax.setBounds(92, 227, 200, 25);
-//		panel_2.add(textFieldFrecCardMax);
-//		textFieldFrecCardMax.setColumns(10);
+		
+		JCheckBox chckbxEresUnArtista = new JCheckBox("Eres artista?");
+		chckbxEresUnArtista.setBackground(new Color(255, 255, 255));
+		chckbxEresUnArtista.setBounds(92, 119, 85, 25);
+		chckbxEresUnArtista.setFocusable(false);
+		panel_2.add(chckbxEresUnArtista);
 
 		JButton btnRegistrarse = new JButton("Registrarse");
-		btnRegistrarse.setBounds(92, 263, 200, 40);
-		btnRegistrarse.setBackground(new Color(254, 237, 230));
+		btnRegistrarse.setBounds(92, 155, 200, 40);
+		btnRegistrarse.setBackground(new Color(250, 209, 211));
 		btnRegistrarse.setFocusPainted(false);
 		btnRegistrarse.setOpaque(false);
 		btnRegistrarse.setContentAreaFilled(false);
 		btnRegistrarse.setBorder(line_1);
 		panel_2.add(btnRegistrarse);
+		
+		JLabel lblYaTienesUna = new JLabel("Ya tienes una cuenta?");
+		lblYaTienesUna.setHorizontalAlignment(SwingConstants.CENTER);
+		lblYaTienesUna.setBounds(130, 236, 124, 14);
+		panel_2.add(lblYaTienesUna);
+		
+		JButton btnIniciarSesion = new JButton("Iniciar sesion");
+		btnIniciarSesion.setBounds(92, 261, 200, 40);
+		btnIniciarSesion.setBackground(new Color(250, 209, 211));
+		btnIniciarSesion.setFocusPainted(false);
+		btnIniciarSesion.setOpaque(false);
+		btnIniciarSesion.setContentAreaFilled(false);
+		panel_2.add(btnIniciarSesion);
 
 		tglbtnFacebook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -184,23 +179,23 @@ public class RegWindow {
 					tglbtnFacebook.setBackground(new Color(41, 65, 112));
 					tglbtnGoogle.setOpaque(false);
 					tglbtnGoogle.setSelected(false);
-					passwordFieldContrasenya.setEditable(false);
-					passwordFieldContrasenya.setFocusable(false);
+//					passwordFieldContrasenya.setEditable(false);
+//					passwordFieldContrasenya.setFocusable(false);
 				} else {
 					tglbtnFacebook.setBackground(new Color(66, 103, 178));
-					passwordFieldContrasenya.setEditable(true);
-					passwordFieldContrasenya.setFocusable(true);
+//					passwordFieldContrasenya.setEditable(true);
+//					passwordFieldContrasenya.setFocusable(true);
 				}
 			}
 		});
 
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (tglbtnGoogle.isSelected()) {
-					Usuario ug = new Usuario();
-					ug.setNombreApellidos(textFieldNombreApellidos.getText());
-					ug.setEmail(textFieldEmail.getText());
-					ug.setPassword("");
+//				if (tglbtnGoogle.isSelected()) {
+//					Usuario ug = new Usuario();
+//					ug.setNombreApellidos(textFieldNombreApellidos.getText());
+//					ug.setEmail(textFieldEmail.getText());
+//					ug.setPassword("");
 //					ug.setTipo(TipoUsuario.GOOGLE);
 //					if (MainProgram.registerController.register(ug)) {
 //						LoginWindow.initialize();
@@ -208,17 +203,33 @@ public class RegWindow {
 //					} else {
 //						System.out.println("Error while registering new user");
 //					}
-
-					LoginWindow.initialize();
-					frmRegister.dispose();
-
-				} else if (tglbtnFacebook.isSelected()) {
-					Usuario uf = new Usuario();
-					uf.setNombreApellidos(textFieldNombreApellidos.getText());
-					uf.setEmail(textFieldEmail.getText());
-					uf.setPassword("");
+//
+//					LoginWindow.initialize();
+//					frmRegister.dispose();
+//
+//				} else if (tglbtnFacebook.isSelected()) {
+//					Usuario uf = new Usuario();
+//					uf.setNombreApellidos(textFieldNombreApellidos.getText());
+//					uf.setEmail(textFieldEmail.getText());
+//					uf.setPassword("");
 //					uf.setTipo(TipoUsuario.FACEBOOK);
 //					if (MainProgram.registerController.register(uf)) {
+//						LoginWindow.initialize();
+//						frmRegister.dispose();
+//					} else {
+//						System.out.println("Error while registering new user");
+//					}
+//
+//					LoginWindow.initialize();
+//					frmRegister.dispose();
+				
+				if (chckbxEresUnArtista.isSelected()) {
+					Usuario a = new Usuario();
+					a.setNombreApellidos(textFieldNombreApellidos.getText());
+					a.setEmail(textFieldEmail.getText());
+					a.setPassword("");
+					a.setTipo(TipoUsuario.ARTISTA);
+//					if (MainProgram.registerController.register(a)) {
 //						LoginWindow.initialize();
 //						frmRegister.dispose();
 //					} else {
@@ -227,14 +238,14 @@ public class RegWindow {
 
 					LoginWindow.initialize();
 					frmRegister.dispose();
-
+					
 				} else {
-					Usuario us = new Usuario();
-					us.setNombreApellidos(textFieldNombreApellidos.getText());
-					us.setEmail(textFieldEmail.getText());
-					us.setPassword(String.valueOf(passwordFieldContrasenya.getPassword()));
-					us.setTipo(TipoUsuario.CLIENTE);
-//					if (MainProgram.registerController.register(us)) {
+					Usuario u = new Usuario();
+					u.setNombreApellidos(textFieldNombreApellidos.getText());
+					u.setEmail(textFieldEmail.getText());
+					u.setPassword(String.valueOf(passwordFieldContrasenya.getPassword()));
+					u.setTipo(TipoUsuario.CLIENTE);
+//					if (MainProgram.registerController.register(u)) {
 //						LoginWindow.initialize();
 //						frmRegister.dispose();
 //					} else {
@@ -257,6 +268,25 @@ public class RegWindow {
 			public void mouseExited(MouseEvent evt) {
 				btnRegistrarse.setBorder(line_1);
 				btnRegistrarse.setOpaque(false);
+			}
+		});
+		
+		btnIniciarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginWindow.initialize();
+				frmRegister.dispose();
+			}
+		});
+		
+		btnIniciarSesion.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent evt) {
+				btnIniciarSesion.setBorder(line_2);
+				btnIniciarSesion.setOpaque(true);
+			}
+
+			public void mouseExited(MouseEvent evt) {
+				btnIniciarSesion.setBorder(line_1);
+				btnIniciarSesion.setOpaque(false);
 			}
 		});
 
