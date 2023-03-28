@@ -15,6 +15,11 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+//import es.deusto.ingenieria.sd.strava.client.MainProgram;
+//import es.deusto.ingenieria.sd.strava.client.gui.LoginWindow;
+//import es.deusto.ingenieria.sd.strava.client.gui.MainWindow;
+//import es.deusto.ingenieria.sd.strava.server.data.domain.TipoUsuario;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,8 +34,8 @@ public class LoginWindow {
 	private static JTextField textFieldEmail;
 	private static JPasswordField passwordFieldContrasenya;
 	private static Border line_1 = BorderFactory.createLineBorder(new Color(194, 194, 194), 2);
-	private static Border line_2 = BorderFactory.createLineBorder(new Color(252, 76, 2), 2);
-	private static ImageIcon logo = new ImageIcon("images/logo_1.png");
+	private static Border line_2 = BorderFactory.createLineBorder(new Color(227, 30, 36), 2);
+	private static ImageIcon logo = new ImageIcon("images/deustotickets_logo_1.png");
 	private static ImageIcon logoGoogle = new ImageIcon("images/logoGoogle.png");
 	private static ImageIcon logoFacebook = new ImageIcon("images/logoFacebook.png");
 
@@ -197,16 +202,34 @@ public class LoginWindow {
 					/**
 					 * INICIALIZAR VENTANA MAIN
 					 */
+//					if() {
+//					
+//					} else {
+//						LoginWindow lwin = new LoginWindow();
+//						lwin.initialize();
+//					}
 					frmLogin.dispose();
 				} else if(tglbtnFacebook.isSelected())  {
 					/**
 					 * INICIALIZAR VENTANA MAIN
 					 */
+//					if() {
+//						
+//					} else {
+//						LoginWindow lwin = new LoginWindow();
+//						lwin.initialize();
+//					}
 					frmLogin.dispose();
 				} else {
 					/**
 					 * INICIALIZAR VENTANA MAIN
 					 */
+//					if() {
+//						
+//					} else {
+//						LoginWindow lwin = new LoginWindow();
+//						lwin.initialize();
+//					}
 					frmLogin.dispose();
 				}
 				

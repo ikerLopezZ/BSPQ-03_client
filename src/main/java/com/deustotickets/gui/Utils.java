@@ -33,7 +33,7 @@ public class Utils {
 		field.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				Border line = BorderFactory.createLineBorder(new Color(252, 76, 2), 2);
+				Border line = BorderFactory.createLineBorder(new Color(235, 97, 101), 2);
 				Border empty = new EmptyBorder(0, 5, 0, 0);
 				CompoundBorder border = new CompoundBorder(line, empty);
 				field.setBorder(border);
@@ -88,7 +88,7 @@ public class Utils {
 		field.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				Border line = BorderFactory.createLineBorder(new Color(252, 76, 2), 2);
+				Border line = BorderFactory.createLineBorder(new Color(235, 97, 101), 2);
 				Border empty = new EmptyBorder(0, 5, 0, 0);
 				CompoundBorder border = new CompoundBorder(line, empty);
 				field.setBorder(border);
