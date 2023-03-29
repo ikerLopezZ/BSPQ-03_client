@@ -2,6 +2,7 @@ package com.deustotickets.app;
 
 import javax.swing.UIManager;
 
+import com.deustotickets.client.Resource;
 import com.deustotickets.domain.TipoUsuario;
 
 import com.deustotickets.gui.LoginWindow;

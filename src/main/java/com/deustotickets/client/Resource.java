@@ -1,4 +1,4 @@
-package com.deustotickets.app;
+package com.deustotickets.client;
 
 
 import javax.ws.rs.client.Client;
