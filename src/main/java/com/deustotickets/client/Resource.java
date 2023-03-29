@@ -20,11 +20,26 @@ public class Resource {
 	protected static final Logger logger = LogManager.getLogger();
 
 	private Client client;
-	private WebTarget webTarget;
+	private static WebTarget webTarget;
 
 	public Resource(String hostname, String port) {
 		client = ClientBuilder.newClient();
 		webTarget = client.target(String.format("http://%s:%s/rest/resource", hostname, port));
+	}
+	
+	public static boolean loginUser(String email, String password) {
+		WebTarget loginUserWebTarget = webTarget.path("login");
+		Invocation.Builder invocationBuilder = loginUserWebTarget.request(MediaType.APPLICATION_JSON);
+		
+		Usuario user = new Usuario(null, email, password, null);
+		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			return false;
+		} else {
+			logger.info("User correctly logged in");
+			return true;
+		}
 	}
 
 	public void registerUser(String nombreApellidos, String email, String password, TipoUsuario tipo) {
@@ -62,19 +77,5 @@ public class Resource {
 //			String responseMessage = response.readEntity(String.class);
 //			logger.info("* Message coming from the server: '{}'", responseMessage);
 //		}
-//	}
-//
-//	public static void main(String[] args) {
-//		if (args.length != 2) {
-//			logger.info("Use: java Client.Client [host] [port]");
-//			System.exit(0);
-//		}
-//
-//		String hostname = args[0];
-//		String port = args[1];
-//
-//		ExampleClient exampleClient = new ExampleClient(hostname, port);
-//		exampleClient.registerUser(USER, PASSWORD);
-//		exampleClient.sayMessage(USER, PASSWORD, "This is a test!...");
 //	}
 }

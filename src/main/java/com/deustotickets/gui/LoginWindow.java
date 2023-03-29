@@ -15,6 +15,8 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+import com.deustotickets.client.Resource;
+
 //import es.deusto.ingenieria.sd.strava.client.MainProgram;
 //import es.deusto.ingenieria.sd.strava.client.gui.LoginWindow;
 //import es.deusto.ingenieria.sd.strava.client.gui.MainWindow;
@@ -224,15 +226,13 @@ public class LoginWindow {
 //					}
 					frmLogin.dispose();
 				} else {
-					/**
-					 * INICIALIZAR VENTANA MAIN
-					 */
-//					if() {
-//						
-//					} else {
-//						LoginWindow lwin = new LoginWindow();
-//						lwin.initialize();
-//					}
+					if(Resource.loginUser(textFieldEmail.getText(), String.valueOf(passwordFieldContrasenya.getPassword()))) {
+						MainWindow mwin = new MainWindow();
+						mwin.initialize();
+					} else {
+						LoginWindow lwin = new LoginWindow();
+						lwin.initialize();
+					}
 					frmLogin.dispose();
 				}
 				
