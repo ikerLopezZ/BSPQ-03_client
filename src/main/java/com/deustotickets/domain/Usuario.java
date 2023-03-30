@@ -1,13 +1,16 @@
 package com.deustotickets.domain;
 
+/**
+ * 
+ * @author BSPQ-03
+ *
+ */
 public class Usuario {
-	// Atributos:
 	private String nombreApellidos;
 	private String email;
 	private String password;
 	private TipoUsuario tipo;
 	
-	//Constructor:
 	public Usuario(String nombreApellidos, String email, String password, TipoUsuario tipo) {
 		super();
 		this.nombreApellidos = nombreApellidos;
@@ -20,8 +23,6 @@ public class Usuario {
 		super();
 	}
 
-
-	//Getters y Setters:
 	public String getNombreApellidos() {
 		return nombreApellidos;
 	}
@@ -54,11 +55,9 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 
-	//toString:
 	@Override
 	public String toString() {
 		return "Usuario [nombre y apellidos=" + nombreApellidos + ", email=" + email + ", password="
 				+ password + ", tipo=" + tipo + "]";
 	}
-	
 }

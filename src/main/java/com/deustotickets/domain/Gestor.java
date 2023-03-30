@@ -1,5 +1,10 @@
 package com.deustotickets.domain;
 
+/**
+ * 
+ * @author BSPQ-03
+ *
+ */
 public class Gestor extends Usuario{
 	private int id;
 
@@ -15,7 +20,4 @@ public class Gestor extends Usuario{
 		super(nombreApellidos, email, contrasenya, tipo);
 		this.id = id;
 	}
-	
-	
-	
 }

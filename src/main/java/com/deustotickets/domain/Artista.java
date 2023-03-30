@@ -1,7 +1,11 @@
 package com.deustotickets.domain;
 
+/**
+ * 
+ * @author BSPQ-03
+ *
+ */
 public class Artista extends Usuario{
-
 	public TipoGenero genero;
 	
 	public TipoGenero getGenero() {
@@ -17,6 +21,4 @@ public class Artista extends Usuario{
 		super(nombreApellidos, email, contrasenya, tipo);
 		this.genero = genero;
 	}
-
-
 }

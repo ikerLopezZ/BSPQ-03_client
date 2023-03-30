@@ -3,12 +3,20 @@ package com.deustotickets.gui;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import com.deustotickets.domain.Usuario;
+
+/**
+ * 
+ * @author BSPQ-03
+ *
+ */
 public class MainWindow {
 	private static JFrame frmMain;
 	private static ImageIcon logo = new ImageIcon("images/deustotickets_logo.png");
+	public static Usuario logged = null;
 
 	/**
-	 * Initialize the contents of the frame.
+	 * 
 	 */
 	public static void initialize() {
 		frmMain = new JFrame();
@@ -21,5 +29,4 @@ public class MainWindow {
 		
 		frmMain.setVisible(true);
 	}
-
 }

@@ -31,6 +31,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPasswordField;
 import java.awt.BorderLayout;
 
+/**
+ * 
+ * @author BSPQ-03
+ *
+ */
 public class LoginWindow {
 	private static JFrame frmLogin;
 	private static JTextField textFieldEmail;
@@ -41,10 +46,9 @@ public class LoginWindow {
 	private static ImageIcon logo_2 = new ImageIcon("images/deustotickets_logo_1.png");
 	private static ImageIcon logoGoogle = new ImageIcon("images/logoGoogle.png");
 	private static ImageIcon logoFacebook = new ImageIcon("images/logoFacebook.png");
-
+	
 	/**
-	 * Initialize the contents of the frame.
-	 * @wbp.parser.entryPoint
+	 * 
 	 */
 	public static void initialize() {
 		frmLogin = new JFrame();
@@ -204,27 +208,9 @@ public class LoginWindow {
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tglbtnGoogle.isSelected()) {
-					/**
-					 * INICIALIZAR VENTANA MAIN
-					 */
-//					if() {
-//					
-//					} else {
-//						LoginWindow lwin = new LoginWindow();
-//						lwin.initialize();
-//					}
-					frmLogin.dispose();
+
 				} else if(tglbtnFacebook.isSelected())  {
-					/**
-					 * INICIALIZAR VENTANA MAIN
-					 */
-//					if() {
-//						
-//					} else {
-//						LoginWindow lwin = new LoginWindow();
-//						lwin.initialize();
-//					}
-					frmLogin.dispose();
+
 				} else {
 					if(Resource.loginUser(textFieldEmail.getText(), String.valueOf(passwordFieldContrasenya.getPassword()))) {
 						MainWindow mwin = new MainWindow();

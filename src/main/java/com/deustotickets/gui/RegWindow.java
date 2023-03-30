@@ -22,12 +22,19 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+import com.deustotickets.client.Resource;
 import com.deustotickets.domain.TipoUsuario;
 import com.deustotickets.domain.Usuario;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JCheckBox;
 
+/**
+ * 
+ * @author BSPQ-03
+ *
+ */
 public class RegWindow {
 	public static JFrame frmRegister;
 	private static JTextField textFieldNombreApellidos;
@@ -39,11 +46,9 @@ public class RegWindow {
 	private static ImageIcon logo_2 = new ImageIcon("images/deustotickets_logo_2.png");
 	private static ImageIcon logoGoogle = new ImageIcon("images/logoGoogle.png");
 	private static ImageIcon logoFacebook = new ImageIcon("images/logoFacebook.png");
-
+	
 	/**
-	 * Initialize the contents of the frame.
-	 * 
-	 * @wbp.parser.entryPoint
+	 *
 	 */
 	public static void initialize() {
 		frmRegister = new JFrame();
@@ -191,50 +196,23 @@ public class RegWindow {
 
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				if (tglbtnGoogle.isSelected()) {
-//					Usuario ug = new Usuario();
-//					ug.setNombreApellidos(textFieldNombreApellidos.getText());
-//					ug.setEmail(textFieldEmail.getText());
-//					ug.setPassword("");
-//					ug.setTipo(TipoUsuario.GOOGLE);
-//					if (MainProgram.registerController.register(ug)) {
-//						LoginWindow.initialize();
-//						frmRegister.dispose();
-//					} else {
-//						System.out.println("Error while registering new user");
-//					}
-//
-//					LoginWindow.initialize();
-//					frmRegister.dispose();
-//
-//				} else if (tglbtnFacebook.isSelected()) {
-//					Usuario uf = new Usuario();
-//					uf.setNombreApellidos(textFieldNombreApellidos.getText());
-//					uf.setEmail(textFieldEmail.getText());
-//					uf.setPassword("");
-//					uf.setTipo(TipoUsuario.FACEBOOK);
-//					if (MainProgram.registerController.register(uf)) {
-//						LoginWindow.initialize();
-//						frmRegister.dispose();
-//					} else {
-//						System.out.println("Error while registering new user");
-//					}
-//
-//					LoginWindow.initialize();
-//					frmRegister.dispose();
+				if (tglbtnGoogle.isSelected()) {
+					
+				} else if (tglbtnFacebook.isSelected()) {
 				
-				if (chckbxEresUnArtista.isSelected()) {
+				} else if (chckbxEresUnArtista.isSelected()) {
 					Usuario a = new Usuario();
 					a.setNombreApellidos(textFieldNombreApellidos.getText());
 					a.setEmail(textFieldEmail.getText());
-					a.setPassword("");
+					a.setPassword(String.valueOf(passwordFieldContrasenya.getPassword()));
 					a.setTipo(TipoUsuario.ARTISTA);
-//					if (MainProgram.registerController.register(a)) {
-//						LoginWindow.initialize();
-//						frmRegister.dispose();
-//					} else {
-//						System.out.println("Error while registering new user");
-//					}
+					if (Resource.registerUser(a.getNombreApellidos(), a.getEmail(), a.getPassword(), a.getTipo())) {
+						LoginWindow.initialize();
+						frmRegister.dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "Usuario ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
+						System.out.println("Error while registering new user");
+					}
 
 					LoginWindow.initialize();
 					frmRegister.dispose();
@@ -245,12 +223,13 @@ public class RegWindow {
 					u.setEmail(textFieldEmail.getText());
 					u.setPassword(String.valueOf(passwordFieldContrasenya.getPassword()));
 					u.setTipo(TipoUsuario.CLIENTE);
-//					if (MainProgram.registerController.register(u)) {
-//						LoginWindow.initialize();
-//						frmRegister.dispose();
-//					} else {
-//						System.out.println("Error while registering new user");
-//					}
+					if (Resource.registerUser(u.getNombreApellidos(), u.getEmail(), u.getPassword(), u.getTipo())) {
+						LoginWindow.initialize();
+						frmRegister.dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "Usuario ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
+						System.out.println("Error while registering new user");
+					}
 
 					LoginWindow.initialize();
 					frmRegister.dispose();

@@ -1,23 +1,34 @@
 package com.deustotickets.domain;
 
+/**
+ * 
+ * @author BSPQ-03
+ *
+ */
 public class Concierto {
-	//Atributos:
 	private int id;
 	private Artista artista;
 	private String fecha;
 	private String lugar;
 	private int aforo;
 	
-	//Constructor
-	public Concierto(Artista artista, String fecha, String lugar, int aforo) {
+	public Concierto(int id, Artista artista, String fecha, String lugar, int aforo) {
 		super();
+		this.id = id;
 		this.artista = artista;
 		this.fecha = fecha;
 		this.lugar = lugar;
 		this.aforo = aforo;
 	}
 
-	//Getters y setters
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Artista getArtista() {
 		return artista;
 	}
@@ -50,9 +61,9 @@ public class Concierto {
 		this.aforo = aforo;
 	}
 
-	//toString
 	@Override
 	public String toString() {
-		return "Concierto [artista=" + artista.toString() + ", fecha=" + fecha + ", lugar=" + lugar + ", aforo=" + aforo + "]";
+		return "Concierto [id=" + id + ", artista=" + artista + ", fecha=" + fecha + ", lugar=" + lugar + ", aforo="
+				+ aforo + "]";
 	}
 }

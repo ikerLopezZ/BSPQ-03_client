@@ -15,9 +15,14 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * 
+ * @author BSPQ-03
+ *
+ */
 public class Utils {
 	/**
-	 * Personaliza y añade los escuchadores correspondientes al JTextField recibido como argumento.
+	 * Personaliza y añade los escuchadores correspondientes al {@link JTextField} recibido como argumento.
 	 * @param field {@link JTextField} a personalizar.
 	 * @param textoPorDefecto {@link String} por defecto para el campo.
 	 * @return {@link JTextField} personalizado.
@@ -70,7 +75,7 @@ public class Utils {
 	}
 	
 	/**
-	 * Personaliza y añade los escuchadores correspondientes al JPasswordField recibido como argumento.
+	 * Personaliza y añade los escuchadores correspondientes al {@link JPasswordField} recibido como argumento.
 	 * @param field {@link JPasswordField} a personalizar.
 	 * @param textoPorDefecto {@link String} por defecto para el campo.
 	 * @return {@link JPasswordField} personalizado.
@@ -122,7 +127,7 @@ public class Utils {
 	}
 	
 	/**
-	 * Personaliza y añade los escuchadores correspondientes al JSpinner recibido como asrgumento.
+	 * Personaliza y añade los escuchadores correspondientes al {@link JSpinner} recibido como asrgumento.
 	 * @param field {@link JSpinner} a personalizar.
 	 * @return {@link JSpinner} personalizado.
 	 */

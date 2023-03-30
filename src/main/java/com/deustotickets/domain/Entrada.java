@@ -1,15 +1,18 @@
 package com.deustotickets.domain;
 
+/**
+ * 
+ * @author BSPQ-03
+ *
+ */
 public class Entrada {
-	//Atributos:
 	private int id;
-	private String artista;	//En un futuro hay que meterlo como una clase
+	private Artista artista;
 	private double precio;
 	private String nombre;
-	//Pensar si queremos hacer tipos de entrada (VIP, normal...)
+	// Pensar si queremos hacer tipos de entrada (VIP, normal, ...)
 	
-	//Constructor
-	public Entrada(int id, String artista, double precio, String nombre) {
+	public Entrada(int id, Artista artista, double precio, String nombre) {
 		super();
 		this.id = id;
 		this.artista = artista;
@@ -17,7 +20,6 @@ public class Entrada {
 		this.nombre = nombre;
 	}
 	
-	//Getters y setters
 	public int getId() {
 		return id;
 	}
@@ -25,10 +27,10 @@ public class Entrada {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getArtista() {
+	public Artista getArtista() {
 		return artista;
 	}
-	public void setArtista(String artista) {
+	public void setArtista(Artista artista) {
 		this.artista = artista;
 	}
 	public double getPrecio() {
@@ -44,13 +46,8 @@ public class Entrada {
 		this.nombre = nombre;
 	}
 
-	//toString
 	@Override
 	public String toString() {
 		return "Entrada [id=" + id + ", artista=" + artista + ", precio=" + precio + ", nombre=" + nombre + "]";
 	}
-	
-	
-	
-
 }
