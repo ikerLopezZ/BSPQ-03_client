@@ -11,6 +11,9 @@ import javax.swing.text.View;
 import javax.swing.JPanel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -40,10 +43,28 @@ public class MainWindow {
 		panel.setBounds(10, 61, 625, 549);
 		frmMain.getContentPane().add(panel);
 		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(10, 10, 101, 22);
+		frmMain.getContentPane().add(menuBar);
+		
 		JMenu mnNewMenu = new JMenu("Cuenta");
-		panel.add(mnNewMenu);
+		mnNewMenu.setBounds(121, 8, 91, 24);
+		frmMain.getContentPane().add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Cerrar Sesion");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Resource.closeSession();
+				frmMain.dispose();
+				LoginWindow lw = new LoginWindow();
+				lw.initialize();
+				
+				
+			}
+		});
+
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Cambiar contraseña");
@@ -51,13 +72,7 @@ public class MainWindow {
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Cambiar usuario");
 		mnNewMenu.add(mntmNewMenuItem_2);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(10, 10, 101, 22);
-		frmMain.getContentPane().add(menuBar);
-		
 		menuBar.add(mnNewMenu);
-
 		
 		frmMain.setVisible(true);
 	}
