@@ -96,4 +96,37 @@ public class Resource {
 			return false;
 		}
 	}
+	
+	public static boolean changePassword(String password) {
+		WebTarget registerUserWebTarget = webTarget.path("changePassword");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Usuario user = new Usuario(null, null, password, null);
+		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Password changed!");
+			System.out.println("Password changed!");
+			return true;
+		}
+	}
+	
+	public static boolean userDataUpdate(String nombreApellidos, String email, String password) {
+		WebTarget registerUserWebTarget = webTarget.path("userDataUpdate");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Usuario user = new Usuario(password, email, password, null);
+		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("User data updated!");
+			System.out.println("User data updated!");
+			return true;
+		}
+	}
+	
 }
