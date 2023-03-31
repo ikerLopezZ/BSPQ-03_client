@@ -3,27 +3,18 @@ package com.deustotickets.gui;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import com.deustotickets.client.Resource;
 import com.deustotickets.domain.Usuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Image;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import net.miginfocom.swing.MigLayout;
-import java.awt.FlowLayout;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
@@ -133,7 +124,10 @@ public class MainWindow {
 		JButton btnCambiarContrasena = new JButton("CAMBIAR CONTRASENA");
 		btnCambiarContrasena.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Insertar código o llamada a función para cambiar la contraseña
+				System.out.println("Contrasena antigua: " + logged.getPassword());
+				cambiarContrasena();
+				System.out.println("Contrasena nueva: " + logged.getPassword());
+				lblContra.setText(logged.getPassword());
 			}
 		});
 		btnCambiarContrasena.setFont(new Font("Footlight MT Light", Font.BOLD, 15));
@@ -147,11 +141,6 @@ public class MainWindow {
 		});
 		btnBorrarCuenta.setFont(new Font("Footlight MT Light", Font.BOLD, 15));
 		panelControlPerfil.add(btnBorrarCuenta);
-		
-//		JPanel panelPerfil = new JPanel();
-//		panelPerfil.setBounds(335, 5, 10, 10);
-////		panelPantalla.add(panelPerfil);
-//		panelPerfil.setLayout(new GridLayout(10, 2, 0, 0));
 		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLocation(657, 0);
@@ -183,4 +172,15 @@ public class MainWindow {
 		
 		frmMain.setVisible(true);
 	}
+	
+	public static void cambiarContrasena() {
+	    String nuevaContrasena = JOptionPane.showInputDialog("Introduzca la nueva contraseña:");
+
+	    if (nuevaContrasena != null) {
+	        logged.setPassword(nuevaContrasena);
+	        JOptionPane.showMessageDialog(null, "Contraseña cambiada con éxito.");
+	    }
+	}
+
 }
+
