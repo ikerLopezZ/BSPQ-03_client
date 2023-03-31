@@ -212,11 +212,7 @@ public class RegWindow {
 					} else {
 						JOptionPane.showMessageDialog(null, "Usuario ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
 						System.out.println("Error while registering new user");
-					}
-
-					LoginWindow.initialize();
-					frmRegister.dispose();
-					
+					}					
 				} else {
 					Usuario u = new Usuario();
 					u.setNombreApellidos(textFieldNombreApellidos.getText());
@@ -230,10 +226,6 @@ public class RegWindow {
 						JOptionPane.showMessageDialog(null, "Usuario ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
 						System.out.println("Error while registering new user");
 					}
-
-					LoginWindow.initialize();
-					frmRegister.dispose();
-
 				}
 			}
 		});

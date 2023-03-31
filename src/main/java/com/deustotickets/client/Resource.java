@@ -39,7 +39,6 @@ public class Resource {
 	public static boolean loginUser(String email, String password) {
 		WebTarget loginUserWebTarget = webTarget.path("login");
 		Invocation.Builder invocationBuilder = loginUserWebTarget.request(MediaType.APPLICATION_JSON);
-		
 		Usuario user = new Usuario(null, email, password, null);
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 		Usuario u = response.readEntity(Usuario.class);
@@ -68,7 +67,6 @@ public class Resource {
 	public static boolean registerUser(String nombreApellidos, String email, String password, TipoUsuario tipo) {
 		WebTarget registerUserWebTarget = webTarget.path("register");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
-		
 		Usuario user = new Usuario(nombreApellidos, email, password, tipo);
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
@@ -97,36 +95,46 @@ public class Resource {
 		}
 	}
 	
-	public static boolean changePassword(String password) {
+	/**
+	 * 
+	 * @param nombreApellidos
+	 * @param email
+	 * @return
+	 */
+	public static boolean changeUsername(String nombreApellidos, String email) {
+		WebTarget registerUserWebTarget = webTarget.path("changeUsername");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Usuario user = new Usuario(nombreApellidos, email, null, null);
+		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Username successfully changed");
+			System.out.println("Username successfully changed");
+			return true;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param password
+	 * @return
+	 */
+	public static boolean changePassword(String email, String password) {
 		WebTarget registerUserWebTarget = webTarget.path("changePassword");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
-		Usuario user = new Usuario(null, null, password, null);
+		Usuario user = new Usuario(null, email, password, null);
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 			System.out.println("Error connecting with the server");
 			return false;
 		} else {
-			logger.info("Password changed!");
-			System.out.println("Password changed!");
+			logger.info("Password successfully changed");
+			System.out.println("Password successfully changed");
 			return true;
 		}
 	}
-	
-	public static boolean userDataUpdate(String nombreApellidos, String email, String password) {
-		WebTarget registerUserWebTarget = webTarget.path("userDataUpdate");
-		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
-		Usuario user = new Usuario(password, email, password, null);
-		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
-		if (response.getStatus() != Status.OK.getStatusCode()) {
-			logger.error("Error connecting with the server. Code: {}", response.getStatus());
-			System.out.println("Error connecting with the server");
-			return false;
-		} else {
-			logger.info("User data updated!");
-			System.out.println("User data updated!");
-			return true;
-		}
-	}
-	
 }
