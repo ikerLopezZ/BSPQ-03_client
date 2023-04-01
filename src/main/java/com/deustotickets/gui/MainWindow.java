@@ -181,8 +181,8 @@ public class MainWindow {
 		String newUsername = JOptionPane.showInputDialog("Introduzca el nuevo nombre de usuario:");
 
 		if (newUsername != null) {
-			Resource.changeUsername(logged.getEmail(), newUsername);
-			logged.setPassword(newUsername);
+			Resource.changeUsername(newUsername,logged.getEmail());
+			logged.setNombreApellidos(newUsername);
 			JOptionPane.showMessageDialog(null, "Nombre de usuario cambiado con éxito.");
 		}
 	}
