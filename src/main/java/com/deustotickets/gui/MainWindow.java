@@ -146,7 +146,7 @@ public class MainWindow {
 		JButton btnBorrarCuenta = new JButton("BORRAR CUENTA");
 		btnBorrarCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Resource.erase(logged.getEmail());
+				Resource.deleteAccount(logged.getEmail());
 				frmMain.dispose();
 				LoginWindow lw = new LoginWindow();
 				lw.initialize();
