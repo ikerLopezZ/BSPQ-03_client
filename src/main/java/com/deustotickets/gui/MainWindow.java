@@ -47,17 +47,19 @@ public class MainWindow {
 
 		JPanel panelPantalla = new JPanel();
 		panelPantalla.setLocation(0, 0);
-		panelPantalla.setSize(659, 563);
+		panelPantalla.setSize(656, 563);
 		frmMain.getContentPane().add(panelPantalla);
 		panelPantalla.setBackground(Color.WHITE);
-		panelPantalla.setLayout(new BorderLayout(0, 0));
+		panelPantalla.setLayout(null);
 
 		JLabel lblTituloPerfil = new JLabel("PERFIL DEL USUARIO");
+		lblTituloPerfil.setBounds(0, 0, 686, 27);
 		lblTituloPerfil.setFont(new Font("Footlight MT Light", Font.BOLD, 28));
 		lblTituloPerfil.setHorizontalAlignment(SwingConstants.CENTER);
-		panelPantalla.add(lblTituloPerfil, BorderLayout.NORTH);
+		panelPantalla.add(lblTituloPerfil);
 
 		JPanel panelDatos = new JPanel();
+		panelDatos.setBounds(0, 27, 686, 468);
 		panelDatos.setBackground(new Color(150, 177, 216));
 		panelPantalla.add(panelDatos);
 		panelDatos.setLayout(null);
@@ -113,7 +115,8 @@ public class MainWindow {
 		panelDatos.add(lblDatos);
 
 		JPanel panelControlPerfil = new JPanel();
-		panelPantalla.add(panelControlPerfil, BorderLayout.SOUTH);
+		panelControlPerfil.setBounds(0, 495, 686, 68);
+		panelPantalla.add(panelControlPerfil);
 
 		JButton btnCambiarNombre = new JButton("CAMBIAR NOMBRE DE USUARIO");
 		btnCambiarNombre.addActionListener(new ActionListener() {
@@ -124,7 +127,8 @@ public class MainWindow {
 				lblNom.setText(logged.getNombreApellidos());
 			}
 		});
-		btnCambiarNombre.setFont(new Font("Footlight MT Light", Font.BOLD, 15));
+		panelControlPerfil.setLayout(new GridLayout(2, 2, 0, 0));
+		btnCambiarNombre.setFont(new Font("Footlight MT Light", Font.BOLD, 12));
 		panelControlPerfil.add(btnCambiarNombre);
 
 		JButton btnCambiarContrasena = new JButton("CAMBIAR CONTRASENA");
@@ -136,7 +140,7 @@ public class MainWindow {
 				lblContra.setText(logged.getPassword());
 			}
 		});
-		btnCambiarContrasena.setFont(new Font("Footlight MT Light", Font.BOLD, 15));
+		btnCambiarContrasena.setFont(new Font("Footlight MT Light", Font.BOLD, 12));
 		panelControlPerfil.add(btnCambiarContrasena);
 
 		JButton btnBorrarCuenta = new JButton("BORRAR CUENTA");
@@ -149,12 +153,24 @@ public class MainWindow {
 			}
 		});
 		
-		btnBorrarCuenta.setFont(new Font("Footlight MT Light", Font.BOLD, 15));
+		btnBorrarCuenta.setFont(new Font("Footlight MT Light", Font.BOLD, 12));
 		panelControlPerfil.add(btnBorrarCuenta);
+		
+		JButton btnCerrarSesion = new JButton("CERRAR SESIÓN");
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Resource.closeSession();
+				frmMain.dispose();
+				LoginWindow lw = new LoginWindow();
+				lw.initialize();
+			}
+		});
+		panelControlPerfil.add(btnCerrarSesion);
+		btnCerrarSesion.setFont(new Font("Footlight MT Light", Font.BOLD, 12));
 
 		JPanel panelBotones = new JPanel();
-		panelBotones.setLocation(657, 0);
-		panelBotones.setSize(129, 563);
+		panelBotones.setLocation(655, 0);
+		panelBotones.setSize(131, 563);
 		frmMain.getContentPane().add(panelBotones);
 		panelBotones.setLayout(new GridLayout(4, 1, 0, 0));
 
