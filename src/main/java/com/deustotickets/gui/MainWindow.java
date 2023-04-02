@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -141,9 +142,13 @@ public class MainWindow {
 		JButton btnBorrarCuenta = new JButton("BORRAR CUENTA");
 		btnBorrarCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Insertar código o llamada a función para borrar la cuenta
+				Resource.erase(logged.getEmail());
+				frmMain.dispose();
+				LoginWindow lw = new LoginWindow();
+				lw.initialize();
 			}
 		});
+		
 		btnBorrarCuenta.setFont(new Font("Footlight MT Light", Font.BOLD, 15));
 		panelControlPerfil.add(btnBorrarCuenta);
 

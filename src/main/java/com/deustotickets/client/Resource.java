@@ -137,4 +137,20 @@ public class Resource {
 			return true;
 		}
 	}
+	
+	public static boolean erase(String email) {
+		WebTarget registerUserWebTarget = webTarget.path("erase");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Usuario user = new Usuario(null, email, null, null);
+		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Account erase");
+			System.out.println("Account erase");
+			return true;
+		}
+	}
 }
