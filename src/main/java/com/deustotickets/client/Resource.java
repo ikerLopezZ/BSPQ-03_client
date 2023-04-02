@@ -148,8 +148,8 @@ public class Resource {
 			System.out.println("Error connecting with the server");
 			return false;
 		} else {
-			logger.info("Account not erase");
-			System.out.println("Account not erase");
+			logger.info("Account erase");
+			System.out.println("Account erase");
 			return true;
 		}
 	}
