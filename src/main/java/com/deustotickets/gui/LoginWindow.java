@@ -3,6 +3,7 @@ package com.deustotickets.gui;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -212,16 +213,19 @@ public class LoginWindow {
 				} else if(tglbtnFacebook.isSelected())  {
 
 				} else {
-					if(Resource.loginUser(textFieldEmail.getText(), String.valueOf(passwordFieldContrasenya.getPassword()))) {
-						MainWindow mwin = new MainWindow();
-						mwin.initialize();
-					} else {
-						LoginWindow lwin = new LoginWindow();
-						lwin.initialize();
+					try {
+						if(Resource.loginUser(textFieldEmail.getText(), String.valueOf(passwordFieldContrasenya.getPassword()))) {
+							MainWindow mwin = new MainWindow();
+							mwin.initialize();
+						} else {
+							LoginWindow lwin = new LoginWindow();
+							lwin.initialize();
+						}
+						frmLogin.dispose();
+					} catch(Exception ex) {
+						JOptionPane.showMessageDialog(null, "Error al iniciar sesión", "Error", JOptionPane.ERROR_MESSAGE);
 					}
-					frmLogin.dispose();
 				}
-				
 			}
 		});
 		
