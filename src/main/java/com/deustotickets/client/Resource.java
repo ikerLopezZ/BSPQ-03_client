@@ -138,6 +138,11 @@ public class Resource {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public static boolean deleteAccount(String email) {
 		WebTarget registerUserWebTarget = webTarget.path("deleteAccount");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
@@ -148,8 +153,8 @@ public class Resource {
 			System.out.println("Error connecting with the server");
 			return false;
 		} else {
-			logger.info("Account erase");
-			System.out.println("Account erase");
+			logger.info("Account successfully deleted");
+			System.out.println("Account successfully deleted");
 			return true;
 		}
 	}
