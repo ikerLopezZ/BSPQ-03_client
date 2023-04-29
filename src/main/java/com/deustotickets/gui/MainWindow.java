@@ -27,10 +27,10 @@ import java.awt.Font;
  */
 public class MainWindow {
 	private static JFrame frmMain;
-	private static ImageIcon logo = new ImageIcon("images/deustotickets_logo.png");
-	private static ImageIcon logoPerfil = new ImageIcon("images/logoPerfil.png");
-	private static ImageIcon logoPerfilPeque = new ImageIcon("images/logoPerfilPeque.png");
-	private static ImageIcon inicio = new ImageIcon("images/inicio.png");
+	private static ImageIcon logo = new ImageIcon("../src/main/resources/deustotickets_logo.png");
+	private static ImageIcon logoPerfil = new ImageIcon("../src/main/resources/logoPerfil.png");
+	private static ImageIcon logoPerfilPeque = new ImageIcon("../src/main/resources/logoPerfilPeque.png");
+	private static ImageIcon inicio = new ImageIcon("../src/main/resources/inicio.png");
 	public static Usuario logged = null;
 
 	/**

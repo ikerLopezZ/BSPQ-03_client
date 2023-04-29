@@ -34,9 +34,9 @@ public class ProfileWindow {
 	private static JPasswordField passwordFieldContrasenya;
 	private static Border line_1 = BorderFactory.createLineBorder(new Color(194, 194, 194), 2);
 	private static Border line_2 = BorderFactory.createLineBorder(new Color(227, 30, 36), 2);
-	private static ImageIcon logo_1 = new ImageIcon("images/logoPerfil.png");
-	private static ImageIcon logo_2 = new ImageIcon("images/logoPerfil.png");
-	private static ImageIcon lapiz = new ImageIcon("images/pencil.png");
+	private static ImageIcon logo_1 = new ImageIcon("../src/main/resources/logoPerfil.png");
+	private static ImageIcon logo_2 = new ImageIcon("../src/main/resources/logoPerfil.png");
+	private static ImageIcon lapiz = new ImageIcon("../src/main/resources/pencil.png");
 
 	/**
 	 * @wbp.parser.entryPoint
