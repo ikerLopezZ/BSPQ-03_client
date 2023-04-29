@@ -20,6 +20,10 @@ public class Concierto {
 		this.lugar = lugar;
 		this.aforo = aforo;
 	}
+	
+	public Concierto() {
+		super();
+	}
 
 	public int getId() {
 		return id;

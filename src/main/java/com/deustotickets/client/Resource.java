@@ -1,5 +1,8 @@
 package com.deustotickets.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -11,6 +14,8 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.deustotickets.domain.Artista;
+import com.deustotickets.domain.Concierto;
 import com.deustotickets.domain.TipoUsuario;
 import com.deustotickets.domain.Usuario;
 import com.deustotickets.gui.MainWindow;
@@ -158,4 +163,70 @@ public class Resource {
 			return true;
 		}
 	}
+	
+	public static boolean addConcert(int id, Artista artista, String fecha, String lugar, int aforo) {
+		WebTarget registerUserWebTarget = webTarget.path("addConcert");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Concierto con = new Concierto(id, artista, fecha, lugar, aforo);
+		Response response = invocationBuilder.post(Entity.entity(con, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Concert successfully added");
+			System.out.println("Concert successfully added");
+			return true;
+		}
+	}
+	
+	public static boolean deleteConcert(int id) {
+		WebTarget registerUserWebTarget = webTarget.path("deleteConcert");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Concierto con = new Concierto();
+		con.setId(id);
+		Response response = invocationBuilder.post(Entity.entity(con, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Concert successfully added");
+			System.out.println("Concert successfully added");
+			return true;
+		}
+	}
+	
+	public static ArrayList<Concierto> getConcerts() {
+		WebTarget registerUserWebTarget = webTarget.path("getConcerts");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.get();
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return null;
+		} else {
+			logger.info("Account successfully deleted");
+			System.out.println("Account successfully deleted");
+			return (ArrayList<Concierto>) response.readEntity(ArrayList.class);
+		}
+	}
+	
+	public static boolean modifyConcert(int id, Artista artista, String fecha, String lugar, int aforo) {
+		WebTarget registerUserWebTarget = webTarget.path("modifyConcert");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Concierto con = new Concierto(id, artista, fecha, lugar, aforo);
+		Response response = invocationBuilder.post(Entity.entity(con, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Concert successfully added");
+			System.out.println("Concert successfully added");
+			return true;
+		}
+	}
+	
+	
 }
