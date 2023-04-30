@@ -1,15 +1,24 @@
 package com.deustotickets.domain;
 
+import java.io.Serializable;
+
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
 /**
  * 
  * @author BSPQ-03
  *
  */
-public class Usuario {
-	private String nombreApellidos;
+public class Usuario implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	@PrimaryKey
 	private String email;
+	private String nombreApellidos;
 	private String password;
 	private TipoUsuario tipo;
+	private boolean banned;
 	
 	public Usuario(String nombreApellidos, String email, String password, TipoUsuario tipo) {
 		super();
@@ -17,10 +26,10 @@ public class Usuario {
 		this.email = email;
 		this.password = password;
 		this.tipo = tipo;
+		this.banned = false;
 	}
 	
 	public Usuario() {
-		super();
 	}
 
 	public String getNombreApellidos() {
@@ -53,6 +62,14 @@ public class Usuario {
 
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
+	}
+
+	public boolean isBanned() {
+		return banned;
+	}
+
+	public void setBanned(boolean banned) {
+		this.banned = banned;
 	}
 
 	@Override

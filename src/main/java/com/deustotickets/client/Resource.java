@@ -244,5 +244,21 @@ public class Resource {
 		}
 	}
 	
+	public static boolean banUser(String email) {
+		WebTarget registerUserWebTarget = webTarget.path("banUser");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Usuario u = new Usuario(null, email, null, null);
+		Response response = invocationBuilder.post(Entity.entity(u, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("User banned");
+			System.out.println("User banned");
+			return true;
+		}
+	}
+	
 	
 }
