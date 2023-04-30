@@ -289,5 +289,4 @@ public class Resource {
 			return (ArrayList<Artista>) response.readEntity(ArrayList.class);
 		}
 	}
-	
 }
