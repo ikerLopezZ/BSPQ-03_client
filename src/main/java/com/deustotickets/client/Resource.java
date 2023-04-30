@@ -37,9 +37,9 @@ public class Resource {
 	
 	/**
 	 * 
-	 * @param email {@link String}
-	 * @param password {@link String}
-	 * @return {@link Boolean}
+	 * @param email
+	 * @param password
+	 * @return
 	 */
 	public static boolean loginUser(String email, String password) {
 		WebTarget loginUserWebTarget = webTarget.path("login");
@@ -63,11 +63,11 @@ public class Resource {
 
 	/**
 	 * 
-	 * @param nombreApellidos {@link String}
-	 * @param email {@link String}
-	 * @param password {@link String}
-	 * @param tipo {@link TipoUsuario}
-	 * @return {@link Boolean}
+	 * @param nombreApellidos
+	 * @param email
+	 * @param password
+	 * @param tipo
+	 * @return
 	 */
 	public static boolean registerUser(String nombreApellidos, String email, String password, TipoUsuario tipo) {
 		WebTarget registerUserWebTarget = webTarget.path("register");
@@ -87,7 +87,7 @@ public class Resource {
 	
 	/**
 	 * 
-	 * @return {@link Boolean}
+	 * @return
 	 */
 	public static boolean closeSession() {
 		if(MainWindow.logged != null) {
@@ -124,6 +124,7 @@ public class Resource {
 	
 	/**
 	 * 
+	 * @param email
 	 * @param password
 	 * @return
 	 */
@@ -164,6 +165,15 @@ public class Resource {
 		}
 	}
 	
+	/***
+	 * 
+	 * @param id
+	 * @param artista
+	 * @param fecha
+	 * @param lugar
+	 * @param aforo
+	 * @return
+	 */
 	public static boolean addConcert(int id, Artista artista, String fecha, String lugar, int aforo) {
 		WebTarget registerUserWebTarget = webTarget.path("addConcert");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
@@ -180,6 +190,11 @@ public class Resource {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public static boolean deleteConcert(int id) {
 		WebTarget registerUserWebTarget = webTarget.path("deleteConcert");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
@@ -197,21 +212,15 @@ public class Resource {
 		}
 	}
 	
-	public static ArrayList<Concierto> getConcerts() {
-		WebTarget registerUserWebTarget = webTarget.path("getConcerts");
-		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
-		Response response = invocationBuilder.get();
-		if (response.getStatus() != Status.OK.getStatusCode()) {
-			logger.error("Error connecting with the server. Code: {}", response.getStatus());
-			System.out.println("Error connecting with the server");
-			return null;
-		} else {
-			logger.info("Account successfully deleted");
-			System.out.println("Account successfully deleted");
-			return (ArrayList<Concierto>) response.readEntity(ArrayList.class);
-		}
-	}
-	
+	/**
+	 * 
+	 * @param id
+	 * @param artista
+	 * @param fecha
+	 * @param lugar
+	 * @param aforo
+	 * @return
+	 */
 	public static boolean modifyConcert(int id, Artista artista, String fecha, String lugar, int aforo) {
 		WebTarget registerUserWebTarget = webTarget.path("modifyConcert");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
@@ -228,6 +237,30 @@ public class Resource {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public static ArrayList<Concierto> getConcerts() {
+		WebTarget registerUserWebTarget = webTarget.path("getConcerts");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.get();
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return null;
+		} else {
+			logger.info("Account successfully deleted");
+			System.out.println("Account successfully deleted");
+			return (ArrayList<Concierto>) response.readEntity(ArrayList.class);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public static boolean verifyArtist(String email) {
 		WebTarget registerUserWebTarget = webTarget.path("verifyArtist");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
@@ -244,6 +277,11 @@ public class Resource {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public static boolean banUser(String email) {
 		WebTarget registerUserWebTarget = webTarget.path("banUser");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
@@ -259,6 +297,4 @@ public class Resource {
 			return true;
 		}
 	}
-	
-	
 }
