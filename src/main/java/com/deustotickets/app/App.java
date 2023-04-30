@@ -22,7 +22,11 @@ public class App {
 		} catch (Exception ignored) {
 		}
 		res.registerUser("Gestor1", "gestor1@deustotickets.es", "g1", TipoUsuario.GESTOR);
+		res.addConcert(0, new Artista ("Hens", "hens@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, true), "29/02/2024", "BEC", 1110);
 		LoginWindow win = new LoginWindow();
+		System.out.println(res.getUsers());
+		System.out.println(res.getArtists());
+		System.out.println(res.getConcerts());
 		win.initialize();
 	}
 }
