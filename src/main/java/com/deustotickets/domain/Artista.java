@@ -45,8 +45,9 @@ public class Artista extends Usuario{
 			this.genero = tg;
 		} else if(setVerification) {
 			this.verificada = verified;
+		} else {
+			this.verificada = false;
 		}
-		
 	}
 
 }
