@@ -28,7 +28,7 @@ import com.deustotickets.gui.MainWindow;
 public class Resource {
 	protected static final Logger logger = LogManager.getLogger();
 	private Client client;
-	private static WebTarget webTarget;
+	public static WebTarget webTarget;
 
 	public Resource(String hostname, String port) {
 		client = ClientBuilder.newClient();
@@ -42,14 +42,12 @@ public class Resource {
 	 * @return {@link Boolean}
 	 */
 	public static boolean loginUser(String email, String password) {
-		WebTarget loginUserWebTarget = webTarget.path("login");
-		Invocation.Builder invocationBuilder = loginUserWebTarget.request(MediaType.APPLICATION_JSON);
+		WebTarget userWebTarget = webTarget.path("login");
+		Invocation.Builder invocationBuilder = userWebTarget.request(MediaType.APPLICATION_JSON);
 		Usuario user = new Usuario(null, email, password, null);
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 		Usuario u = response.readEntity(Usuario.class);
 		MainWindow.logged = u;
-		System.out.println(u.getEmail());
-		logger.info(u.getEmail());
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 			System.out.println("Error connecting with the server");
@@ -70,8 +68,8 @@ public class Resource {
 	 * @return {@link Boolean}
 	 */
 	public static boolean registerUser(String nombreApellidos, String email, String password, TipoUsuario tipo) {
-		WebTarget registerUserWebTarget = webTarget.path("register");
-		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		WebTarget userWebTarget = webTarget.path("register");
+		Invocation.Builder invocationBuilder = userWebTarget.request(MediaType.APPLICATION_JSON);
 		Usuario user = new Usuario(nombreApellidos, email, password, tipo);
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
@@ -107,8 +105,8 @@ public class Resource {
 	 * @return
 	 */
 	public static boolean changeUsername(String nombreApellidos, String email) {
-		WebTarget registerUserWebTarget = webTarget.path("changeUsername");
-		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		WebTarget userWebTarget = webTarget.path("changeUsername");
+		Invocation.Builder invocationBuilder = userWebTarget.request(MediaType.APPLICATION_JSON);
 		Usuario user = new Usuario(nombreApellidos, email, null, null);
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
@@ -128,8 +126,8 @@ public class Resource {
 	 * @return
 	 */
 	public static boolean changePassword(String email, String password) {
-		WebTarget registerUserWebTarget = webTarget.path("changePassword");
-		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		WebTarget userWebTarget = webTarget.path("changePassword");
+		Invocation.Builder invocationBuilder = userWebTarget.request(MediaType.APPLICATION_JSON);
 		Usuario user = new Usuario(null, email, password, null);
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 		if (response.getStatus() != Status.OK.getStatusCode()) {
