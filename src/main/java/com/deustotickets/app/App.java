@@ -5,7 +5,7 @@ import com.deustotickets.client.Resource;
 import com.deustotickets.domain.Artista;
 import com.deustotickets.domain.TipoGenero;
 import com.deustotickets.domain.TipoUsuario;
-
+import com.deustotickets.domain.Usuario;
 import com.deustotickets.gui.LoginWindow;
 
 /**

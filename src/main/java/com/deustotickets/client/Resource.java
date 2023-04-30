@@ -228,5 +228,21 @@ public class Resource {
 		}
 	}
 	
+	public static boolean verifyArtist(String email) {
+		WebTarget registerUserWebTarget = webTarget.path("verifyArtist");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Artista artista = new Artista(null, email, null, null, null, false);
+		Response response = invocationBuilder.post(Entity.entity(artista, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Artist verified");
+			System.out.println("Artist verified");
+			return true;
+		}
+	}
+	
 	
 }
