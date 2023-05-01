@@ -91,6 +91,7 @@ public class MainWindow {
 		lblProximosConciertos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProximosConciertos.setFont(new Font("Footlight MT Light", Font.BOLD, 24));
 		lblProximosConciertos.setBounds(175, 10, 279, 31);
+		lblProximosConciertos.setVisible(false);
 		panelDatos.add(lblProximosConciertos);
 
 		JLabel lblArtistas = new JLabel("ARTISTAS EN DEUSTOTICKETS");
@@ -126,6 +127,7 @@ public class MainWindow {
 			}
 		});
 		btnBuscarConcierto.setBounds(175, 407, 128, 21);
+		btnBuscarConcierto.setVisible(false);
 		panelDatos.add(btnBuscarConcierto);
 
 		JButton btnTodosConciertos = new JButton("Mostrar todos");
@@ -140,6 +142,7 @@ public class MainWindow {
 			}
 		});
 		btnTodosConciertos.setBounds(434, 407, 128, 21);
+		btnTodosConciertos.setVisible(false);
 		panelDatos.add(btnTodosConciertos);
 
 		// Crear el JScrollPane y la JList de conciertos
@@ -179,9 +182,25 @@ public class MainWindow {
 				System.out.println(App.res.getUsers());
 			}
 		});
-		if (logged.getTipo() == TipoUsuario.GESTOR) {
+//		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnVerificar);
-		}
+//		}
+
+		JButton btnBloquearUsuario = new JButton("BLOQUEAR USUARIO");
+		btnBloquearUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(App.res.getUsers());
+				if (usuariosList.getSelectedValue() != null) {
+					App.res.banUser(usuariosList.getSelectedValue().getEmail());
+				} else if (artistasList.getSelectedValue() != null) {
+					App.res.banUser(artistasList.getSelectedValue().getEmail());
+				}
+				System.out.println(App.res.getUsers());
+			}
+		});
+//		if (logged.getTipo() == TipoUsuario.GESTOR) {
+			panelControlPerfil.add(btnBloquearUsuario);
+//		}
 
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLocation(655, 70);
@@ -241,7 +260,7 @@ public class MainWindow {
 				for (Usuario usuario : usuarios) {
 					usuariosListModel.addElement(usuario);
 				}
-				
+
 				artistasList.setModel(artistasListModel);
 				usuariosList.setModel(usuariosListModel);
 
@@ -257,11 +276,13 @@ public class MainWindow {
 				btnTodosConciertos.setVisible(false);
 				lblProximosConciertos.setVisible(false);
 				lblArtistas.setVisible(false);
+				lblUsuarios.setVisible(false);
+				usuariosScrollPane.setVisible(false);
 				artistasScrollPane.setVisible(false);
-
 				conciertosScrollPane.setVisible(false);
 				artistasListModel.clear();
 				conciertosListModel.clear();
+				usuariosListModel.clear();
 			}
 		});
 		btnNewButton_2.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
