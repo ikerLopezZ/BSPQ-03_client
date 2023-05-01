@@ -2,6 +2,7 @@ package com.deustotickets.client;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -23,6 +24,7 @@ import org.mockito.Mock;
 
 import com.deustotickets.domain.Artista;
 import com.deustotickets.domain.Concierto;
+import com.deustotickets.domain.TipoGenero;
 import com.deustotickets.domain.TipoUsuario;
 import com.deustotickets.domain.Usuario;
 import com.deustotickets.gui.MainWindow;
@@ -55,6 +57,11 @@ public class ResourceTest {
         when(client.target(any(String.class))).thenReturn(webTarget);
         when(webTarget.path(any(String.class))).thenReturn(userWebTarget);
         when(userWebTarget.request(MediaType.APPLICATION_JSON)).thenReturn(invocationBuilder);
+        new Resource("127.0.0.1", "8080");
+		Resource.addConcert("0", new Artista ("Hens", "hens@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, true), "29/02/2024", "BEC", 1110);
+		Resource.addConcert("1", new Artista ("Juancho Marqués", "juancho@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, true), "09/02/2024", "BEC", 1110);
+		Resource.addConcert("2", new Artista ("Rels B", "relsito@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, false), "11/02/2024", "BEC", 1110);
+		Resource.addConcert("3", new Artista ("Prueba", "prueba@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, false), "11/02/2024", "BEC", 1110);
     }
     
     @Test
@@ -169,8 +176,8 @@ public class ResourceTest {
     public void testAddConcertFailure() {
         when(response.getStatus()).thenReturn(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
         when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
-
-        assertFalse(Resource.addConcert("0", new Artista(), "01/01/2000", "test", 0));
+        Resource.addConcert("100", new Artista(), "01/01/2000", "test", 0);
+        assertFalse(Resource.addConcert("100", new Artista(), "01/01/2000", "test", 0));
     }
     
     @Test
@@ -203,7 +210,7 @@ public class ResourceTest {
         when(response.getStatus()).thenReturn(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
         when(invocationBuilder.get()).thenReturn(response);
 
-        assertEquals(Resource.getConcerts(), null);
+        assertNull(Resource.getConcerts());
     }
     
     @Test
