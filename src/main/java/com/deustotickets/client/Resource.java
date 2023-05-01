@@ -315,10 +315,10 @@ public class Resource {
 		        System.out.println("Users successfully recovered");
 		        // Si la respuesta tiene un estado OK, devolvemos la lista de objetos Usuario obtenida de la entidad de respuesta
 
-//				ArrayList<Usuario> ret = (ArrayList<Usuario>) response.readEntity(new GenericType<ArrayList<Usuario>>() {});
-//		        
-//		        return ret;
-		        return (ArrayList<Usuario>) response.readEntity(ArrayList.class);
+				ArrayList<Usuario> ret = (ArrayList<Usuario>) response.readEntity(new GenericType<ArrayList<Usuario>>() {});
+		        
+		        return ret;
+//		        return (ArrayList<Usuario>) response.readEntity(ArrayList.class);
 		    }
 		}
 
