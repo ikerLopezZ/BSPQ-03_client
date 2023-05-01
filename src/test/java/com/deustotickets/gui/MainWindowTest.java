@@ -6,13 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.deustotickets.domain.Usuario;
-
 public class MainWindowTest {
 
 	@Before
 	public void setUp() throws Exception {
-		MainWindow.logged = new Usuario();
 	}
 
 	@After
