@@ -9,6 +9,8 @@ import com.deustotickets.client.Resource;
 import com.deustotickets.domain.Usuario;
 import com.deustotickets.domain.Artista;
 import com.deustotickets.domain.Concierto;
+import com.deustotickets.domain.TipoUsuario;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -45,6 +47,10 @@ public class MainWindow {
 	private static DefaultListModel<Concierto> conciertosListModel;
 	private static JList<Concierto> conciertosList;
 	private static JScrollPane conciertosScrollPane;
+	private static DefaultListModel<Artista> artistasListModel;
+	private static JList<Artista> artistasList;
+	private static JScrollPane artistasScrollPane;
+
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -82,9 +88,15 @@ public class MainWindow {
 		JLabel lblProximosConciertos = new JLabel("PRÓXIMOS CONCIERTOS");
 		lblProximosConciertos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProximosConciertos.setFont(new Font("Footlight MT Light", Font.BOLD, 24));
-		lblProximosConciertos.setBounds(27, 10, 279, 31);
+		lblProximosConciertos.setBounds(180, 10, 279, 31);
 		panelDatos.add(lblProximosConciertos);
-
+		
+		JLabel lblArtistas = new JLabel("ARTISTAS EN DEUSTOTICKETS");
+		lblArtistas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblArtistas.setFont(new Font("Footlight MT Light", Font.BOLD, 24));
+		lblArtistas.setBounds(180, 10, 320, 31);
+		lblArtistas.setVisible(false);
+		panelDatos.add(lblArtistas);
 		
 		JButton btnBuscarConcierto = new JButton("Buscar concierto");
 		btnBuscarConcierto.addActionListener(new ActionListener() {
@@ -125,14 +137,34 @@ public class MainWindow {
 		conciertosListModel = new DefaultListModel<Concierto>();
 		conciertosList = new JList<>(conciertosListModel);
 		conciertosScrollPane = new JScrollPane(conciertosList);
-		conciertosScrollPane.setBounds(80, 45, 501, 369);
+		conciertosScrollPane.setBounds(80, 45, 501, 150);
 		conciertosScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		conciertosScrollPane.setViewportView(conciertosList);
+		
+		// Crear el JScrollPane y la JList de artistas
+		artistasListModel = new DefaultListModel<Artista>();
+		artistasList = new JList<>(artistasListModel);
+		artistasScrollPane = new JScrollPane(artistasList);
+		artistasScrollPane.setBounds(80, 45, 501, 150);
+		artistasScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		artistasScrollPane.setViewportView(artistasList);
 
 		JPanel panelControlPerfil = new JPanel();
 		panelControlPerfil.setBounds(0, 495, 686, 68);
 		panelPantalla.add(panelControlPerfil);
 		panelControlPerfil.setLayout(new GridLayout(2, 2, 0, 0));
+		
+		JButton btnVerificar = new JButton("VERIFICAR ARTISTA");
+		btnVerificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(App.res.getUsers());
+				App.res.verifyArtist(artistasList.getSelectedValue().getEmail());
+				System.out.println(App.res.getUsers());
+			}
+		});
+		if(logged.getTipo() == TipoUsuario.GESTOR) {
+			panelControlPerfil.add(btnVerificar);
+		}
 
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLocation(655, 70);
@@ -143,9 +175,10 @@ public class MainWindow {
 		JButton btnConciertos = new JButton("CONCIERTOS");
 		btnConciertos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				lblProximosConciertos.setVisible(true);
+				lblArtistas.setVisible(false);
 				panelDatos.add(conciertosScrollPane, BorderLayout.CENTER);
 				ArrayList<Concierto> conciertos = App.res.getConcerts();
-				conciertosListModel.clear();
 				for (Concierto concierto : conciertos) {
 					conciertosListModel.addElement(concierto);
 				}
@@ -160,11 +193,17 @@ public class MainWindow {
 		JButton btnArtistas = new JButton("ARTISTAS");
 		btnArtistas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				ArrayList<Artista> artistas = App.res.getArtists();
+				lblProximosConciertos.setVisible(false);
+				lblArtistas.setVisible(true);
+				panelDatos.add(artistasScrollPane, BorderLayout.CENTER);
+				ArrayList<Artista> artistas = App.res.getArtists();
 //				System.out.println(artistas);
-//				for (Artista arti : (List<Artista>) artistas) {
-//					System.out.println("Artista bueno bueno: " + arti);
-//				}
+				for (Artista artista : artistas) {
+					artistasListModel.addElement(artista);
+				}
+				
+				artistasList.setModel(artistasListModel);
+				
 			}
 		});
 		btnArtistas.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
