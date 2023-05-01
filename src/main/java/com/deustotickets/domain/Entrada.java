@@ -6,32 +6,32 @@ package com.deustotickets.domain;
  *
  */
 public class Entrada {
-	private int id;
-	private Artista artista;
+	private String id;
+	private Concierto concierto;
 	private double precio;
 	private String nombre;
 	// Pensar si queremos hacer tipos de entrada (VIP, normal, ...)
 	
-	public Entrada(int id, Artista artista, double precio, String nombre) {
+	public Entrada(String id, Concierto concierto, double precio, String nombre) {
 		super();
 		this.id = id;
-		this.artista = artista;
+		this.concierto = concierto;
 		this.precio = precio;
 		this.nombre = nombre;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public Artista getArtista() {
-		return artista;
+	public Concierto getConcierto() {
+		return concierto;
 	}
-	public void setArtista(Artista artista) {
-		this.artista = artista;
+	public void setConcierto(Concierto concierto) {
+		this.concierto = concierto;
 	}
 	public double getPrecio() {
 		return precio;
@@ -48,6 +48,7 @@ public class Entrada {
 
 	@Override
 	public String toString() {
-		return "Entrada [id=" + id + ", artista=" + artista + ", precio=" + precio + ", nombre=" + nombre + "]";
+		return "Entrada [id=" + id + ", concierto=" + concierto + ", precio=" + precio + ", nombre=" + nombre + "]";
 	}
+	
 }

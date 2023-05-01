@@ -239,4 +239,5 @@ public class ProfileWindow {
 			JOptionPane.showMessageDialog(null, "Contraseña cambiada con éxito.");
 		}
 	}
+	
 }

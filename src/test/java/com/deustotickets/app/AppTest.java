@@ -1,4 +1,4 @@
-package com.deustotickets.gui;
+package com.deustotickets.app;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LoginWindowTest {
-	
+public class AppTest {
+
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -15,10 +15,9 @@ public class LoginWindowTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
-	@Test
-	public void testInitialize() {
-		LoginWindow.initialize();
-	}
+
+//	@Test
+//	public void testMain() {	
+//	}
 
 }

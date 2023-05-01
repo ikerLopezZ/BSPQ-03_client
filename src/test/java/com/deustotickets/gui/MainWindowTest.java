@@ -17,7 +17,7 @@ public class MainWindowTest {
 	}
 	
 	@Test
-	public void test() {
+	public void testInitilize() {
+		MainWindow.initialize();
 	}
-
 }

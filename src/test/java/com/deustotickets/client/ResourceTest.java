@@ -4,23 +4,19 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.CALLS_REAL_METHODS;
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
 import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -134,7 +130,7 @@ public class ResourceTest {
         when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
         when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
 
-        assertTrue(Resource.changePassword("123", "test@example.com"));
+        assertTrue(Resource.changePassword("password1", "test@example.com"));
     }
     
     @Test
@@ -142,7 +138,7 @@ public class ResourceTest {
         when(response.getStatus()).thenReturn(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
         when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
 
-        assertFalse(Resource.changePassword("123", "test@example.com"));
+        assertFalse(Resource.changePassword("password1", "test@example.com"));
     }
     
     @Test
@@ -166,7 +162,7 @@ public class ResourceTest {
         when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
         when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
 
-        assertTrue(Resource.addConcert(01, new Artista(), "12/12/2012", "BEC", 1000));
+        assertTrue(Resource.addConcert("0", new Artista(), "01/01/2000", "test", 0));
     }
     
     @Test
@@ -174,7 +170,7 @@ public class ResourceTest {
         when(response.getStatus()).thenReturn(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
         when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
 
-        assertFalse(Resource.addConcert(01, new Artista(), "12/12/2012", "BEC", 1000));
+        assertFalse(Resource.addConcert("0", new Artista(), "01/01/2000", "test", 0));
     }
     
     @Test
@@ -182,7 +178,7 @@ public class ResourceTest {
         when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
         when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
 
-        assertTrue(Resource.deleteConcert(01));
+        assertTrue(Resource.deleteConcert("01"));
     }
     
     @Test
@@ -190,14 +186,14 @@ public class ResourceTest {
         when(response.getStatus()).thenReturn(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
         when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
 
-        assertFalse(Resource.deleteConcert(01));
+        assertFalse(Resource.deleteConcert("01"));
     }
     
     @Test
     public void testGetConcertsSuccess() {
         when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
         when(invocationBuilder.get()).thenReturn(response);
-        when(response.readEntity(ArrayList.class)).thenReturn(new ArrayList<Concierto>());
+        when(response.readEntity(new GenericType<ArrayList<Concierto>>() {})).thenReturn(new ArrayList<Concierto>());
 
         assertEquals(Resource.getConcerts().getClass(), ArrayList.class);
     }
@@ -215,7 +211,7 @@ public class ResourceTest {
         when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
         when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
 
-        assertTrue(Resource.modifyConcert(01, new Artista(), "12/12/2012", "BEC", 1000));
+        assertTrue(Resource.modifyConcert("1", new Artista(), "01/01/2000", "test", 0));
     }
     
     @Test
@@ -223,7 +219,7 @@ public class ResourceTest {
         when(response.getStatus()).thenReturn(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
         when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
 
-        assertFalse(Resource.modifyConcert(01, new Artista(), "12/12/2012", "BEC", 1000));
+        assertFalse(Resource.modifyConcert("1", new Artista(), "01/01/2000", "test", 0));
     }
     
     @Test

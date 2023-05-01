@@ -18,8 +18,8 @@ public class TipoGeneroTest {
 
 	@Test
 	public void testTipoGenero() {
-		for(TipoUsuario tu : TipoUsuario.values()) {
-			assertEquals(tu.getClass(), TipoUsuario.class);
+		for(TipoGenero tg : TipoGenero.values()) {
+			assertEquals(tg.getClass(), TipoGenero.class);
 		}
 	}
 

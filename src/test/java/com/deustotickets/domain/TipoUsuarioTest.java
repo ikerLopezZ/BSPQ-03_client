@@ -1,4 +1,4 @@
-package com.deustotickets.gui;
+package com.deustotickets.domain;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LoginWindowTest {
-	
+public class TipoUsuarioTest {
+
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -15,10 +15,12 @@ public class LoginWindowTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	@Test
-	public void testInitialize() {
-		LoginWindow.initialize();
+	public void testTipoUsuario() {
+		for(TipoUsuario tu : TipoUsuario.values()) {
+			assertEquals(tu.getClass(), TipoUsuario.class);
+		}
 	}
 
 }

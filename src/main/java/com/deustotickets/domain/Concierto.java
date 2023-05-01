@@ -6,13 +6,13 @@ package com.deustotickets.domain;
  *
  */
 public class Concierto {
-	private int id;
+	private String id;
 	private Artista artista;
 	private String fecha;
 	private String lugar;
 	private int aforo;
 	
-	public Concierto(int id, Artista artista, String fecha, String lugar, int aforo) {
+	public Concierto(String id, Artista artista, String fecha, String lugar, int aforo) {
 		super();
 		this.id = id;
 		this.artista = artista;
@@ -25,11 +25,11 @@ public class Concierto {
 		super();
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -69,4 +69,5 @@ public class Concierto {
 	public String toString() {
 		return "Concierto : " + id + ". ARTISTA: " + artista + ", FECHA: " + fecha + ", LUGAR: " + lugar + ", AFORO: " + aforo + ".";
 	}
+	
 }
