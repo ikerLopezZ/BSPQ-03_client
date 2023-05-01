@@ -88,13 +88,13 @@ public class MainWindow {
 		JLabel lblProximosConciertos = new JLabel("PRÓXIMOS CONCIERTOS");
 		lblProximosConciertos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProximosConciertos.setFont(new Font("Footlight MT Light", Font.BOLD, 24));
-		lblProximosConciertos.setBounds(180, 10, 279, 31);
+		lblProximosConciertos.setBounds(175, 10, 279, 31);
 		panelDatos.add(lblProximosConciertos);
 		
 		JLabel lblArtistas = new JLabel("ARTISTAS EN DEUSTOTICKETS");
 		lblArtistas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblArtistas.setFont(new Font("Footlight MT Light", Font.BOLD, 24));
-		lblArtistas.setBounds(180, 10, 320, 31);
+		lblArtistas.setBounds(153, 10, 320, 31);
 		lblArtistas.setVisible(false);
 		panelDatos.add(lblArtistas);
 		
@@ -104,10 +104,10 @@ public class MainWindow {
 				String nomArtista = JOptionPane.showInputDialog(btnBuscarConcierto, "Nombre del artista");
 				ArrayList<Concierto> conciertos = App.res.getConcerts();
 				
+				conciertosListModel.clear();
 				for (Concierto concierto : conciertos) {
 					String nom = concierto.getArtista().getNombreApellidos();
-					if(nom.equals(nomArtista)) {
-						conciertosListModel.clear();
+					if(nom.equals(nomArtista) || nomArtista.equals(concierto.getLugar())) {
 						
 						conciertosListModel.addElement(concierto);
 					}
@@ -115,7 +115,7 @@ public class MainWindow {
 				}
 			}
 		});
-		btnBuscarConcierto.setBounds(340, 17, 128, 21);
+		btnBuscarConcierto.setBounds(175, 407, 128, 21);
 		panelDatos.add(btnBuscarConcierto);
 		
 		JButton btnTodosConciertos = new JButton("Mostrar todos");
@@ -129,7 +129,7 @@ public class MainWindow {
 				}
 			}
 		});
-		btnTodosConciertos.setBounds(490, 17, 128, 21);
+		btnTodosConciertos.setBounds(434, 407, 128, 21);
 		panelDatos.add(btnTodosConciertos);
 		
 		
@@ -175,8 +175,12 @@ public class MainWindow {
 		JButton btnConciertos = new JButton("CONCIERTOS");
 		btnConciertos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				conciertosListModel.clear();
+				artistasListModel.clear();
 				lblProximosConciertos.setVisible(true);
 				lblArtistas.setVisible(false);
+				btnBuscarConcierto.setVisible(true);
+				btnTodosConciertos.setVisible(true);
 				panelDatos.add(conciertosScrollPane, BorderLayout.CENTER);
 				ArrayList<Concierto> conciertos = App.res.getConcerts();
 				for (Concierto concierto : conciertos) {
@@ -193,8 +197,12 @@ public class MainWindow {
 		JButton btnArtistas = new JButton("ARTISTAS");
 		btnArtistas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				conciertosListModel.clear();
+				artistasListModel.clear();
 				lblProximosConciertos.setVisible(false);
 				lblArtistas.setVisible(true);
+				btnBuscarConcierto.setVisible(false);
+				btnTodosConciertos.setVisible(false);
 				panelDatos.add(artistasScrollPane, BorderLayout.CENTER);
 				ArrayList<Artista> artistas = App.res.getArtists();
 //				System.out.println(artistas);
@@ -210,6 +218,16 @@ public class MainWindow {
 		panelBotones.add(btnArtistas);
 
 		JButton btnNewButton_2 = new JButton("ENTRADAS");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnBuscarConcierto.setVisible(false);
+				btnTodosConciertos.setVisible(false);
+				lblProximosConciertos.setVisible(false);
+				lblArtistas.setVisible(false);
+				artistasListModel.clear();
+				conciertosListModel.clear();
+			}
+		});
 		btnNewButton_2.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
 		panelBotones.add(btnNewButton_2);
 
