@@ -16,8 +16,8 @@ public class AppTest {
 	public void tearDown() throws Exception {
 	}
 
-//	@Test
-//	public void testMain() {	
-//	}
+	@Test
+	public void testMain() {	
+	}
 
 }

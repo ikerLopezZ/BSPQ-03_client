@@ -101,7 +101,7 @@ public class MainWindow {
 		JButton btnBuscarConcierto = new JButton("Buscar concierto");
 		btnBuscarConcierto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nomArtista = JOptionPane.showInputDialog(btnBuscarConcierto, "Nombre del artista");
+				String nomArtista = JOptionPane.showInputDialog(btnBuscarConcierto, "Nombre del artista o lugar del concierto");
 				ArrayList<Concierto> conciertos = App.res.getConcerts();
 				
 				conciertosListModel.clear();
@@ -176,7 +176,10 @@ public class MainWindow {
 		btnConciertos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				conciertosListModel.clear();
-				artistasListModel.clear();
+				artistasScrollPane.setVisible(false);
+				
+				conciertosScrollPane.setVisible(true);
+				//artistasListModel.clear();
 				lblProximosConciertos.setVisible(true);
 				lblArtistas.setVisible(false);
 				btnBuscarConcierto.setVisible(true);
@@ -197,7 +200,9 @@ public class MainWindow {
 		JButton btnArtistas = new JButton("ARTISTAS");
 		btnArtistas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				conciertosListModel.clear();
+				//conciertosListModel.clear();
+				conciertosScrollPane.setVisible(false);
+				artistasScrollPane.setVisible(true);
 				artistasListModel.clear();
 				lblProximosConciertos.setVisible(false);
 				lblArtistas.setVisible(true);
@@ -224,7 +229,10 @@ public class MainWindow {
 				btnTodosConciertos.setVisible(false);
 				lblProximosConciertos.setVisible(false);
 				lblArtistas.setVisible(false);
-				artistasListModel.clear();
+				artistasScrollPane.setVisible(false);
+				
+				conciertosScrollPane.setVisible(false);
+				artistasListModel.clear(); 
 				conciertosListModel.clear();
 			}
 		});
