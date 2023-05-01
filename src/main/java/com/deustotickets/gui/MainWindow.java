@@ -1,21 +1,31 @@
 package com.deustotickets.gui;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import com.deustotickets.app.App;
 import com.deustotickets.client.Resource;
 import com.deustotickets.domain.Usuario;
+import com.deustotickets.domain.Artista;
+import com.deustotickets.domain.Concierto;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -32,6 +42,8 @@ public class MainWindow {
 	private static ImageIcon logoPerfilPeque = new ImageIcon("src/main/resources/logoPerfilPeque.png");
 	private static ImageIcon inicio = new ImageIcon("src/main/resources/inicio.png");
 	public static Usuario logged = null;
+	private static DefaultListModel<Concierto> conciertosListModel;
+
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -61,7 +73,7 @@ public class MainWindow {
 		panelPantalla.add(lblTitulo);
 
 		JPanel panelDatos = new JPanel();
-		panelDatos.setBounds(0, 57, 686, 438);
+		panelDatos.setBounds(0, 57, 656, 438);
 		panelDatos.setBackground(new Color(150, 177, 216));
 		panelPantalla.add(panelDatos);
 		panelDatos.setLayout(null);
@@ -78,10 +90,63 @@ public class MainWindow {
 		panelBotones.setLayout(new GridLayout(4, 1, 0, 0));
 
 		JButton btnConciertos = new JButton("CONCIERTOS");
+		btnConciertos.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+//		    	conciertosListModel = new DefaultListModel<Concierto>();
+		        ArrayList<Concierto> conciertos = App.res.getConcerts();
+		        System.out.println(conciertos);
+//		        int contador = 0;
+//		        System.out.println(contador); 
+		        for(Concierto c : conciertos) {
+		        	System.out.println(c.getClass());
+//		        	contador ++;
+		        }
+//		        System.out.println(contador);
+//		        conciertosListModel.clear();
+//		        for (Concierto concierto : conciertos) {
+//		            conciertosListModel.addElement(concierto);
+//		            System.out.println(concierto.toString());
+//		        }
+//		        JList<Concierto> conciertosList = new JList<>(conciertosListModel);
+//		        panelDatos.add(new JScrollPane(conciertosList));
+//		    	System.out.println(App.res.getConcerts());
+		        System.out.println(conciertos);
+//		    	ArrayList<Concierto> conciertos = new ArrayList<>();
+//		    	conciertos = App.res.getConcerts();
+//		    	for(Concierto con : conciertos) {
+//		    		conciertosListModel.addElement(con);
+//		    		System.out.println(con);
+//		    	}
+//		    	panelDatos.add(new JScrollPane(conciertos));
+		    	
+//		    	ArrayList<Concierto> conciertos = App.res.getConcerts();
+//		        JTextArea textArea = new JTextArea(10, 30);
+//		        textArea.setBounds(0, 57, 600, 400);
+//		        textArea.setBackground(Color.yellow);
+//		        textArea.append(conciertos.toString());
+//		        for (Concierto concierto : conciertos) {
+//		            textArea.append(concierto.toString() + "\n");
+//		        }
+		        
+//		        panelDatos.removeAll(); // Limpiamos el panel
+//		        panelDatos.add(textArea); // Añadimos el JTextArea al panel
+//		        panelDatos.revalidate(); // Redibujamos el panel
+//		        panelDatos.repaint();
+		    }
+		});
 		btnConciertos.setFont(new Font("Footlight MT Light", Font.BOLD, 15));
 		panelBotones.add(btnConciertos);
 
 		JButton btnArtistas = new JButton("ARTISTAS");
+		btnArtistas.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		       ArrayList<Artista> artistas = App.res.getArtists();
+		       System.out.println(artistas);
+		       for(Artista arti : (List<Artista>) artistas) {
+		    	   System.out.println("Artista bueno bueno: " + arti);
+		       }
+		    }
+		});
 		btnArtistas.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
 		panelBotones.add(btnArtistas);
 
