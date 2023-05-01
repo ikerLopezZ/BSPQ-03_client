@@ -182,9 +182,9 @@ public class MainWindow {
 				System.out.println(App.res.getUsers());
 			}
 		});
-//		if (logged.getTipo() == TipoUsuario.GESTOR) {
+		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnVerificar);
-//		}
+		}
 
 		JButton btnBloquearUsuario = new JButton("BLOQUEAR USUARIO");
 		btnBloquearUsuario.addActionListener(new ActionListener() {
@@ -198,9 +198,9 @@ public class MainWindow {
 				System.out.println(App.res.getUsers());
 			}
 		});
-//		if (logged.getTipo() == TipoUsuario.GESTOR) {
+		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnBloquearUsuario);
-//		}
+		}
 
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLocation(655, 70);
