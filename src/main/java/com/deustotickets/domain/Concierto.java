@@ -67,7 +67,6 @@ public class Concierto {
 
 	@Override
 	public String toString() {
-		return "Concierto [id=" + id + ", artista=" + artista + ", fecha=" + fecha + ", lugar=" + lugar + ", aforo="
-				+ aforo + "]";
+		return "Concierto : " + id + ". ARTISTA: " + artista + ", FECHA: " + fecha + ", LUGAR: " + lugar + ", AFORO: " + aforo + ".";
 	}
 }

@@ -123,11 +123,11 @@ public class MainWindow {
 		JButton btnArtistas = new JButton("ARTISTAS");
 		btnArtistas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Artista> artistas = App.res.getArtists();
-				System.out.println(artistas);
-				for (Artista arti : (List<Artista>) artistas) {
-					System.out.println("Artista bueno bueno: " + arti);
-				}
+//				ArrayList<Artista> artistas = App.res.getArtists();
+//				System.out.println(artistas);
+//				for (Artista arti : (List<Artista>) artistas) {
+//					System.out.println("Artista bueno bueno: " + arti);
+//				}
 			}
 		});
 		btnArtistas.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
