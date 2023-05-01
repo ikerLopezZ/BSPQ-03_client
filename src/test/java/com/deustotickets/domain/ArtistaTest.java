@@ -8,70 +8,44 @@ import org.junit.Test;
 
 public class ArtistaTest {
 	
-	Usuario u;
+	Artista a;
 
 	@Before
 	public void setUp() throws Exception {
-		u = new Usuario("Test", "test@example.com", "123", TipoUsuario.CLIENTE);
+		a = new Artista("test", "test@example.com", "password", TipoUsuario.ARTISTA, TipoGenero.BLUES, true);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
 	
+	@SuppressWarnings("unused")
 	@Test
-	public void testGetNombreApellidos() {
-		assertEquals(u.getNombreApellidos().getClass(), String.class);
+	public void testArtista() {
+		Artista a = new Artista(new Usuario(), TipoGenero.BLUES, true, true);
+		Artista a1 = new Artista(new Usuario(), null, true, false);
+		Artista a2 = new Artista(new Usuario(), null, false, true);
 	}
 	
 	@Test
-	public void testSetNombreApellidos() {
-		u.setNombreApellidos("Test");
-	}
-
-	@Test
-	public void testGetEmail() {
-		assertEquals(u.getEmail().getClass(), String.class);
+	public void testGetGenero() {
+		assertEquals(a.getGenero().getClass(), TipoGenero.class);
 	}
 	
 	@Test
-	public void testSetEmail() {
-		u.setEmail("test@example.com");
+	public void testSetGenero() {
+		a.setGenero(TipoGenero.BLUES);
 	}
 	
 	@Test
-	public void testGetPassword() {
-		assertEquals(u.getPassword().getClass(), String.class);
-	}
-	
-	@Test
-	public void testSetPassword() {
-		u.setPassword("123");
-	}
-	
-	@Test
-	public void testGetTipo() {
-		assertEquals(u.getTipo().getClass(), TipoUsuario.class);
-	}
-	
-	@Test
-	public void testSetTipo() {
-		u.setTipo(TipoUsuario.CLIENTE);
-	}
-	
-	@Test
-	public void testIsBanned() {
-		Boolean b = u.isBanned();
+	public void testIsVerificada() {
+		Boolean b = a.isVerificada();
 		assertEquals(b.getClass(), Boolean.class);
 	}
 	
 	@Test
-	public void testSetBanned() {
-		u.setBanned(false);
+	public void testSetVerificada() {
+		a.setVerificada(true);
 	}
 	
-	@Test
-	public void testToString() {
-		assertEquals(u.toString(), "Usuario [nombre y apellidos=Test, email=test@example.com, password=123, tipo=CLIENTE]");
-	}
 }

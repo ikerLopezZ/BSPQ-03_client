@@ -17,7 +17,8 @@ public class RegWindowTest {
 	}
 	
 	@Test
-	public void test() {
+	public void testInitialize() {
+		RegWindow.initialize();
 	}
-
+	
 }

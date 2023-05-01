@@ -263,4 +263,5 @@ public class RegWindow {
 
 		frmRegister.setVisible(true);
 	}
+	
 }

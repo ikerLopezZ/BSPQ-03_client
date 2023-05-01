@@ -2,7 +2,6 @@ package com.deustotickets.domain;
 
 import java.io.Serializable;
 
-import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 /**
@@ -76,4 +75,5 @@ public class Usuario implements Serializable{
 		return "Usuario [nombre y apellidos=" + nombreApellidos + ", email=" + email + ", password="
 				+ password + ", tipo=" + tipo + "]";
 	}
+	
 }

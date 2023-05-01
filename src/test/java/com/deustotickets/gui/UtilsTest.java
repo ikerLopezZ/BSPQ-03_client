@@ -2,6 +2,8 @@ package com.deustotickets.gui;
 
 import static org.junit.Assert.*;
 
+import javax.swing.JSpinner;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +19,9 @@ public class UtilsTest {
 	}
 	
 	@Test
-	public void test() {
+	public void testModifySpinner() {
+		JSpinner spinnerTest = new JSpinner();
+		spinnerTest = Utils.modifySpinner(spinnerTest);
 	}
 
 }

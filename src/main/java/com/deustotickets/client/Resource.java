@@ -164,7 +164,7 @@ public class Resource {
 		}
 	}
 	
-	public static boolean addConcert(int id, Artista artista, String fecha, String lugar, int aforo) {
+	public static boolean addConcert(String id, Artista artista, String fecha, String lugar, int aforo) {
 		WebTarget registerUserWebTarget = webTarget.path("addConcert");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		Concierto con = new Concierto(id, artista, fecha, lugar, aforo);
@@ -180,7 +180,7 @@ public class Resource {
 		}
 	}
 	
-	public static boolean deleteConcert(int id) {
+	public static boolean deleteConcert(String id) {
 		WebTarget registerUserWebTarget = webTarget.path("deleteConcert");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		Concierto con = new Concierto();
@@ -215,7 +215,7 @@ public class Resource {
 		}
 	}
 	
-	public static boolean modifyConcert(int id, Artista artista, String fecha, String lugar, int aforo) {
+	public static boolean modifyConcert(String id, Artista artista, String fecha, String lugar, int aforo) {
 		WebTarget registerUserWebTarget = webTarget.path("modifyConcert");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		Concierto con = new Concierto(id, artista, fecha, lugar, aforo);
@@ -292,4 +292,5 @@ public class Resource {
 			return (ArrayList<Artista>) response.readEntity(ArrayList.class);
 		}
 	}
+	
 }
