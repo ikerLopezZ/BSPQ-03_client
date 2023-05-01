@@ -1,5 +1,6 @@
 package com.deustotickets.client;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -204,9 +206,12 @@ public class Resource {
 			System.out.println("Error connecting with the server");
 			return null;
 		} else {
-			logger.info("Account successfully deleted");
-			System.out.println("Account successfully deleted");
-			return (ArrayList<Concierto>) response.readEntity(ArrayList.class);
+			logger.info("Got all concerts");
+			System.out.println("Got all concerts");
+			
+			ArrayList<Concierto> ret = (ArrayList<Concierto>) response.readEntity(new GenericType<ArrayList<Concierto>>() {});
+			
+			return ret;
 		}
 	}
 	

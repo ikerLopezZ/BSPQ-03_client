@@ -13,7 +13,6 @@ import javax.jdo.annotations.PrimaryKey;
 public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@PrimaryKey
 	private String email;
 	private String nombreApellidos;
 	private String password;

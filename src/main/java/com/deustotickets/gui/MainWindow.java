@@ -94,13 +94,7 @@ public class MainWindow {
 		    public void actionPerformed(ActionEvent e) {
 //		    	conciertosListModel = new DefaultListModel<Concierto>();
 		        ArrayList<Concierto> conciertos = App.res.getConcerts();
-		        System.out.println(conciertos);
-//		        int contador = 0;
-//		        System.out.println(contador); 
-		        for(Concierto c : conciertos) {
-		        	System.out.println(c.getClass());
-//		        	contador ++;
-		        }
+		        
 //		        System.out.println(contador);
 //		        conciertosListModel.clear();
 //		        for (Concierto concierto : conciertos) {
