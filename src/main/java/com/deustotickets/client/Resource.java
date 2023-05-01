@@ -143,31 +143,25 @@ public class Resource {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public static boolean deleteAccount(String email) {
-	    // Crear un objeto WebTarget para apuntar a la ruta "deleteAccount" de la API
-	    WebTarget registerUserWebTarget = webTarget.path("deleteAccount");
-	    
-	    // Crear un objeto Invocation.Builder para construir la solicitud HTTP
-	    Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
-	    
-	    // Crear un objeto Usuario con el correo electrónico de la cuenta que se va a eliminar
-	    Usuario user = new Usuario(null, email, null, null);
-	    
-	    // Enviar una solicitud POST con el objeto Usuario como cuerpo de la solicitud
-	    Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
-	    
-	    // Verificar si la respuesta del servidor fue exitosa o no
-	    if (response.getStatus() != Status.OK.getStatusCode()) {
-	        // Si no fue exitosa, imprimir un mensaje de error y devolver false
-	        logger.error("Error connecting with the server. Code: {}", response.getStatus());
-	        System.out.println("Error connecting with the server");
-	        return false;
-	    } else {
-	        // Si fue exitosa, imprimir un mensaje de éxito y devolver true
-	        logger.info("Account successfully deleted");
-	        System.out.println("Account successfully deleted");
-	        return true;
-	    }
+		WebTarget registerUserWebTarget = webTarget.path("deleteAccount");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Usuario user = new Usuario(null, email, null, null);
+		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Account successfully deleted");
+			System.out.println("Account successfully deleted");
+			return true;
+		}
 	}
 	
 	public static boolean addConcert(String id, Artista artista, String fecha, String lugar, int aforo) {
