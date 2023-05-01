@@ -12,6 +12,10 @@ Compilar el proyecto.
       
 En caso de que se prefiera lanzar el cliente dese la línea de comandos, siempre y cuando se haya ejecutado previamente el proyecto servidor y este funcione correctamente, ejecutar el siguiente comando:
 
-    	mvn exec:java -Dexec.mainClass="com.deustotickets.app.App"	
+      mvn exec:java -Dexec.mainClass="com.deustotickets.app.App"	
 
-*Nota: Para ejecutar el programa, no es estrictamente necesario seguir estos pasos. Es posible ejecutar el cliente directamente desde el entorno de desarrollo integrado (IDE) utilizado. 
+*Nota: Para ejecutar el programa, no es estrictamente necesario seguir estos pasos. Es posible ejecutar el cliente directamente desde el entorno de desarrollo integrado (IDE) utilizado.
+
+Comando para ejecutar las pruebas unitarias:
+
+      mvn test
