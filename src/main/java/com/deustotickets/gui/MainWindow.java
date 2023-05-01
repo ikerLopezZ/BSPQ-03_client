@@ -82,9 +82,45 @@ public class MainWindow {
 		JLabel lblProximosConciertos = new JLabel("PRÓXIMOS CONCIERTOS");
 		lblProximosConciertos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProximosConciertos.setFont(new Font("Footlight MT Light", Font.BOLD, 24));
-		lblProximosConciertos.setBounds(200, 10, 279, 31);
+		lblProximosConciertos.setBounds(27, 10, 279, 31);
 		panelDatos.add(lblProximosConciertos);
 
+		
+		JButton btnBuscarConcierto = new JButton("Buscar concierto");
+		btnBuscarConcierto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nomArtista = JOptionPane.showInputDialog(btnBuscarConcierto, "Nombre del artista");
+				ArrayList<Concierto> conciertos = App.res.getConcerts();
+				
+				for (Concierto concierto : conciertos) {
+					String nom = concierto.getArtista().getNombreApellidos();
+					if(nom.equals(nomArtista)) {
+						conciertosListModel.clear();
+						
+						conciertosListModel.addElement(concierto);
+					}
+					
+				}
+			}
+		});
+		btnBuscarConcierto.setBounds(340, 17, 128, 21);
+		panelDatos.add(btnBuscarConcierto);
+		
+		JButton btnTodosConciertos = new JButton("Mostrar todos");
+		btnTodosConciertos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Concierto> conciertos = App.res.getConcerts();
+				conciertosListModel.clear();
+				for (Concierto concierto : conciertos) {
+					
+					conciertosListModel.addElement(concierto);
+				}
+			}
+		});
+		btnTodosConciertos.setBounds(490, 17, 128, 21);
+		panelDatos.add(btnTodosConciertos);
+		
+		
 		// Crear el JScrollPane y la JList de conciertos
 		conciertosListModel = new DefaultListModel<Concierto>();
 		conciertosList = new JList<>(conciertosListModel);
@@ -109,6 +145,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				panelDatos.add(conciertosScrollPane, BorderLayout.CENTER);
 				ArrayList<Concierto> conciertos = App.res.getConcerts();
+				conciertosListModel.clear();
 				for (Concierto concierto : conciertos) {
 					conciertosListModel.addElement(concierto);
 				}
