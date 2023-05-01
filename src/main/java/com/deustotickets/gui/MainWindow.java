@@ -43,7 +43,8 @@ public class MainWindow {
 	private static ImageIcon inicio = new ImageIcon("src/main/resources/inicio.png");
 	public static Usuario logged = null;
 	private static DefaultListModel<Concierto> conciertosListModel;
-
+	private static JList<Concierto> conciertosList;
+	private static JScrollPane conciertosScrollPane;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -78,6 +79,20 @@ public class MainWindow {
 		panelPantalla.add(panelDatos);
 		panelDatos.setLayout(null);
 
+		JLabel lblProximosConciertos = new JLabel("PRÓXIMOS CONCIERTOS");
+		lblProximosConciertos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProximosConciertos.setFont(new Font("Footlight MT Light", Font.BOLD, 24));
+		lblProximosConciertos.setBounds(200, 10, 279, 31);
+		panelDatos.add(lblProximosConciertos);
+
+		// Crear el JScrollPane y la JList de conciertos
+		conciertosListModel = new DefaultListModel<Concierto>();
+		conciertosList = new JList<>(conciertosListModel);
+		conciertosScrollPane = new JScrollPane(conciertosList);
+		conciertosScrollPane.setBounds(80, 45, 501, 369);
+		conciertosScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		conciertosScrollPane.setViewportView(conciertosList);
+
 		JPanel panelControlPerfil = new JPanel();
 		panelControlPerfil.setBounds(0, 495, 686, 68);
 		panelPantalla.add(panelControlPerfil);
@@ -91,55 +106,29 @@ public class MainWindow {
 
 		JButton btnConciertos = new JButton("CONCIERTOS");
 		btnConciertos.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-//		    	conciertosListModel = new DefaultListModel<Concierto>();
-		        ArrayList<Concierto> conciertos = App.res.getConcerts();
-		        
-//		        System.out.println(contador);
-//		        conciertosListModel.clear();
-//		        for (Concierto concierto : conciertos) {
-//		            conciertosListModel.addElement(concierto);
-//		            System.out.println(concierto.toString());
-//		        }
-//		        JList<Concierto> conciertosList = new JList<>(conciertosListModel);
-//		        panelDatos.add(new JScrollPane(conciertosList));
-//		    	System.out.println(App.res.getConcerts());
-		        System.out.println(conciertos);
-//		    	ArrayList<Concierto> conciertos = new ArrayList<>();
-//		    	conciertos = App.res.getConcerts();
-//		    	for(Concierto con : conciertos) {
-//		    		conciertosListModel.addElement(con);
-//		    		System.out.println(con);
-//		    	}
-//		    	panelDatos.add(new JScrollPane(conciertos));
-		    	
-//		    	ArrayList<Concierto> conciertos = App.res.getConcerts();
-//		        JTextArea textArea = new JTextArea(10, 30);
-//		        textArea.setBounds(0, 57, 600, 400);
-//		        textArea.setBackground(Color.yellow);
-//		        textArea.append(conciertos.toString());
-//		        for (Concierto concierto : conciertos) {
-//		            textArea.append(concierto.toString() + "\n");
-//		        }
-		        
-//		        panelDatos.removeAll(); // Limpiamos el panel
-//		        panelDatos.add(textArea); // Añadimos el JTextArea al panel
-//		        panelDatos.revalidate(); // Redibujamos el panel
-//		        panelDatos.repaint();
-		    }
+			public void actionPerformed(ActionEvent e) {
+				panelDatos.add(conciertosScrollPane, BorderLayout.CENTER);
+				ArrayList<Concierto> conciertos = App.res.getConcerts();
+				for (Concierto concierto : conciertos) {
+					conciertosListModel.addElement(concierto);
+				}
+
+				conciertosList.setModel(conciertosListModel);
+			}
 		});
+
 		btnConciertos.setFont(new Font("Footlight MT Light", Font.BOLD, 15));
 		panelBotones.add(btnConciertos);
 
 		JButton btnArtistas = new JButton("ARTISTAS");
 		btnArtistas.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		       ArrayList<Artista> artistas = App.res.getArtists();
-		       System.out.println(artistas);
-		       for(Artista arti : (List<Artista>) artistas) {
-		    	   System.out.println("Artista bueno bueno: " + arti);
-		       }
-		    }
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Artista> artistas = App.res.getArtists();
+				System.out.println(artistas);
+				for (Artista arti : (List<Artista>) artistas) {
+					System.out.println("Artista bueno bueno: " + arti);
+				}
+			}
 		});
 		btnArtistas.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
 		panelBotones.add(btnArtistas);
@@ -147,7 +136,7 @@ public class MainWindow {
 		JButton btnNewButton_2 = new JButton("ENTRADAS");
 		btnNewButton_2.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
 		panelBotones.add(btnNewButton_2);
-		
+
 		JButton btnPerfilPeque = new JButton("");
 		btnPerfilPeque.setBorder(null);
 		btnPerfilPeque.setBorderPainted(false);
@@ -163,25 +152,5 @@ public class MainWindow {
 		frmMain.getContentPane().add(btnPerfilPeque);
 
 		frmMain.setVisible(true);
-	}
-
-	public static void changeUsername() {
-		String newUsername = JOptionPane.showInputDialog("Introduzca el nuevo nombre de usuario:");
-
-		if (newUsername != null) {
-			Resource.changeUsername(newUsername,logged.getEmail());
-			logged.setNombreApellidos(newUsername);
-			JOptionPane.showMessageDialog(null, "Nombre de usuario cambiado con éxito.");
-		}
-	}
-
-	public static void changePassword() {
-		String newPassword = JOptionPane.showInputDialog("Introduzca la nueva contraseña:");
-
-		if (newPassword != null) {
-			Resource.changePassword(logged.getEmail(), newPassword);
-			logged.setPassword(newPassword);
-			JOptionPane.showMessageDialog(null, "Contraseña cambiada con éxito.");
-		}
 	}
 }
