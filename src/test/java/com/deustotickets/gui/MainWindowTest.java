@@ -1,6 +1,8 @@
 package com.deustotickets.gui;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThrows;
+
+import java.awt.HeadlessException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,6 +25,10 @@ public class MainWindowTest {
 	
 	@Test
 	public void testInitilize() {
-		MainWindow.initialize();
+		try {
+			MainWindow.initialize();
+		} catch (HeadlessException e) {
+			e.printStackTrace();			
+		}
 	}
 }

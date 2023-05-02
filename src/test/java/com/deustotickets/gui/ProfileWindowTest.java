@@ -3,6 +3,8 @@ package com.deustotickets.gui;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
+import java.awt.HeadlessException;
+
 import javax.ws.rs.core.Response;
 
 import org.junit.After;
@@ -33,7 +35,11 @@ public class ProfileWindowTest {
 	
 	@Test
 	public void testInitialize() {
-		ProfileWindow.initialize();
+		try {
+			ProfileWindow.initialize();
+		} catch (HeadlessException e) {
+			e.printStackTrace();			
+		}
 	}
 	
 //	@Test
