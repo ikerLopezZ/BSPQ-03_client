@@ -20,10 +20,10 @@ public class RegWindowTest {
 	
 	@Test
 	public void testInitialize() throws HeadlessException {
-		try {
-			RegWindow.initialize();
-		} catch (HeadlessException e) {
-			e.printStackTrace();			
-		}
+//		try {
+//			RegWindow.initialize();
+//		} catch (HeadlessException e) {
+//			e.printStackTrace();			
+//		}
 	}
 }

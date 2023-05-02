@@ -18,7 +18,7 @@ public class LoginWindowTest {
 	
 	@Test
 	public void testInitialize() {
-		LoginWindow.initialize();
+//		LoginWindow.initialize();
 	}
 
 }

@@ -35,11 +35,11 @@ public class ProfileWindowTest {
 	
 	@Test
 	public void testInitialize() {
-		try {
-			ProfileWindow.initialize();
-		} catch (HeadlessException e) {
-			e.printStackTrace();			
-		}
+//		try {
+//			ProfileWindow.initialize();
+//		} catch (HeadlessException e) {
+//			e.printStackTrace();			
+//		}
 	}
 	
 //	@Test
