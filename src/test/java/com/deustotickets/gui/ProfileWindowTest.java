@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.deustotickets.domain.TipoUsuario;
 import com.deustotickets.domain.Usuario;
 
 public class ProfileWindowTest {
@@ -22,11 +23,12 @@ public class ProfileWindowTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.openMocks(this);
 		when(response.getStatus()).thenReturn(200);
-		MainWindow.logged = new Usuario();
+		MainWindow.logged = new Usuario("Test", "test@example.com", "123", TipoUsuario.CLIENTE);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		MainWindow.logged = null;
 	}
 	
 	@Test

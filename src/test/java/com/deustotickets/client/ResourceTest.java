@@ -258,7 +258,7 @@ public class ResourceTest {
     public void testGetUsersSuccess() {
         when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
         when(invocationBuilder.get()).thenReturn(response);
-        when(response.readEntity(ArrayList.class)).thenReturn(new ArrayList<Usuario>());
+        when(response.readEntity(new GenericType<ArrayList<Usuario>>() {})).thenReturn(new ArrayList<Usuario>());
 
         assertEquals(Resource.getUsers().getClass(), ArrayList.class);
     }
@@ -275,7 +275,7 @@ public class ResourceTest {
     public void testGetArtistsSuccess() {
         when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
         when(invocationBuilder.get()).thenReturn(response);
-        when(response.readEntity(ArrayList.class)).thenReturn(new ArrayList<Artista>());
+        when(response.readEntity(new GenericType<ArrayList<Artista>>() {})).thenReturn(new ArrayList<Artista>());
 
         assertEquals(Resource.getArtists().getClass(), ArrayList.class);
     }
