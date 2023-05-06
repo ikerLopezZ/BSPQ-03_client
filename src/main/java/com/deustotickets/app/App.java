@@ -1,5 +1,8 @@
 package com.deustotickets.app;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.UIManager;
 import com.deustotickets.client.Resource;
 import com.deustotickets.domain.Artista;
@@ -31,7 +34,11 @@ public class App {
 		res.addConcert("5", new Artista ("Hola", "holaa@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.BLUES, false), "11/02/2027", "BEC", 1110);
 		LoginWindow win = new LoginWindow();
 		win.initialize();
-		res.generateReport("Prueba.txt",  res.getUsers(), res.getConcerts(), res.getArtists());
+//		String fechaActual = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDateTime.now());
+//		System.out.println(fechaActual);
+//		String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual;
+//		
+//		res.generateReport(informeEstadisticas,  res.getUsers(), res.getConcerts(), res.getArtists());
 	}
 	
 }

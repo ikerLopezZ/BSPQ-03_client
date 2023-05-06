@@ -25,6 +25,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,6 +55,8 @@ public class MainWindow {
 	private static DefaultListModel<Usuario> usuariosListModel;
 	private static JList<Usuario> usuariosList;
 	private static JScrollPane usuariosScrollPane;
+	private static String fechaActual = DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now());
+	private static String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual;
 
 	/**
 	 * @wbp.parser.entryPoint
@@ -182,9 +186,9 @@ public class MainWindow {
 				System.out.println(App.res.getUsers());
 			}
 		});
-//		if (logged.getTipo() == TipoUsuario.GESTOR) {
+		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnVerificar);
-//		}
+		}
 
 		JButton btnBloquearUsuario = new JButton("BLOQUEAR USUARIO");
 		btnBloquearUsuario.addActionListener(new ActionListener() {
@@ -198,17 +202,20 @@ public class MainWindow {
 				System.out.println(App.res.getUsers());
 			}
 		});
-//		if (logged.getTipo() == TipoUsuario.GESTOR) {
+		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnBloquearUsuario);
-			
-			JButton btnEstadisticas = new JButton("GENERAR ESTADÍSTICAS");
-			btnEstadisticas.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
+		}
+		
+		JButton btnEstadisticas = new JButton("GENERAR ESTADÍSTICAS");
+		btnEstadisticas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				App.res.generateReport(informeEstadisticas,  App.res.getUsers(), App.res.getConcerts(), App.res.getArtists());
+			}
+		});
+		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnEstadisticas);
-//		}
-
+		}
+		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLocation(655, 70);
 		panelBotones.setSize(131, 493);

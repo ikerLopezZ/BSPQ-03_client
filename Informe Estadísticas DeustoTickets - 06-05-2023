@@ -3,7 +3,7 @@ ESTADÍSTICAS DeustoTickets
 
 USUARIOS
 ---------
-Número de usuarios en el sistema: 2
+Número de usuarios en el sistema: 3
 
 
 ARITSTAS
@@ -11,14 +11,14 @@ ARITSTAS
 Número de artistas en el sistema: 6
 
 Géneros musicales de los artistas de DeustoTickets:
-	Nº 1: POP, 5 artistas:
+	Nº 1: BLUES, 1 artistas:
+		- Hola
+	Nº 2: POP, 5 artistas:
 		- Hens
 		- Juancho Marqués
 		- Prueba
 		- Pruebadf
 		- Rels B
-	Nº 2: BLUES, 1 artistas:
-		- Hola
 
 
 CONCIERTOS
@@ -27,5 +27,5 @@ Número de conciertos registrados en el sistema: 8
 	Conciertos futuros: 7
 	Conciertos pasados: 1
 
-----------------------------------------------------------------
-Fecha y hora de la generación del informe: 06/05/2023, 21:22:21
+---------------------------------------------------------------
+Fecha y hora de la generación del informe: 06/05/2023, 21:42:10
