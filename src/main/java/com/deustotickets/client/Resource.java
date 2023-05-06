@@ -1,7 +1,13 @@
 package com.deustotickets.client;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -31,6 +37,7 @@ public class Resource {
 	protected static final Logger logger = LogManager.getLogger();
 	private Client client;
 	public static WebTarget webTarget;
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	public Resource(String hostname, String port) {
 		client = ClientBuilder.newClient();
@@ -344,6 +351,67 @@ public class Resource {
 				ArrayList<Artista> ret = (ArrayList<Artista>) response.readEntity(new GenericType<ArrayList<Artista>>() {});
 
 				return ret;
+			}
+		}
+		
+		public static void generateReport(String filename, List<Usuario> usuarios, List<Concierto> conciertos, List<Artista> artistas) {
+			if (filename != null && !usuarios.isEmpty() && !conciertos.isEmpty() && !artistas.isEmpty()) {
+				try (PrintWriter out = new PrintWriter(new File(filename))) {
+					String dateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy, HH:mm:ss").format(LocalDateTime.now());
+					Date actual;
+					actual = sdf.parse(dateTime);
+					out.println("ESTADÍSTICAS DeustoTickets");
+								
+					int contadorUsuarios = 0;
+					for (Usuario u : usuarios) {
+						contadorUsuarios ++;
+					}
+					out.println("Número de usuarios en el sistema DeustoTickets: " + contadorUsuarios);
+					
+					int contadorArtistas = 0;
+					for (Artista a : artistas) {
+						contadorArtistas ++;
+					}
+					out.println("Número de artistas en el sistema DeustoTickets: " + contadorArtistas);
+					
+					int contadorConciertos = 0;
+					for (Concierto c : conciertos) {
+						contadorConciertos ++;
+					}
+					out.println("Número de conciertos registrados en el sistema DeustoTickets: " + contadorConciertos);
+					
+					int conciertosFuturos = 0;
+					int conciertosPasados = 0;
+					
+				    for (Concierto c : conciertos) {
+				    	Date fechaConcierto;
+				    	try {
+							fechaConcierto = sdf.parse(c.getFecha());
+//							System.out.println(fechaConcierto);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							fechaConcierto = new Date(System.currentTimeMillis());
+						}
+				    	if(fechaConcierto.after(actual)) {
+				    		conciertosFuturos++;
+				    	} else {
+				    		conciertosPasados++;
+				    	}
+					}
+					out.println("Número de conciertos futuros registrados en el sistema DeustoTickets: " + conciertosFuturos);
+					out.println("Número de conciertos pasados registrados en el sistema DeustoTickets: " + conciertosPasados);
+
+					out.println("Fecha y hora de la generación del informe: " + dateTime);
+
+					System.out.println(String.format("- Se ha creado el fichero '%s'.", 
+							filename));
+					
+				} catch (Exception ex) {
+					System.err.println(String.format("Error escribiendo TXT '%s': %s", 
+							filename, ex.getMessage()));
+				}
+			} else {
+				System.out.println("- No se puede escribir el fichero TXT.");
 			}
 		}
 	

@@ -170,9 +170,9 @@ public class MainWindow {
 		usuariosScrollPane.setViewportView(usuariosList);
 
 		JPanel panelControlPerfil = new JPanel();
-		panelControlPerfil.setBounds(0, 495, 686, 68);
+		panelControlPerfil.setBounds(0, 495, 656, 68);
 		panelPantalla.add(panelControlPerfil);
-		panelControlPerfil.setLayout(new GridLayout(2, 2, 0, 0));
+		panelControlPerfil.setLayout(new GridLayout(0, 3, 0, 0));
 
 		JButton btnVerificar = new JButton("VERIFICAR ARTISTA");
 		btnVerificar.addActionListener(new ActionListener() {
@@ -182,9 +182,9 @@ public class MainWindow {
 				System.out.println(App.res.getUsers());
 			}
 		});
-		if (logged.getTipo() == TipoUsuario.GESTOR) {
+//		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnVerificar);
-		}
+//		}
 
 		JButton btnBloquearUsuario = new JButton("BLOQUEAR USUARIO");
 		btnBloquearUsuario.addActionListener(new ActionListener() {
@@ -198,9 +198,16 @@ public class MainWindow {
 				System.out.println(App.res.getUsers());
 			}
 		});
-		if (logged.getTipo() == TipoUsuario.GESTOR) {
+//		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnBloquearUsuario);
-		}
+			
+			JButton btnEstadisticas = new JButton("GENERAR ESTADÍSTICAS");
+			btnEstadisticas.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			panelControlPerfil.add(btnEstadisticas);
+//		}
 
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLocation(655, 70);
@@ -226,7 +233,6 @@ public class MainWindow {
 				for (Concierto concierto : conciertos) {
 					conciertosListModel.addElement(concierto);
 				}
-
 				conciertosList.setModel(conciertosListModel);
 			}
 		});

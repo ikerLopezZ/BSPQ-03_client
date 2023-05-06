@@ -1,0 +1,7 @@
+ESTADÍSTICAS DeustoTickets
+Número de usuarios en el sistema DeustoTickets: 2
+Número de artistas en el sistema DeustoTickets: 6
+Número de conciertos registrados en el sistema DeustoTickets: 8
+Número de conciertos futuros registrados en el sistema DeustoTickets: 7
+Número de conciertos pasados registrados en el sistema DeustoTickets: 1
+Fecha y hora de la generación del informe: 06/05/2023, 17:32:01
