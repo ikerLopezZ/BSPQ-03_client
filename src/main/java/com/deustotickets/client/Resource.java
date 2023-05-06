@@ -8,7 +8,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -24,6 +26,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.deustotickets.domain.Artista;
 import com.deustotickets.domain.Concierto;
+import com.deustotickets.domain.TipoGenero;
 import com.deustotickets.domain.TipoUsuario;
 import com.deustotickets.domain.Usuario;
 import com.deustotickets.gui.MainWindow;
@@ -359,26 +362,70 @@ public class Resource {
 				try (PrintWriter out = new PrintWriter(new File(filename))) {
 					String dateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy, HH:mm:ss").format(LocalDateTime.now());
 					Date actual;
+					ArrayList<TipoGenero> generosActuales = new ArrayList<>();
+					HashMap<TipoGenero, Integer> generos = new HashMap<>();
 					actual = sdf.parse(dateTime);
 					out.println("ESTADÍSTICAS DeustoTickets");
+					out.println("---------------------------");
 								
+					out.println("\nUSUARIOS");
+					out.println("---------");
+					
 					int contadorUsuarios = 0;
 					for (Usuario u : usuarios) {
 						contadorUsuarios ++;
 					}
-					out.println("Número de usuarios en el sistema DeustoTickets: " + contadorUsuarios);
+					out.println("Número de usuarios en el sistema: " + contadorUsuarios);
+					
+					out.println("\n\nARITSTAS");
+					out.println("---------");
 					
 					int contadorArtistas = 0;
 					for (Artista a : artistas) {
 						contadorArtistas ++;
+						if(!generosActuales.contains(a.getGenero())) {
+//							generosActuales.add(a.getGenero());
+							generos.put(a.getGenero(), 0);
+						}
 					}
-					out.println("Número de artistas en el sistema DeustoTickets: " + contadorArtistas);
 					
+					
+//					String genero = "";
+//					
+//					for(TipoGenero tg : generosActuales) {
+//						contadorGeneros++;
+//						genero.equals(tg);
+//						int valueof(genero);
+//					}
+										
+					for (Artista a : artistas) {
+						for(Map.Entry<TipoGenero, Integer> entry : generos.entrySet()) {
+							if(entry.getKey().equals(a.getGenero())){
+								entry.setValue(entry.getValue()+1);
+							}
+						}
+							
+					}
+					out.println("Número de artistas en el sistema: " + contadorArtistas);
+					out.println("\nGéneros musicales de los artistas de DeustoTickets:");
+					int cont = 1;
+					for(Map.Entry<TipoGenero, Integer> entry : generos.entrySet()) {
+						out.println("	Nº " + cont +": "+ entry.getKey() + ", " + entry.getValue() + " artistas:");
+						for(Artista a : artistas) {
+							if(entry.getKey().equals(a.getGenero())) {
+								out.println("		- " + a.getNombreApellidos());
+							}
+						}
+						cont++;
+					}					
+					
+					out.println("\n\nCONCIERTOS");
+					out.println("-----------");
 					int contadorConciertos = 0;
 					for (Concierto c : conciertos) {
 						contadorConciertos ++;
 					}
-					out.println("Número de conciertos registrados en el sistema DeustoTickets: " + contadorConciertos);
+					out.println("Número de conciertos registrados en el sistema: " + contadorConciertos);
 					
 					int conciertosFuturos = 0;
 					int conciertosPasados = 0;
@@ -398,12 +445,14 @@ public class Resource {
 				    		conciertosPasados++;
 				    	}
 					}
-					out.println("Número de conciertos futuros registrados en el sistema DeustoTickets: " + conciertosFuturos);
-					out.println("Número de conciertos pasados registrados en el sistema DeustoTickets: " + conciertosPasados);
+					out.println("	Conciertos futuros: " + conciertosFuturos);
+					out.println("	Conciertos pasados: " + conciertosPasados);
 
+					out.println("\n---------------------------------------------------------------");
+					
 					out.println("Fecha y hora de la generación del informe: " + dateTime);
 
-					System.out.println(String.format("- Se ha creado el fichero '%s'.", 
+					System.out.println(String.format("'%s' Report successfully generated.", 
 							filename));
 					
 				} catch (Exception ex) {
