@@ -364,8 +364,6 @@ public class Resource {
 		} else {
 			logger.info("Artists successfully recovered");
 			System.out.println("Artists successfully recovered");
-//				return (ArrayList<Artista>) response.readEntity(ArrayList.class);
-
 			ArrayList<Artista> ret = (ArrayList<Artista>) response.readEntity(new GenericType<ArrayList<Artista>>() {
 			});
 

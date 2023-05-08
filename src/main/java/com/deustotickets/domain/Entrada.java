@@ -10,12 +10,15 @@ public class Entrada {
 	private Concierto concierto;
 	private double precio;
 	private String nombre;
-	// Pensar si queremos hacer tipos de entrada (VIP, normal, ...)
+	
 	
 	public Entrada(String id, Concierto concierto, double precio, String nombre) {
 		super();
 		this.id = id;
 		this.concierto = concierto;
+		if(this.concierto.getEntradasDisponibles() > 0) {
+			this.concierto.comprarEntrada();
+		}
 		this.precio = precio;
 		this.nombre = nombre;
 	}
