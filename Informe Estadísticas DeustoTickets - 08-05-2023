@@ -1,0 +1,89 @@
+ESTADÍSTICAS DeustoTickets
+---------------------------
+
+USUARIOS
+---------
+Número de usuarios en el sistema: 3
+
+
+ARITSTAS
+---------
+Número de artistas en el sistema: 6
+
+Géneros musicales de los artistas de DeustoTickets:
+	Nº 1: POP, 5 artistas:
+		- Hens
+		- Juancho Marqués
+		- Prueba
+		- Pruebadf
+		- Rels B
+	Nº 2: BLUES, 1 artistas:
+		- Hola
+
+
+CONCIERTOS
+-----------
+Número de conciertos registrados en el sistema: 8
+
+	CONCIERTOS FUTUROS: 7
+
+ 		Nº1: [Artista: Hens, fecha: 29/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+			Entradas disponibles: 0
+
+ 		Nº2: [Artista: Juancho Marqués, fecha: 09/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+			Entradas disponibles: 0
+
+ 		Nº3: [Artista: Rels B, fecha: 11/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+			Entradas disponibles: 0
+
+ 		Nº4: [Artista: Prueba, fecha: 11/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+			Entradas disponibles: 0
+
+ 		Nº5: [Artista: Pruebadf, fecha: 11/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+			Entradas disponibles: 0
+
+ 		Nº6: [Artista: Hola, fecha: 11/02/2027, lugar: BEC]
+			Entradas vendidas: 1110
+			Entradas disponibles: 0
+
+ 		Nº7: [Artista: Hola, fecha: 2021-05-15, lugar: Bilbao]
+			Entradas vendidas: 1500
+			Entradas disponibles: 0
+
+ 		Nº8: [Artista: Hola, fecha: 09/02/2011, lugar: Bilbao]
+			Entradas vendidas: 1500
+			Entradas disponibles: 0
+
+	CONCIERTOS PASADOS: 1
+
+ 		Nº1: [Artista: Hens, fecha: 29/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+
+ 		Nº2: [Artista: Juancho Marqués, fecha: 09/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+
+ 		Nº3: [Artista: Rels B, fecha: 11/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+
+ 		Nº4: [Artista: Prueba, fecha: 11/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+
+ 		Nº5: [Artista: Pruebadf, fecha: 11/02/2024, lugar: BEC]
+			Entradas vendidas: 1110
+
+ 		Nº6: [Artista: Hola, fecha: 11/02/2027, lugar: BEC]
+			Entradas vendidas: 1110
+
+ 		Nº7: [Artista: Hola, fecha: 2021-05-15, lugar: Bilbao]
+			Entradas vendidas: 1500
+
+ 		Nº8: [Artista: Hola, fecha: 09/02/2011, lugar: Bilbao]
+			Entradas vendidas: 1500
+
+---------------------------------------------------------------
+Fecha y hora de la generación del informe: 08/05/2023, 20:07:57

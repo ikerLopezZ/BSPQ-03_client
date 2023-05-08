@@ -455,10 +455,25 @@ public class Resource {
 						conciertosPasados++;
 					}
 				}
-				out.println("	Conciertos futuros: " + conciertosFuturos);
-				out.println("	Conciertos pasados: " + conciertosPasados);
+				out.println("\n	CONCIERTOS FUTUROS: " + conciertosFuturos);
+				int contador2 = 1;
+				for(Concierto c : conciertos) {
+					out.println("\n 		Nº" + contador2 + ": [Artista: "+c.getArtista().getNombreApellidos() + ", fecha: " + c.getFecha() + ", lugar: " + c.getLugar()+ "]");
+					out.println(			"			Entradas vendidas: " + (c.getAforo() - c.getEntradasDisponibles())); 
+					out.println(			"			Entradas disponibles: " + c.getEntradasDisponibles());
+					contador2++;
+				}
+				
+				out.println("\n	CONCIERTOS PASADOS: " + conciertosPasados);
+				int contador3 = 1;
+				for(Concierto c : conciertos) {
+					out.println("\n 		Nº" + contador3 + ": [Artista: "+c.getArtista().getNombreApellidos() + ", fecha: " + c.getFecha() + ", lugar: " + c.getLugar()+ "]");
+					out.println(			"			Entradas vendidas: " + (c.getAforo() - c.getEntradasDisponibles()));
+					contador3++;
+				}
 
 				out.println("\n---------------------------------------------------------------");
+				
 
 				out.println("Fecha y hora de la generación del informe: " + dateTime);
 
