@@ -459,6 +459,7 @@ public class Resource {
 				int contador2 = 1;
 				for(Concierto c : conciertos) {
 					out.println("\n 		Nº" + contador2 + ": [Artista: "+c.getArtista().getNombreApellidos() + ", fecha: " + c.getFecha() + ", lugar: " + c.getLugar()+ "]");
+					out.println(			"			Aforo: " + c.getAforo()); 
 					out.println(			"			Entradas vendidas: " + (c.getAforo() - c.getEntradasDisponibles())); 
 					out.println(			"			Entradas disponibles: " + c.getEntradasDisponibles());
 					contador2++;

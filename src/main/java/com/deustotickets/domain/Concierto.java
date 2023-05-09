@@ -68,7 +68,7 @@ public class Concierto {
 	}
 	
 	public int getEntradasDisponibles() {
-		return entradasDisponibles;
+		return this.entradasDisponibles;
 	}
 
 	public void setEntradasDisponibles(int entradasDisponibles) {

@@ -209,7 +209,7 @@ public class MainWindow {
 		JButton btnEstadisticas = new JButton("GENERAR ESTADÍSTICAS");
 		btnEstadisticas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				App.res.generateReport(informeEstadisticas,  App.res.getUsers(), App.res.getConcerts(), App.res.getArtists());
+				App.res.generateReport(informeEstadisticas, App.res.getUsers(), App.res.getConcerts(), App.res.getArtists());
 			}
 		});
 		if (logged.getTipo() == TipoUsuario.GESTOR) {
