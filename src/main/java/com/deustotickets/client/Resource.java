@@ -26,6 +26,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.deustotickets.domain.Artista;
 import com.deustotickets.domain.Concierto;
+import com.deustotickets.domain.Entrada;
 import com.deustotickets.domain.TipoGenero;
 import com.deustotickets.domain.TipoUsuario;
 import com.deustotickets.domain.Usuario;
@@ -228,6 +229,31 @@ public class Resource {
 			return true;
 		}
 	}
+	
+	/**
+	 *  Método para comprar una entrada y registrarla debidamente
+	 *  en la base de datos de DeustoTickets
+	 * 
+	 * @param id
+	 * @param con
+	 * @param aforo
+	 * @param lugar
+	 * @return Boolean
+	 */
+	public static boolean buyTicket(Entrada ent) {
+		WebTarget registerUserWebTarget = webTarget.path("buyTicket");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.post(Entity.entity(ent, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Ticket successfully bought");
+			System.out.println("Ticket successfully bought");
+			return true;
+		}
+	}
 
 	/**
 	 * Método para recuperar todo los conciertos de la BBDD de DeustoTickets
@@ -344,7 +370,6 @@ public class Resource {
 			ArrayList<Usuario> ret = (ArrayList<Usuario>) response.readEntity(new GenericType<ArrayList<Usuario>>() {
 			
 			});
-
 			return ret;
 		}
 	}
