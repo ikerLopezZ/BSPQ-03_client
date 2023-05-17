@@ -1,8 +1,8 @@
 package com.deustotickets.domain;
 
-import java.io.Serializable;
 
-import javax.jdo.annotations.PrimaryKey;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * 
@@ -17,6 +17,7 @@ public class Usuario implements Serializable{
 	private String password;
 	private TipoUsuario tipo;
 	private boolean banned;
+	private ArrayList<Entrada> misEntradas;
 	
 	public Usuario(String nombreApellidos, String email, String password, TipoUsuario tipo) {
 		super();
@@ -25,6 +26,7 @@ public class Usuario implements Serializable{
 		this.password = password;
 		this.tipo = tipo;
 		this.banned = false;
+		this.misEntradas = new ArrayList<Entrada>();
 	}
 	
 	public Usuario() {
@@ -70,10 +72,17 @@ public class Usuario implements Serializable{
 		this.banned = banned;
 	}
 
+	public ArrayList<Entrada> getMisEntradas() {
+		return misEntradas;
+	}
+
+	public void setMisEntradas(ArrayList<Entrada> misEntradas) {
+		this.misEntradas = misEntradas;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [nombre y apellidos=" + nombreApellidos + ", email=" + email + ", password="
 				+ password + ", tipo=" + tipo + "]";
 	}
-	
 }

@@ -1,11 +1,13 @@
 package com.deustotickets.domain;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author BSPQ-03
  *
  */
-public class Entrada {
+public class Entrada implements Serializable {
 	private String id;
 	private Concierto concierto;
 	private double precio;
@@ -21,6 +23,9 @@ public class Entrada {
 		}
 		this.precio = precio;
 		this.nombre = nombre;
+	}
+	
+	public Entrada() {
 	}
 	
 	public String getId() {

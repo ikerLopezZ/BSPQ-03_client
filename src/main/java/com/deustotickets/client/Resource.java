@@ -244,6 +244,10 @@ public class Resource {
 		WebTarget registerUserWebTarget = webTarget.path("buyTicket");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		Response response = invocationBuilder.post(Entity.entity(ent, MediaType.APPLICATION_JSON));
+		ArrayList<Entrada> mine = MainWindow.logged.getMisEntradas();
+		mine.add(ent);
+		MainWindow.logged.setMisEntradas(mine);
+		updateUserTickets(MainWindow.logged);
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 			System.out.println("Error connecting with the server");
@@ -251,6 +255,21 @@ public class Resource {
 		} else {
 			logger.info("Ticket successfully bought");
 			System.out.println("Ticket successfully bought");
+			return true;
+		}
+	}
+	
+	public static boolean updateUserTickets(Usuario u) {
+		WebTarget registerUserWebTarget = webTarget.path("updateUserTickets");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.post(Entity.entity(u, MediaType.APPLICATION_JSON));
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("User updated");
+			System.out.println("User updated");
 			return true;
 		}
 	}

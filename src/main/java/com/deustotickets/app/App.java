@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.UIManager;
 import com.deustotickets.client.Resource;
 import com.deustotickets.domain.Artista;
+import com.deustotickets.domain.Concierto;
+import com.deustotickets.domain.Entrada;
 import com.deustotickets.domain.TipoGenero;
 import com.deustotickets.domain.TipoUsuario;
 import com.deustotickets.gui.LoginWindow;
