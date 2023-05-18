@@ -67,7 +67,7 @@ public class EntradaTest {
 	
 	@Test
 	public void testToString() {
-		assertEquals(e.toString(), "Entrada [id=0, concierto=Concierto : null. ARTISTA: null, FECHA: null, LUGAR: null, AFORO: 0., precio=0.0, nombre=test]");
+		assertEquals(e.toString(), "Entrada [id=0, concierto=Concierto : null. ARTISTA: null, FECHA: null, LUGAR: null, entradasDisponibles: 0., precio=0.0, nombre=test]");
 	}
-	
+		
 }
