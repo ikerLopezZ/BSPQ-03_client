@@ -62,6 +62,11 @@ public class MainWindow {
 	 * @wbp.parser.entryPoint
 	 * 
 	 */
+	
+	public Usuario getLogged() {
+		return logged;
+	}
+	
 	public static void initialize() {
 		frmMain = new JFrame();
 		frmMain.getContentPane().setBackground(new Color(255, 255, 255));

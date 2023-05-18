@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -23,6 +24,7 @@ import org.mockito.Mock;
 
 import com.deustotickets.domain.Artista;
 import com.deustotickets.domain.Concierto;
+import com.deustotickets.domain.Entrada;
 import com.deustotickets.domain.TipoUsuario;
 import com.deustotickets.domain.Usuario;
 import com.deustotickets.gui.MainWindow;
@@ -43,18 +45,29 @@ public class ResourceTest {
 
     @Mock
     private Response response;
+    
+    @Mock
+    private Usuario logged;
+    
+    @Mock
+    private MainWindow mainwindow;
+
 
     @Before
     public void setUp() {
+    	MainWindow.logged = new Usuario("test", "test@example.com", "password", TipoUsuario.CLIENTE);
         client = mock(Client.class);
         webTarget = mock(WebTarget.class);
         userWebTarget = mock(WebTarget.class);
         invocationBuilder = mock(Invocation.Builder.class);
         response = mock(Response.class);
+        logged = mock(Usuario.class);
+        mainwindow = mock(MainWindow.class);
         Resource.webTarget = webTarget;
         when(client.target(any(String.class))).thenReturn(webTarget);
         when(webTarget.path(any(String.class))).thenReturn(userWebTarget);
         when(userWebTarget.request(MediaType.APPLICATION_JSON)).thenReturn(invocationBuilder);
+        when(logged.getMisEntradas()).thenReturn(new ArrayList<Entrada>());
     }
     
     @Test
@@ -288,4 +301,19 @@ public class ResourceTest {
         assertEquals(Resource.getArtists(), null);
     }
     
+    @Test
+    public void testBuyTicketSuccess() {
+        when(response.getStatus()).thenReturn(Response.Status.OK.getStatusCode());
+        when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
+        
+        assertTrue(Resource.buyTicket(new Entrada("TEST", new Concierto("0", new Artista(), "01/01/2000", "test", 0), 10.00, "test")));
+    }
+    
+    @Test
+    public void testBuyTicketFailure() {
+        when(response.getStatus()).thenReturn(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+        when(invocationBuilder.post(any(Entity.class))).thenReturn(response);
+
+        assertFalse(Resource.buyTicket(new Entrada("TEST", new Concierto("0", new Artista(), "01/01/2000", "test", 0), 10.00, "test")));
+    }  
 }
