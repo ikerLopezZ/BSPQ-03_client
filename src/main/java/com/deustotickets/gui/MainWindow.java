@@ -52,21 +52,24 @@ public class MainWindow {
 	private static DefaultListModel<Artista> artistasListModel;
 	private static JList<Artista> artistasList;
 	private static JScrollPane artistasScrollPane;
+	private static DefaultListModel<Artista> artistasFavoritosListModel;
+	private static JList<Artista> artistasFavoritosList;
+	private static JScrollPane artistasFavoritosScrollPane;
 	private static DefaultListModel<Usuario> usuariosListModel;
 	private static JList<Usuario> usuariosList;
 	private static JScrollPane usuariosScrollPane;
 	private static String fechaActual = DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now());
 	private static String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual;
 
-	/**
-	 * @wbp.parser.entryPoint
-	 * 
-	 */
+
 	
 	public Usuario getLogged() {
 		return logged;
 	}
 	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void initialize() {
 		frmMain = new JFrame();
 		frmMain.getContentPane().setBackground(new Color(255, 255, 255));
@@ -116,6 +119,13 @@ public class MainWindow {
 		lblUsuarios.setBounds(153, 210, 320, 31);
 		lblUsuarios.setVisible(false);
 		panelDatos.add(lblUsuarios);
+		
+		JLabel lblArtistasFavositos = new JLabel("MIS ARTISTAS FAVORITOS");
+		lblArtistasFavositos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblArtistasFavositos.setFont(new Font("Footlight MT Light", Font.BOLD, 24));
+		lblArtistasFavositos.setBounds(175, 10, 300, 31);
+		lblArtistasFavositos.setVisible(false);
+		panelDatos.add(lblArtistasFavositos);
 
 		JButton btnBuscarConcierto = new JButton("Buscar concierto");
 		btnBuscarConcierto.addActionListener(new ActionListener() {
@@ -139,6 +149,23 @@ public class MainWindow {
 		btnBuscarConcierto.setVisible(false);
 		panelDatos.add(btnBuscarConcierto);
 
+		JButton btnFavoritos = new JButton("FAVORITOS");
+		btnFavoritos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ArrayList<Artista> artistas = App.res.getArtists();
+				for(Artista artista : artistas) {
+					artistasFavoritosListModel.addElement(artista);
+				}
+				
+				System.out.println(artistasFavoritosList);
+			}
+		});
+		
+		btnFavoritos.setBounds(576, 56, 70, 20);
+		btnFavoritos.setVisible(false);
+		panelDatos.add(btnFavoritos);
+		
 		JButton btnTodosConciertos = new JButton("Mostrar todos");
 		btnTodosConciertos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -169,6 +196,14 @@ public class MainWindow {
 		artistasScrollPane.setBounds(80, 45, 501, 150);
 		artistasScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		artistasScrollPane.setViewportView(artistasList);
+		
+		// Crear el JScrollPane y la JList de artistas fvaoritos
+		artistasFavoritosListModel = new DefaultListModel<Artista>();
+		artistasFavoritosList = new JList<>(artistasFavoritosListModel);
+		artistasFavoritosScrollPane = new JScrollPane(artistasFavoritosList);
+		artistasFavoritosScrollPane.setBounds(80, 45, 501, 150);
+		artistasFavoritosScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		artistasFavoritosScrollPane.setViewportView(artistasFavoritosList);
 
 		// Crear el JScrollPane y la JList de usuarios
 		usuariosListModel = new DefaultListModel<Usuario>();
@@ -235,9 +270,11 @@ public class MainWindow {
 				usuariosScrollPane.setVisible(false);
 				conciertosScrollPane.setVisible(true);
 				// artistasListModel.clear();
+				lblArtistasFavositos.setVisible(false);
 				lblProximosConciertos.setVisible(true);
 				lblArtistas.setVisible(false);
 				lblUsuarios.setVisible(false);
+				btnFavoritos.setVisible(false);
 				btnBuscarConcierto.setVisible(true);
 				btnTodosConciertos.setVisible(true);
 				panelDatos.add(conciertosScrollPane, BorderLayout.CENTER);
@@ -261,9 +298,11 @@ public class MainWindow {
 				usuariosScrollPane.setVisible(true);
 				artistasListModel.clear();
 				usuariosListModel.clear();
+				lblArtistasFavositos.setVisible(false);
 				lblProximosConciertos.setVisible(false);
 				lblArtistas.setVisible(true);
 				lblUsuarios.setVisible(true);
+				btnFavoritos.setVisible(true);
 				btnBuscarConcierto.setVisible(false);
 				btnTodosConciertos.setVisible(false);
 				panelDatos.add(artistasScrollPane, BorderLayout.CENTER);
@@ -290,14 +329,17 @@ public class MainWindow {
 		JButton btnNewButton_2 = new JButton("ENTRADAS");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				btnFavoritos.setVisible(false);
 				btnBuscarConcierto.setVisible(false);
 				btnTodosConciertos.setVisible(false);
 				lblProximosConciertos.setVisible(false);
 				lblArtistas.setVisible(false);
 				lblUsuarios.setVisible(false);
+				lblArtistasFavositos.setVisible(false);
 				usuariosScrollPane.setVisible(false);
 				artistasScrollPane.setVisible(false);
 				conciertosScrollPane.setVisible(false);
+				artistasFavoritosScrollPane.setVisible(false);
 				artistasListModel.clear();
 				conciertosListModel.clear();
 				usuariosListModel.clear();
@@ -305,6 +347,32 @@ public class MainWindow {
 		});
 		btnNewButton_2.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
 		panelBotones.add(btnNewButton_2);
+		
+		JButton btnArtistasFavoritos = new JButton("ARTISTAS FAVORITOS");
+		btnArtistasFavoritos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				artistasFavoritosListModel.clear();
+				artistasFavoritosScrollPane.setVisible(true);
+				artistasScrollPane.setVisible(false);
+				usuariosScrollPane.setVisible(false);
+				conciertosScrollPane.setVisible(false);
+				btnFavoritos.setVisible(false);
+				lblArtistas.setVisible(false);
+				lblProximosConciertos.setVisible(false);
+				lblUsuarios.setVisible(false);
+				lblArtistasFavositos.setVisible(true);
+				panelDatos.add(artistasFavoritosScrollPane, BorderLayout.CENTER);
+				
+				ArrayList<Artista> artistas = App.res.getArtists();
+
+				for (Artista artista : artistas) {
+					artistasFavoritosListModel.addElement(artista);
+				}
+
+				artistasFavoritosList.setModel(artistasFavoritosListModel);
+			}
+		});
+		panelBotones.add(btnArtistasFavoritos);
 
 		JButton btnPerfilPeque = new JButton("");
 		btnPerfilPeque.setBorder(null);
@@ -322,5 +390,4 @@ public class MainWindow {
 
 		frmMain.setVisible(true);
 	}
-
 }
