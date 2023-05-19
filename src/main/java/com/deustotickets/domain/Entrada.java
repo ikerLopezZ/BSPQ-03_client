@@ -3,16 +3,19 @@ package com.deustotickets.domain;
 import java.io.Serializable;
 
 /**
+ * Class that represents a concert ticket.
  * 
  * @author BSPQ-03
- *
  */
 public class Entrada implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private Concierto concierto;
 	private double precio;
 	private String nombre;
 	
+	public Entrada() {
+	}
 	
 	public Entrada(String id, Concierto concierto, double precio, String nombre) {
 		super();
@@ -25,9 +28,6 @@ public class Entrada implements Serializable {
 		this.nombre = nombre;
 	}
 	
-	public Entrada() {
-	}
-	
 	public String getId() {
 		return id;
 	}
@@ -35,21 +35,27 @@ public class Entrada implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
 	public Concierto getConcierto() {
 		return concierto;
 	}
+	
 	public void setConcierto(Concierto concierto) {
 		this.concierto = concierto;
 	}
+	
 	public double getPrecio() {
 		return precio;
 	}
+	
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}

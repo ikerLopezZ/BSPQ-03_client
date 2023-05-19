@@ -23,25 +23,20 @@ import javax.swing.border.Border;
 import com.deustotickets.client.Resource;
 
 /**
+ * Class that manages the user profile window.
  * 
  * @author BSPQ-03
- *
  */
 public class ProfileWindow {
-
 	private static JFrame frmProfile;
 	private static JTextField textFieldEmail;
 	private static JPasswordField passwordFieldContrasenya;
 	private static Border line_1 = BorderFactory.createLineBorder(new Color(194, 194, 194), 2);
 	private static Border line_2 = BorderFactory.createLineBorder(new Color(227, 30, 36), 2);
-	private static ImageIcon logo_1 = new ImageIcon("src/main/resources/logoPerfil.png");
-	private static ImageIcon logo_2 = new ImageIcon("src/main/resources/logoPerfil.png");
-	private static ImageIcon lapiz = new ImageIcon("src/main/resources/pencil.png");
+	private static ImageIcon logo_1 = new ImageIcon("src/main/resources/images/logoPerfil.png");
+	private static ImageIcon logo_2 = new ImageIcon("src/main/resources/images/logoPerfil.png");
+	private static ImageIcon lapiz = new ImageIcon("src/main/resources/images/pencil.png");
 
-	/**
-	 * @wbp.parser.entryPoint
-	 * 
-	 */
 	public static void initialize() {
 		frmProfile = new JFrame();
 		frmProfile.setTitle("DeustoTickets - Perfil " + MainWindow.logged.getNombreApellidos());

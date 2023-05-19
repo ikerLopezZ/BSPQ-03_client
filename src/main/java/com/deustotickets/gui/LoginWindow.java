@@ -33,9 +33,9 @@ import javax.swing.JPasswordField;
 import java.awt.BorderLayout;
 
 /**
+ * Class that manages the login window.
  * 
  * @author BSPQ-03
- *
  */
 public class LoginWindow {
 	private static JFrame frmLogin;
@@ -43,14 +43,11 @@ public class LoginWindow {
 	private static JPasswordField passwordFieldContrasenya;
 	private static Border line_1 = BorderFactory.createLineBorder(new Color(194, 194, 194), 2);
 	private static Border line_2 = BorderFactory.createLineBorder(new Color(227, 30, 36), 2);
-	private static ImageIcon logo_1 = new ImageIcon("src/main/resources/deustotickets_logo.png");
-	private static ImageIcon logo_2 = new ImageIcon("src/main/resources/deustotickets_logo_1.png");
-	private static ImageIcon logoGoogle = new ImageIcon("src/main/resources/logoGoogle.png");
-	private static ImageIcon logoFacebook = new ImageIcon("src/main/resources/logoFacebook.png");
-	
-	/**
-	 * 
-	 */
+	private static ImageIcon logo_1 = new ImageIcon("src/main/resources/images/deustotickets_logo.png");
+	private static ImageIcon logo_2 = new ImageIcon("src/main/resources/images/deustotickets_logo_1.png");
+	private static ImageIcon logoGoogle = new ImageIcon("src/main/resources/images/logoGoogle.png");
+	private static ImageIcon logoFacebook = new ImageIcon("src/main/resources/images/logoFacebook.png");
+
 	public static void initialize() {
 		frmLogin = new JFrame();
 		frmLogin.setTitle("DeustoTickets - Inicio de sesion");

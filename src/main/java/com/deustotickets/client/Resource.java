@@ -2,7 +2,6 @@ package com.deustotickets.client;
 
 import java.io.File;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,9 +32,10 @@ import com.deustotickets.domain.Usuario;
 import com.deustotickets.gui.MainWindow;
 
 /**
+ * Class that manages all interaction with the server.
+ * It contains all the methods that give functionality to the application.
  * 
  * @author BSPQ-03
- *
  */
 public class Resource {
 	protected static final Logger logger = LogManager.getLogger();
@@ -47,13 +47,13 @@ public class Resource {
 		client = ClientBuilder.newClient();
 		webTarget = client.target(String.format("http://%s:%s/rest/resource", hostname, port));
 	}
-
+	
 	/**
-	 * Método de inicio de sesión de un usuario
+	 * Logs in with the user's account.
 	 * 
-	 * @param email    {@link String}
-	 * @param password {@link String}
-	 * @return {@link Boolean}
+	 * @param email e-mail of the user
+	 * @param password password of the user
+	 * @return true if the login is successful and false if it is not
 	 */
 	public static boolean loginUser(String email, String password) {
 		WebTarget userWebTarget = webTarget.path("login");
@@ -74,13 +74,14 @@ public class Resource {
 	}
 
 	/**
-	 * Método de registro de un usuario
+	 * Registers the user.
 	 * 
-	 * @param nombreApellidos {@link String}
-	 * @param email           {@link String}
-	 * @param password        {@link String}
-	 * @param tipo            {@link TipoUsuario}
-	 * @return {@link Boolean}
+	 * @param nombreApellidos first and last name of the user
+	 * @param email e-mail of the user
+	 * @param password password of the user
+	 * @param tipo type of user of the user
+	 * @return true if the login is successful and false if it is not
+	 * @see TipoUsuario
 	 */
 	public static boolean registerUser(String nombreApellidos, String email, String password, TipoUsuario tipo) {
 		WebTarget userWebTarget = webTarget.path("register");
@@ -99,9 +100,9 @@ public class Resource {
 	}
 
 	/**
-	 * Método para cerrar la sesión de un usuario
+	 * Logs out the user.
 	 * 
-	 * @return {@link Boolean}
+	 * @return true if the logout is successful and false if it is not
 	 */
 	public static boolean closeSession() {
 		if (MainWindow.logged != null) {
@@ -115,11 +116,11 @@ public class Resource {
 	}
 
 	/**
-	 * Método para cambiar el nombre de usuario de un usuario
+	 * Changes the user's username. 
 	 * 
-	 * @param nombreApellidos
-	 * @param email
-	 * @return
+	 * @param nombreApellidos first and last name of the user
+	 * @param email e-mail of the user
+	 * @return true if the username change is successful and false if it is not
 	 */
 	public static boolean changeUsername(String nombreApellidos, String email) {
 		WebTarget userWebTarget = webTarget.path("changeUsername");
@@ -138,10 +139,11 @@ public class Resource {
 	}
 
 	/**
-	 * Método para cambiar la contraseña de un usuario
+	 * Changes the user's password.
 	 * 
-	 * @param password
-	 * @return
+	 * @param email e-mail of the user
+	 * @param password password of the user
+	 * @return true if the password change is successful and false if it is not
 	 */
 	public static boolean changePassword(String email, String password) {
 		WebTarget userWebTarget = webTarget.path("changePassword");
@@ -160,10 +162,10 @@ public class Resource {
 	}
 
 	/**
-	 * Método para borrar la cuenta de un usuario
+	 * Deletes the user's account.
 	 * 
-	 * @param email
-	 * @return
+	 * @param email e-mail of the user
+	 * @return true if the account deletion is successful and false if it is not
 	 */
 	public static boolean deleteAccount(String email) {
 		WebTarget registerUserWebTarget = webTarget.path("deleteAccount");
@@ -182,14 +184,15 @@ public class Resource {
 	}
 
 	/**
-	 * Método para añadir un concierto a la BBDD de DeustoTickets
+	 * Adds a concert.
 	 * 
-	 * @param id
-	 * @param artista
-	 * @param fecha
-	 * @param lugar
-	 * @param aforo
-	 * @return
+	 * @param id concert id
+	 * @param artista artist associated with the concert
+	 * @param fecha concert date
+	 * @param lugar place where the concert is held
+	 * @param aforo concert capacity
+	 * @return true if the concert addition is successful and false if it is not
+	 * @see Artista
 	 */
 	public static boolean addConcert(String id, Artista artista, String fecha, String lugar, int aforo) {
 		WebTarget registerUserWebTarget = webTarget.path("addConcert");
@@ -208,10 +211,10 @@ public class Resource {
 	}
 
 	/**
-	 * Método para borrar un concierto de la BBDD de DeustoTickets
+	 * Deletes a concert.
 	 * 
-	 * @param id
-	 * @return
+	 * @param id concert id
+	 * @return true if the concert deletion is successful and false if it is not
 	 */
 	public static boolean deleteConcert(String id) {
 		WebTarget registerUserWebTarget = webTarget.path("deleteConcert");
@@ -231,14 +234,11 @@ public class Resource {
 	}
 	
 	/**
-	 *  Método para comprar una entrada y registrarla debidamente
-	 *  en la base de datos de DeustoTickets
+	 * Buys a concert ticket.
 	 * 
-	 * @param id
-	 * @param con
-	 * @param aforo
-	 * @param lugar
-	 * @return Boolean
+	 * @param ent concert ticket to buy
+	 * @return true if the ticket purchase is successful and false if it is not
+	 * @see Entrada
 	 */
 	public static boolean buyTicket(Entrada ent) {
 		WebTarget registerUserWebTarget = webTarget.path("buyTicket");
@@ -259,6 +259,13 @@ public class Resource {
 		}
 	}
 	
+	/**
+	 * Updates the user concert tickets.
+	 * 
+	 * @param u user whose concert tickets are to be updated
+	 * @return true if the user ticket update is successful and false if it is not
+	 * @see Usuario
+	 */
 	public static boolean updateUserTickets(Usuario u) {
 		WebTarget registerUserWebTarget = webTarget.path("updateUserTickets");
 		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
@@ -275,9 +282,10 @@ public class Resource {
 	}
 
 	/**
-	 * Método para recuperar todo los conciertos de la BBDD de DeustoTickets
+	 * Gets all the concerts.
 	 * 
-	 * @return
+	 * @return an ArrayList with all concerts
+	 * @see Concierto
 	 */
 	public static ArrayList<Concierto> getConcerts() {
 		WebTarget registerUserWebTarget = webTarget.path("getConcerts");
@@ -300,14 +308,15 @@ public class Resource {
 	}
 
 	/**
-	 * Método para modificar un concierto de la BBDD de DeustoTickets
+	 * Modifies a concert.
 	 * 
-	 * @param id
-	 * @param artista
-	 * @param fecha
-	 * @param lugar
-	 * @param aforo
-	 * @return
+	 * @param id concert id
+	 * @param artista artist associated with the concert
+	 * @param fecha concert date
+	 * @param lugar place where the concert is held
+	 * @param aforo concert capacity
+	 * @return true if the concert modification is successful and false if it is not
+	 * @see Artista
 	 */
 	public static boolean modifyConcert(String id, Artista artista, String fecha, String lugar, int aforo) {
 		WebTarget registerUserWebTarget = webTarget.path("modifyConcert");
@@ -326,10 +335,10 @@ public class Resource {
 	}
 
 	/**
-	 * Método para verificar un artista en DeustoTickets
+	 * Verifies an artist.
 	 * 
-	 * @param email
-	 * @return
+	 * @param email e-mail of the artist
+	 * @return true if the artist verification is successful and false if it is not
 	 */
 	public static boolean verifyArtist(String email) {
 
@@ -349,9 +358,10 @@ public class Resource {
 	}
 
 	/**
-	 * Método para bloquear a un usuario de DeustoTickets
-	 * @param email
-	 * @return
+	 * Bans a user.
+	 * 
+	 * @param email e-mail of the user
+	 * @return true if the user ban is successful and false if it is not
 	 */
 	public static boolean banUser(String email) {
 
@@ -371,8 +381,10 @@ public class Resource {
 	}
 
 	/**
-	 * Método para recuperar todos los usuarios de la BBDD
-	 * @return
+	 * Gets all the users.
+	 * 
+	 * @return an ArrayList with all users
+	 * @see Usuario
 	 */
 	public static ArrayList<Usuario> getUsers() {
 
@@ -394,8 +406,10 @@ public class Resource {
 	}
 
 	/**
-	 * Método para recuperar todos los artistas de la BBDD
-	 * @return
+	 * Gets all the artists.
+	 * 
+	 * @return an ArrayList with all artists
+	 * @see Artista
 	 */
 	public static ArrayList<Artista> getArtists() {
 		WebTarget getArtistsWebTarget = webTarget.path("getArtists");
@@ -416,20 +430,24 @@ public class Resource {
 	}
 
 	/**
-	 * Método para generar un informe con las estadísticas de DeustoTickets
-	 * @param filename
-	 * @param usuarios
-	 * @param conciertos
-	 * @param artistas
+	 * Generates a report with the application's statistics.
+	 * 
+	 * @param filename file name
+	 * @param usuarios list with all users
+	 * @param conciertos list with all concerts
+	 * @param artistas list with all artists
+	 * @return true if the report generation is successful and false if it is not
+	 * @see Usuario
+	 * @see Concierto
 	 */
-	public static void generateReport(String filename, List<Usuario> usuarios, List<Concierto> conciertos,
+	public static boolean generateReport(String filename, List<Usuario> usuarios, List<Concierto> conciertos,
 			List<Artista> artistas) {
 		if (filename != null && !usuarios.isEmpty() && !conciertos.isEmpty() && !artistas.isEmpty()) {
 			try (PrintWriter out = new PrintWriter(new File(filename))) {
 				String dateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy, HH:mm:ss").format(LocalDateTime.now());
 				Date actual;
-				ArrayList<TipoGenero> generosActuales = new ArrayList<>();
-				HashMap<TipoGenero, Integer> generos = new HashMap<>();
+				ArrayList<TipoGenero> generosActuales = new ArrayList<TipoGenero>();
+				HashMap<TipoGenero, Integer> generos = new HashMap<TipoGenero, Integer>();
 				actual = sdf.parse(dateTime);
 				out.println("ESTADÍSTICAS DeustoTickets");
 				out.println("---------------------------");
@@ -523,12 +541,16 @@ public class Resource {
 				out.println("Fecha y hora de la generación del informe: " + dateTime);
 
 				System.out.println(String.format("'%s' Report successfully generated.", filename));
+				
+				return true;
 
 			} catch (Exception ex) {
 				System.err.println(String.format("Error escribiendo TXT '%s': %s", filename, ex.getMessage()));
+				return false;
 			}
 		} else {
 			System.out.println("- No se puede escribir el fichero TXT.");
+			return false;
 		}
 	}
 

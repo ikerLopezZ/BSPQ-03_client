@@ -35,16 +35,16 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 
 /**
+ * Class that manages the main window.
  * 
  * @author BSPQ-03
- *
  */
 public class MainWindow {
 	private static JFrame frmMain;
-	private static ImageIcon logo = new ImageIcon("src/main/resources/deustotickets_logo.png");
-	private static ImageIcon logoPerfil = new ImageIcon("src/main/resources/logoPerfil.png");
-	private static ImageIcon logoPerfilPeque = new ImageIcon("src/main/resources/logoPerfilPeque.png");
-	private static ImageIcon inicio = new ImageIcon("src/main/resources/inicio.png");
+	private static ImageIcon logo = new ImageIcon("src/main/resources/images/deustotickets_logo.png");
+	private static ImageIcon logoPerfil = new ImageIcon("src/main/resources/images/logoPerfil.png");
+	private static ImageIcon logoPerfilPeque = new ImageIcon("src/main/resources/images/logoPerfilPeque.png");
+	private static ImageIcon inicio = new ImageIcon("src/main/resources/images/inicio.png");
 	public static Usuario logged = null;
 	private static DefaultListModel<Concierto> conciertosListModel;
 	private static JList<Concierto> conciertosList;
@@ -61,15 +61,10 @@ public class MainWindow {
 	private static String fechaActual = DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now());
 	private static String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual;
 
-
-	
 	public Usuario getLogged() {
 		return logged;
 	}
 	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	public static void initialize() {
 		frmMain = new JFrame();
 		frmMain.getContentPane().setBackground(new Color(255, 255, 255));
@@ -390,4 +385,5 @@ public class MainWindow {
 
 		frmMain.setVisible(true);
 	}
+	
 }

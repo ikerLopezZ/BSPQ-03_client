@@ -1,9 +1,9 @@
 package com.deustotickets.domain;
 
 /**
+ * Class that represents a concert.
  * 
  * @author BSPQ-03
- *
  */
 public class Concierto {
 	private String id;
@@ -13,6 +13,10 @@ public class Concierto {
 	private int aforo;
 	private int entradasDisponibles;
 	
+	public Concierto() {
+		super();
+	}
+	
 	public Concierto(String id, Artista artista, String fecha, String lugar, int aforo) {
 		super();
 		this.id = id;
@@ -21,10 +25,6 @@ public class Concierto {
 		this.lugar = lugar;
 		this.aforo = aforo;
 		this.entradasDisponibles = aforo;
-	}
-	
-	public Concierto() {
-		super();
 	}
 
 	public String getId() {

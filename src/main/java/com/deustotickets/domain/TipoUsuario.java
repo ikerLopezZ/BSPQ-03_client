@@ -1,9 +1,12 @@
 package com.deustotickets.domain;
 
 /**
- * 
- * @author BSPQ-03
- *
+ *  User types that can be used.
+ *  {@link #ARTISTA}
+ *  {@link #GESTOR}
+ *  {@link #CLIENTE}
+ *  
+ *  @author BSPQ-03
  */
 public enum TipoUsuario {
 	ARTISTA, GESTOR, CLIENTE;

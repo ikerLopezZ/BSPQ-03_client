@@ -16,17 +16,12 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 /**
+ * Class that manages the customization of the JTextField, JPasswordField and JSpinner.
  * 
  * @author BSPQ-03
- *
  */
 public class Utils {
-	/**
-	 * Personaliza y añade los escuchadores correspondientes al {@link JTextField} recibido como argumento.
-	 * @param field {@link JTextField} a personalizar.
-	 * @param textoPorDefecto {@link String} por defecto para el campo.
-	 * @return {@link JTextField} personalizado.
-	 */
+
 	public static JTextField modifyTextField(JTextField field, String textoPorDefecto) {
 		Border line = BorderFactory.createLineBorder(new Color(194, 194, 194), 2);
 		Border empty = new EmptyBorder(0, 5, 0, 0);
@@ -74,12 +69,6 @@ public class Utils {
 		return field;
 	}
 	
-	/**
-	 * Personaliza y añade los escuchadores correspondientes al {@link JPasswordField} recibido como argumento.
-	 * @param field {@link JPasswordField} a personalizar.
-	 * @param textoPorDefecto {@link String} por defecto para el campo.
-	 * @return {@link JPasswordField} personalizado.
-	 */
 	public static JPasswordField modifyPasswordField(JPasswordField field, String textoPorDefecto) {
 		Border line = BorderFactory.createLineBorder(new Color(194, 194, 194), 2);
 		Border empty = new EmptyBorder(0, 5, 0, 0);
@@ -126,11 +115,6 @@ public class Utils {
 		return field;
 	}
 	
-	/**
-	 * Personaliza y añade los escuchadores correspondientes al {@link JSpinner} recibido como asrgumento.
-	 * @param field {@link JSpinner} a personalizar.
-	 * @return {@link JSpinner} personalizado.
-	 */
 	public static JSpinner modifySpinner(JSpinner field) {
 		Border line = BorderFactory.createLineBorder(new Color(194, 194, 194), 2);
 		Border empty = new EmptyBorder(0, 5, 0, 0);

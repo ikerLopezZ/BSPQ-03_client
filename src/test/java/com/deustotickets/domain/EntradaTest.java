@@ -22,7 +22,8 @@ public class EntradaTest {
 	@SuppressWarnings("unused")
 	@Test
 	public void testEntrada() {
-		Entrada e = new Entrada("0", new Concierto(), 0.0, "test");
+		Entrada e1 = new Entrada("0", new Concierto("0", new Artista(), "01/01/2000", "01/01/2000", 200), 0.0, "test");
+		Entrada e2 = new Entrada();
 	}
 	
 	@Test

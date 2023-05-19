@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
+ * Class that represents a user.
  * 
  * @author BSPQ-03
- *
  */
 public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -19,6 +19,9 @@ public class Usuario implements Serializable{
 	private boolean banned;
 	private ArrayList<Entrada> misEntradas;
 	
+	public Usuario() {
+	}
+	
 	public Usuario(String nombreApellidos, String email, String password, TipoUsuario tipo) {
 		super();
 		this.nombreApellidos = nombreApellidos;
@@ -27,9 +30,6 @@ public class Usuario implements Serializable{
 		this.tipo = tipo;
 		this.banned = false;
 		this.misEntradas = new ArrayList<Entrada>();
-	}
-	
-	public Usuario() {
 	}
 
 	public String getNombreApellidos() {
@@ -85,4 +85,5 @@ public class Usuario implements Serializable{
 		return "Usuario [nombre y apellidos=" + nombreApellidos + ", email=" + email + ", password="
 				+ password + ", tipo=" + tipo + "]";
 	}
+	
 }
