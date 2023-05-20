@@ -59,7 +59,7 @@ public class MainWindow {
 	private static JList<Usuario> usuariosList;
 	private static JScrollPane usuariosScrollPane;
 	private static String fechaActual = DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now());
-	private static String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual;
+	private static String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual + ".txt";
 
 	public Usuario getLogged() {
 		return logged;

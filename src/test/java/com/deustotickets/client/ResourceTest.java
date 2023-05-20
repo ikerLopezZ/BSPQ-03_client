@@ -8,6 +8,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -93,6 +95,13 @@ public class ResourceTest {
 		when(userWebTarget.request(MediaType.APPLICATION_JSON)).thenReturn(invocationBuilder);
 		when(logged.getMisEntradas()).thenReturn(new ArrayList<Entrada>());
 	}
+	
+	@After
+	public void tearDown() {
+		File f = new File("test.txt");
+		f.delete();
+	}
+
 
 	@Test
 	public void testResource() {

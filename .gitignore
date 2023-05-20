@@ -87,3 +87,5 @@ local.properties
 
 .classpath
 /.apt_generated_tests/
+
+*.txt
