@@ -26,6 +26,7 @@ public class App {
 		} catch (Exception ignored) {
 		}
 		res.registerUser("Gestor1", "gestor1@deustotickets.es", "g1", TipoUsuario.GESTOR);
+		res.registerUser("Cliente1", "c3", "c3", TipoUsuario.CLIENTE);
 		res.addConcert("0", new Artista ("Hens", "hens@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, true), "29/02/2024", "BEC", 1110);
 		res.addConcert("1", new Artista ("Juancho Marqués", "juancho@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, true), "09/02/2024", "BEC", 1110);
 		res.addConcert("2", new Artista ("Rels B", "relsito@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, false), "11/02/2024", "BEC", 1110);
@@ -34,13 +35,9 @@ public class App {
 		// Este no lo coge, hay que meterlo a mano en la BBDD
 		res.addConcert("4", new Artista ("Hola", "hola@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.BLUES, false), "11/02/2022", "BEC", 1110);
 		res.addConcert("5", new Artista ("Hola", "holaa@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.BLUES, false), "11/02/2027", "BEC", 1110);
+		Entrada ent = new Entrada("1", res.getConcerts().get(0), 23.23, "Prueba");
 		LoginWindow win = new LoginWindow();
 		win.initialize();
-//		String fechaActual = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDateTime.now());
-//		System.out.println(fechaActual);
-//		String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual;
-//		
-//		res.generateReport(informeEstadisticas,  res.getUsers(), res.getConcerts(), res.getArtists());
 	}
 	
 }

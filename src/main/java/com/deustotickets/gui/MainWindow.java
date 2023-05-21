@@ -9,6 +9,7 @@ import com.deustotickets.client.Resource;
 import com.deustotickets.domain.Usuario;
 import com.deustotickets.domain.Artista;
 import com.deustotickets.domain.Concierto;
+import com.deustotickets.domain.Entrada;
 import com.deustotickets.domain.TipoUsuario;
 
 import java.awt.BorderLayout;
@@ -25,9 +26,13 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -56,15 +61,29 @@ public class MainWindow {
 	private static JList<Artista> artistasFavoritosList;
 	private static JScrollPane artistasFavoritosScrollPane;
 	private static DefaultListModel<Usuario> usuariosListModel;
+	private static DefaultListModel<Entrada> entradasPasadasListModel;
+	private static DefaultListModel<Entrada> entradasFuturasListModel;
 	private static JList<Usuario> usuariosList;
+	private static JList<Entrada> entradasPasadasList;
+	private static JList<Entrada> entradasFuturasList;	
 	private static JScrollPane usuariosScrollPane;
+	private static JScrollPane entradasPasadasScrollPane;
+	private static JScrollPane entradasFuturasScrollPane;
 	private static String fechaActual = DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now());
 	private static String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual + ".txt";
+	private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	
 
+//	/**
+//	 * @wbp.parser.entryPoint
+//	 */
 	public Usuario getLogged() {
 		return logged;
 	}
-	
+
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public static void initialize() {
 		frmMain = new JFrame();
 		frmMain.getContentPane().setBackground(new Color(255, 255, 255));
@@ -114,7 +133,21 @@ public class MainWindow {
 		lblUsuarios.setBounds(153, 210, 320, 31);
 		lblUsuarios.setVisible(false);
 		panelDatos.add(lblUsuarios);
-		
+
+		JLabel lblEntradasPasadas = new JLabel("ENTRADAS DE CONCIERTOS PASADOS");
+		lblEntradasPasadas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEntradasPasadas.setFont(new Font("Footlight MT Light", Font.BOLD, 14));
+		lblEntradasPasadas.setBounds(153, 10, 320, 31);
+		lblEntradasPasadas.setVisible(false);
+		panelDatos.add(lblEntradasPasadas);
+
+		JLabel lblEntradasFuturas = new JLabel("ENTRADAS DE CONCIERTOS FUTUROS");
+		lblEntradasFuturas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEntradasFuturas.setFont(new Font("Footlight MT Light", Font.BOLD, 14));
+		lblEntradasFuturas.setBounds(153, 210, 320, 31);
+		lblEntradasFuturas.setVisible(false);
+		panelDatos.add(lblEntradasFuturas);
+
 		JLabel lblArtistasFavositos = new JLabel("MIS ARTISTAS FAVORITOS");
 		lblArtistasFavositos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblArtistasFavositos.setFont(new Font("Footlight MT Light", Font.BOLD, 24));
@@ -147,20 +180,20 @@ public class MainWindow {
 		JButton btnFavoritos = new JButton("FAVORITOS");
 		btnFavoritos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				ArrayList<Artista> artistas = App.res.getArtists();
-				for(Artista artista : artistas) {
+				for (Artista artista : artistas) {
 					artistasFavoritosListModel.addElement(artista);
 				}
-				
+
 				System.out.println(artistasFavoritosList);
 			}
 		});
-		
+
 		btnFavoritos.setBounds(576, 56, 70, 20);
 		btnFavoritos.setVisible(false);
 		panelDatos.add(btnFavoritos);
-		
+
 		JButton btnTodosConciertos = new JButton("Mostrar todos");
 		btnTodosConciertos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -175,6 +208,20 @@ public class MainWindow {
 		btnTodosConciertos.setBounds(434, 407, 128, 21);
 		btnTodosConciertos.setVisible(false);
 		panelDatos.add(btnTodosConciertos);
+		
+		JButton btnComprarEntrada = new JButton("Comprar entrada");
+		btnComprarEntrada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				ArrayList<Concierto> conciertos = App.res.getConcerts();s
+				int idEntradaCon = conciertosList.getSelectedValue().getAforo() - conciertosList.getSelectedValue().getEntradasDisponibles() + 1;
+				String idEntrada = Integer.toString(idEntradaCon);
+				Entrada nuevaEntrada = new Entrada(idEntrada, conciertosList.getSelectedValue(), conciertosList.getSelectedValue().getAforo()/50, ("Entrada concierto " + conciertosList.getSelectedValue().getArtista()));
+				App.res.buyTicket(nuevaEntrada);
+				System.out.println(logged.getMisEntradas());
+			}
+		});
+		btnComprarEntrada.setBounds(313, 407, 111, 21);
+		panelDatos.add(btnComprarEntrada);
 
 		// Crear el JScrollPane y la JList de conciertos
 		conciertosListModel = new DefaultListModel<Concierto>();
@@ -191,7 +238,7 @@ public class MainWindow {
 		artistasScrollPane.setBounds(80, 45, 501, 150);
 		artistasScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		artistasScrollPane.setViewportView(artistasList);
-		
+
 		// Crear el JScrollPane y la JList de artistas fvaoritos
 		artistasFavoritosListModel = new DefaultListModel<Artista>();
 		artistasFavoritosList = new JList<>(artistasFavoritosListModel);
@@ -207,6 +254,22 @@ public class MainWindow {
 		usuariosScrollPane.setBounds(80, 245, 501, 150);
 		usuariosScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		usuariosScrollPane.setViewportView(usuariosList);
+
+		// Crear el JScrollPane y la JList de entradas pasadas
+		entradasPasadasListModel = new DefaultListModel<Entrada>();
+		entradasPasadasList = new JList<>(entradasPasadasListModel);
+		entradasPasadasScrollPane = new JScrollPane(entradasPasadasList);
+		entradasPasadasScrollPane.setBounds(80, 45, 501, 150);
+		entradasPasadasScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		entradasPasadasScrollPane.setViewportView(entradasPasadasList);
+
+		// Crear el JScrollPane y la JList de entradas futuras
+		entradasFuturasListModel = new DefaultListModel<Entrada>();
+		entradasFuturasList = new JList<>(entradasFuturasListModel);
+		entradasFuturasScrollPane = new JScrollPane(entradasFuturasList);
+		entradasFuturasScrollPane.setBounds(80, 245, 501, 150);
+		entradasFuturasScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		entradasFuturasScrollPane.setViewportView(entradasFuturasList);
 
 		JPanel panelControlPerfil = new JPanel();
 		panelControlPerfil.setBounds(0, 495, 656, 68);
@@ -240,17 +303,18 @@ public class MainWindow {
 		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnBloquearUsuario);
 		}
-		
+
 		JButton btnEstadisticas = new JButton("GENERAR ESTADÍSTICAS");
 		btnEstadisticas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				App.res.generateReport(informeEstadisticas, App.res.getUsers(), App.res.getConcerts(), App.res.getArtists());
+				App.res.generateReport(informeEstadisticas, App.res.getUsers(), App.res.getConcerts(),
+						App.res.getArtists());
 			}
 		});
 		if (logged.getTipo() == TipoUsuario.GESTOR) {
 			panelControlPerfil.add(btnEstadisticas);
 		}
-		
+
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLocation(655, 70);
 		panelBotones.setSize(131, 493);
@@ -264,6 +328,10 @@ public class MainWindow {
 				artistasScrollPane.setVisible(false);
 				usuariosScrollPane.setVisible(false);
 				conciertosScrollPane.setVisible(true);
+				lblEntradasFuturas.setVisible(false);
+				lblEntradasPasadas.setVisible(false);
+				entradasPasadasScrollPane.setVisible(false);
+				entradasFuturasScrollPane.setVisible(false);
 				// artistasListModel.clear();
 				lblArtistasFavositos.setVisible(false);
 				lblProximosConciertos.setVisible(true);
@@ -293,6 +361,10 @@ public class MainWindow {
 				usuariosScrollPane.setVisible(true);
 				artistasListModel.clear();
 				usuariosListModel.clear();
+				lblEntradasFuturas.setVisible(false);
+				lblEntradasPasadas.setVisible(false);
+				entradasPasadasScrollPane.setVisible(false);
+				entradasFuturasScrollPane.setVisible(false);
 				lblArtistasFavositos.setVisible(false);
 				lblProximosConciertos.setVisible(false);
 				lblArtistas.setVisible(true);
@@ -321,8 +393,8 @@ public class MainWindow {
 		btnArtistas.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
 		panelBotones.add(btnArtistas);
 
-		JButton btnNewButton_2 = new JButton("ENTRADAS");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnEntradas = new JButton("ENTRADAS");
+		btnEntradas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnFavoritos.setVisible(false);
 				btnBuscarConcierto.setVisible(false);
@@ -331,6 +403,10 @@ public class MainWindow {
 				lblArtistas.setVisible(false);
 				lblUsuarios.setVisible(false);
 				lblArtistasFavositos.setVisible(false);
+				lblEntradasFuturas.setVisible(true);
+				lblEntradasPasadas.setVisible(true);
+				entradasPasadasScrollPane.setVisible(true);
+				entradasFuturasScrollPane.setVisible(true);
 				usuariosScrollPane.setVisible(false);
 				artistasScrollPane.setVisible(false);
 				conciertosScrollPane.setVisible(false);
@@ -338,11 +414,34 @@ public class MainWindow {
 				artistasListModel.clear();
 				conciertosListModel.clear();
 				usuariosListModel.clear();
+				
+				ArrayList<Entrada> entradas = logged.getMisEntradas();
+				Date fechaHoy = new Date();	//Fecha actual
+				for (Entrada entrada: entradas) {
+					Date fechaConcierto;
+					try {
+						fechaConcierto = dateFormat.parse(entrada.getConcierto().getFecha());
+						
+						if(fechaConcierto.compareTo(fechaHoy) > 0) {	//El concierto es posterior a hoy
+							entradasFuturasListModel.addElement(entrada);
+						} else if (fechaConcierto.compareTo(fechaHoy) < 0){
+							entradasPasadasListModel.addElement(entrada);
+						} else {
+							System.out.println("¡Hoy tienes un concierto! Aquí tienes la entrada: " + entrada.getNombre());
+						}
+					} catch (ParseException e1) {
+						System.out.println("Error analizando la fecha: " +e1.getMessage());
+					}
+					
+				}
+				
+				entradasPasadasList.setModel(entradasPasadasListModel);
+				entradasFuturasList.setModel(entradasFuturasListModel);
 			}
 		});
-		btnNewButton_2.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
-		panelBotones.add(btnNewButton_2);
-		
+		btnEntradas.setFont(new Font("Footlight MT Light", Font.BOLD, 13));
+		panelBotones.add(btnEntradas);
+
 		JButton btnArtistasFavoritos = new JButton("ARTISTAS FAVORITOS");
 		btnArtistasFavoritos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -351,13 +450,17 @@ public class MainWindow {
 				artistasScrollPane.setVisible(false);
 				usuariosScrollPane.setVisible(false);
 				conciertosScrollPane.setVisible(false);
+				lblEntradasFuturas.setVisible(false);
+				lblEntradasPasadas.setVisible(false);
+				entradasPasadasScrollPane.setVisible(false);
+				entradasFuturasScrollPane.setVisible(false);
 				btnFavoritos.setVisible(false);
 				lblArtistas.setVisible(false);
 				lblProximosConciertos.setVisible(false);
 				lblUsuarios.setVisible(false);
 				lblArtistasFavositos.setVisible(true);
 				panelDatos.add(artistasFavoritosScrollPane, BorderLayout.CENTER);
-				
+
 				ArrayList<Artista> artistas = App.res.getArtists();
 
 				for (Artista artista : artistas) {
@@ -385,5 +488,4 @@ public class MainWindow {
 
 		frmMain.setVisible(true);
 	}
-	
 }
