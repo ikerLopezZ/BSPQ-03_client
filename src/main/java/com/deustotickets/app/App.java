@@ -35,7 +35,7 @@ public class App {
 		// Este no lo coge, hay que meterlo a mano en la BBDD
 		res.addConcert("4", new Artista ("Hola", "hola@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.BLUES, false), "11/02/2022", "BEC", 1110);
 		res.addConcert("5", new Artista ("Hola", "holaa@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.BLUES, false), "11/02/2027", "BEC", 1110);
-		Entrada ent = new Entrada("1", res.getConcerts().get(0), 23.23, "Prueba");
+//		Entrada ent = new Entrada("1", res.getConcerts().get(0), 23.23, "Prueba");
 		LoginWindow win = new LoginWindow();
 		win.initialize();
 	}

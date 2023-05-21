@@ -221,6 +221,7 @@ public class MainWindow {
 			}
 		});
 		btnComprarEntrada.setBounds(313, 407, 111, 21);
+		btnFavoritos.setVisible(false);
 		panelDatos.add(btnComprarEntrada);
 
 		// Crear el JScrollPane y la JList de conciertos
@@ -340,6 +341,7 @@ public class MainWindow {
 				btnFavoritos.setVisible(false);
 				btnBuscarConcierto.setVisible(true);
 				btnTodosConciertos.setVisible(true);
+				btnFavoritos.setVisible(true);
 				panelDatos.add(conciertosScrollPane, BorderLayout.CENTER);
 				ArrayList<Concierto> conciertos = App.res.getConcerts();
 				for (Concierto concierto : conciertos) {
@@ -407,6 +409,8 @@ public class MainWindow {
 				lblEntradasPasadas.setVisible(true);
 				entradasPasadasScrollPane.setVisible(true);
 				entradasFuturasScrollPane.setVisible(true);
+				entradasFuturasListModel.clear();
+				entradasFuturasListModel.clear();
 				usuariosScrollPane.setVisible(false);
 				artistasScrollPane.setVisible(false);
 				conciertosScrollPane.setVisible(false);
@@ -414,6 +418,8 @@ public class MainWindow {
 				artistasListModel.clear();
 				conciertosListModel.clear();
 				usuariosListModel.clear();
+				panelDatos.add(entradasPasadasScrollPane, BorderLayout.CENTER);
+				panelDatos.add(entradasFuturasScrollPane, BorderLayout.CENTER);
 				
 				ArrayList<Entrada> entradas = logged.getMisEntradas();
 				Date fechaHoy = new Date();	//Fecha actual
