@@ -553,5 +553,30 @@ public class Resource {
 			return false;
 		}
 	}
+	
+	public static boolean returnTicket(Entrada ent) {
+		WebTarget registerUserWebTarget = webTarget.path("returnTickets");
+		Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		Response response = invocationBuilder.post(Entity.entity(ent, MediaType.APPLICATION_JSON));
+		ArrayList<Entrada> mine = MainWindow.logged.getMisEntradas();
+		for (int i = 0; i < mine.size(); i++) {
+			if(ent.getId().equals(mine.get(i).getId())) {
+				mine.remove(i);
+				break;
+			}
+			
+		}
+		MainWindow.logged.setMisEntradas(mine);
+		updateUserTickets(MainWindow.logged);
+		if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			System.out.println("Error connecting with the server");
+			return false;
+		} else {
+			logger.info("Ticket successfully returned");
+			System.out.println("Ticket successfully returned");
+			return true;
+		}
+	}
 
 }

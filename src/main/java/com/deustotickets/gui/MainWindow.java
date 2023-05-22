@@ -223,6 +223,20 @@ public class MainWindow {
 		btnComprarEntrada.setBounds(313, 407, 111, 21);
 		btnFavoritos.setVisible(false);
 		panelDatos.add(btnComprarEntrada);
+		
+		JButton btnDevolverEntradas = new JButton("DevolverEntradas");
+		btnDevolverEntradas.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				App.res.returnTicket(entradasFuturasList.getSelectedValue());
+				entradasFuturasList.updateUI();
+				
+			}
+		});
+		btnDevolverEntradas.setBounds(80, 407, 85, 21);
+		panelDatos.add(btnDevolverEntradas);
 
 		// Crear el JScrollPane y la JList de conciertos
 		conciertosListModel = new DefaultListModel<Concierto>();
