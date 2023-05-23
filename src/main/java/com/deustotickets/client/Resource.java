@@ -62,6 +62,7 @@ public class Resource {
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 		Usuario u = response.readEntity(Usuario.class);
 		MainWindow.logged = u;
+		System.out.println(u.getMisEntradas().size());
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 			System.out.println("Error connecting with the server");
@@ -246,6 +247,7 @@ public class Resource {
 		Response response = invocationBuilder.post(Entity.entity(ent, MediaType.APPLICATION_JSON));
 		ArrayList<Entrada> mine = MainWindow.logged.getMisEntradas();
 		mine.add(ent);
+		ent.getConcierto().setEntradasDisponibles(ent.getConcierto().getEntradasDisponibles()-1);
 		MainWindow.logged.setMisEntradas(mine);
 		updateUserTickets(MainWindow.logged);
 		if (response.getStatus() != Status.OK.getStatusCode()) {

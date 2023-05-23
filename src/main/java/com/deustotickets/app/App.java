@@ -26,7 +26,7 @@ public class App {
 		} catch (Exception ignored) {
 		}
 		res.registerUser("Gestor1", "gestor1@deustotickets.es", "g1", TipoUsuario.GESTOR);
-		res.registerUser("Cliente1", "c3", "c3", TipoUsuario.CLIENTE);
+		res.registerUser("Cliente1", "c4", "c4", TipoUsuario.CLIENTE);
 		res.addConcert("0", new Artista ("Hens", "hens@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, true), "29/02/2024", "BEC", 1110);
 		res.addConcert("1", new Artista ("Juancho Marqués", "juancho@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, true), "09/02/2024", "BEC", 1110);
 		res.addConcert("2", new Artista ("Rels B", "relsito@gmail.com", "123", TipoUsuario.ARTISTA, TipoGenero.POP, false), "11/02/2024", "BEC", 1110);

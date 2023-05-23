@@ -220,7 +220,8 @@ public class LoginWindow {
 						}
 						frmLogin.dispose();
 					} catch(Exception ex) {
-						JOptionPane.showMessageDialog(null, "Error al iniciar sesión", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Error al iniciar sesión ", "Error", JOptionPane.ERROR_MESSAGE);
+						System.out.println(ex.toString());
 					}
 				}
 			}

@@ -65,14 +65,13 @@ public class MainWindow {
 	private static DefaultListModel<Entrada> entradasFuturasListModel;
 	private static JList<Usuario> usuariosList;
 	private static JList<Entrada> entradasPasadasList;
-	private static JList<Entrada> entradasFuturasList;	
+	private static JList<Entrada> entradasFuturasList;
 	private static JScrollPane usuariosScrollPane;
 	private static JScrollPane entradasPasadasScrollPane;
 	private static JScrollPane entradasFuturasScrollPane;
 	private static String fechaActual = DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now());
 	private static String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual + ".txt";
 	private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	
 
 //	/**
 //	 * @wbp.parser.entryPoint
@@ -208,14 +207,17 @@ public class MainWindow {
 		btnTodosConciertos.setBounds(434, 407, 128, 21);
 		btnTodosConciertos.setVisible(false);
 		panelDatos.add(btnTodosConciertos);
-		
+
 		JButton btnComprarEntrada = new JButton("Comprar entrada");
 		btnComprarEntrada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //				ArrayList<Concierto> conciertos = App.res.getConcerts();s
-				int idEntradaCon = conciertosList.getSelectedValue().getAforo() - conciertosList.getSelectedValue().getEntradasDisponibles() + 1;
+				int idEntradaCon = conciertosList.getSelectedValue().getAforo()
+						- conciertosList.getSelectedValue().getEntradasDisponibles() + 1;
 				String idEntrada = Integer.toString(idEntradaCon);
-				Entrada nuevaEntrada = new Entrada(idEntrada, conciertosList.getSelectedValue(), conciertosList.getSelectedValue().getAforo()/50, ("Entrada concierto " + conciertosList.getSelectedValue().getArtista()));
+				Entrada nuevaEntrada = new Entrada(idEntrada, conciertosList.getSelectedValue(),
+						conciertosList.getSelectedValue().getAforo() / 50,
+						("Entrada concierto " + conciertosList.getSelectedValue().getArtista()));
 				App.res.buyTicket(nuevaEntrada);
 				System.out.println(logged.getMisEntradas());
 			}
@@ -434,27 +436,31 @@ public class MainWindow {
 				usuariosListModel.clear();
 				panelDatos.add(entradasPasadasScrollPane, BorderLayout.CENTER);
 				panelDatos.add(entradasFuturasScrollPane, BorderLayout.CENTER);
-				
+
 				ArrayList<Entrada> entradas = logged.getMisEntradas();
-				Date fechaHoy = new Date();	//Fecha actual
-				for (Entrada entrada: entradas) {
+				Date fechaHoy = new Date(); // Fecha actual
+				for (Entrada entrada : entradas) {
 					Date fechaConcierto;
 					try {
 						fechaConcierto = dateFormat.parse(entrada.getConcierto().getFecha());
-						
-						if(fechaConcierto.compareTo(fechaHoy) > 0) {	//El concierto es posterior a hoy
-							entradasFuturasListModel.addElement(entrada);
-						} else if (fechaConcierto.compareTo(fechaHoy) < 0){
-							entradasPasadasListModel.addElement(entrada);
+						if (fechaConcierto.compareTo(fechaHoy) > 0) { // El concierto es posterior a hoy
+							if (!entradasFuturasListModel.contains(entrada)) {
+								entradasFuturasListModel.addElement(entrada);
+							}
+						} else if (fechaConcierto.compareTo(fechaHoy) < 0) {
+							if (!entradasPasadasListModel.contains(entrada)) {
+								entradasPasadasListModel.addElement(entrada);
+							}
 						} else {
-							System.out.println("¡Hoy tienes un concierto! Aquí tienes la entrada: " + entrada.getNombre());
+							System.out.println(
+									"¡Hoy tienes un concierto! Aquí tienes la entrada: " + entrada.getNombre());
 						}
 					} catch (ParseException e1) {
-						System.out.println("Error analizando la fecha: " +e1.getMessage());
+						System.out.println("Error analizando la fecha: " + e1.getMessage());
 					}
-					
+
 				}
-				
+
 				entradasPasadasList.setModel(entradasPasadasListModel);
 				entradasFuturasList.setModel(entradasFuturasListModel);
 			}
