@@ -62,7 +62,6 @@ public class Resource {
 		Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
 		Usuario u = response.readEntity(Usuario.class);
 		MainWindow.logged = u;
-		System.out.println(u.getMisEntradas().size());
 		if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 			System.out.println("Error connecting with the server");
