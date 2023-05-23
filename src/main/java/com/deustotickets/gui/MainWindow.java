@@ -233,7 +233,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				App.res.returnTicket(entradasFuturasList.getSelectedValue());
-				entradasFuturasList.updateUI();
+				entradasFuturasListModel.remove(entradasFuturasList.getSelectedIndex());
 				
 			}
 		});
