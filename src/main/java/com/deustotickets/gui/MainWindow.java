@@ -72,6 +72,7 @@ public class MainWindow {
 	private static String fechaActual = DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDateTime.now());
 	private static String informeEstadisticas = "Informe Estadísticas DeustoTickets - " + fechaActual + ".txt";
 	private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	
 
 //	/**
 //	 * @wbp.parser.entryPoint
@@ -240,6 +241,36 @@ public class MainWindow {
 		btnDevolverEntradas.setBounds(80, 407, 85, 21);
 		btnDevolverEntradas.setVisible(false);
 		panelDatos.add(btnDevolverEntradas);
+		
+		JButton btnNewButton = new JButton("Ver Reseña");
+		btnNewButton.setBounds(572, 407, 85, 21);
+		panelDatos.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Añadir Reseña");
+		btnNewButton_1.setBounds(5, 407, 85, 21);
+		panelDatos.add(btnNewButton_1);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ResenaWindow ventana = new ResenaWindow();
+				ventana.show();
+				
+				
+			}
+		});
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String r = JOptionPane.showInputDialog("Introduce tu reseña");
+				ResenaWindow.listaResena.add(r);
+				
+			}
+		});
 
 		// Crear el JScrollPane y la JList de conciertos
 		conciertosListModel = new DefaultListModel<Concierto>();
